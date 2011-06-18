@@ -6,7 +6,7 @@ class phRETS {
 *  PHRETS - PHP library for RETS
 *  version 1.0rc3 (release candidate 3)  please send error reports and/or feedback to troy.davisson@gmail.com
 *  http://troda.com/projects/phrets/
-*  Copyright (C) 2007-2010 Troy Davisson
+*  Copyright (C) 2007-2011 Troy Davisson
 *
 *  All rights reserved.
 *  Permission is hereby granted, free of charge, to use, copy or modify this software.  Use at your own risk.
@@ -1415,6 +1415,7 @@ class phRETS {
 		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($this->ch, CURLOPT_COOKIEFILE, $this->cookie_file);
 		curl_setopt($this->ch, CURLOPT_TIMEOUT, 0);
+		curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		// make request to Login transaction
 		$result =  $this->RETSRequest($this->capability_url['Login']);
