@@ -534,7 +534,7 @@ class phRETS {
 		$search_arguments['Format'] = empty($optional_params['Format']) ? "COMPACT-DECODED" : $optional_params['Format'];
 		$search_arguments['Limit'] = empty($optional_params['Limit']) ? 99999999 : $optional_params['Limit'];
 
-		if (!empty($optional_params['Offset'])) {
+		if (isset($optional_params['Offset'])) {
 			$search_arguments['Offset'] = $optional_params['Offset'];
 		}
 		elseif ($this->offset_support && empty($optional_params['Offset'])) {
