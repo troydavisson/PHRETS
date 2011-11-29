@@ -695,7 +695,7 @@ class phRETS {
 					$this_lookup = array();
 
 					$lookup_xml_array = array();
-					if ($this->server_version == "RETS/1.7.2") {
+					if (($this->server_version == "RETS/1.7.2") || ($this->server_version == "RETS/1.8")) {
 						$lookup_xml_array = $key->LookupType;
 					}
 					else {
@@ -771,7 +771,7 @@ class phRETS {
 		if ($xml->METADATA && $xml->METADATA->{'METADATA-LOOKUP_TYPE'}) {
 
 			$lookup_xml_array = array();
-			if ($this->server_version == "RETS/1.7.2") {
+			if (($this->server_version == "RETS/1.7.2") || ($this->server_version == "RETS/1.8")) {
 				$lookup_xml_array = $xml->METADATA->{'METADATA-LOOKUP_TYPE'}->LookupType;
 			}
 			else {
@@ -1714,7 +1714,7 @@ class phRETS {
 			}
 		}
 		if ($check_version == "1_7_or_higher") {
-			if ($this->GetServerVersion() == "RETS/1.7" || $this->GetServerVersion() == "RETS/1.7.1" || $this->GetServerVersion() == "RETS/1.7.2") {
+			if ($this->GetServerVersion() == "RETS/1.7" || $this->GetServerVersion() == "RETS/1.7.1" || $this->GetServerVersion() == "RETS/1.7.2" || $this->GetServerVersion() == "RETS/1.8") {
 				return true;
 			}
 			else {
