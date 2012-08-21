@@ -35,7 +35,7 @@ PHRETS is maintained in a public Git repository on GitHub.  Issue submissions an
 `AddHeader ( string $name, string $value )`
 
 ###### Parameters
-`$name` - Header name to be passed.
+`$name` - Header name to be passed.  
 `$value` - Header value to be passed.
 
 ###### Return Value
@@ -76,7 +76,7 @@ $rets->AddHeader("User-Agent", "CustomApp/1.0");
 Returns TRUE if passed parameter was valid. Returns FALSE otherwise.
 
 ###### Changelog
-1.0rc2 - Added new parameters `override_offset_protection`, `offset_support`, `catch_last_response` and `disable_encoding_fix`
+1.0rc2 - Added new parameters `override_offset_protection`, `offset_support`, `catch_last_response` and `disable_encoding_fix`  
 1.0 - Added new parameters `debug_file`, `force_basic_authentication` and `use_interealty_ua_auth`
 
 ###### Usage Examples
@@ -99,9 +99,9 @@ $rets->SetParam("disable_follow_location", true);
 `Connect ( string $login_url, string $username, string $password [, string $ua_pwd ] )`
 
 ###### Parameters
-`$login_url` - Full Login URL to the RETS server
-`$username` - Login username
-`$password` - Login password
+`$login_url` - Full Login URL to the RETS server  
+`$username` - Login username  
+`$password` - Login password  
 `$ua_pwd` - Optional. User-Agent Password.  Default is blank. If not blank, User-Agent Authentication is forced.
 
 ###### Return Value
