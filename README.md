@@ -47,6 +47,7 @@ Since the header is maintained in a local settings array, this always returns bo
 ###### Usage Examples
 Add a custom User-Agent (needed when using User-Agent Authentication):
 ```php
+<?php
 $rets->AddHeader("User-Agent", "CustomApp/1.0");
 ```
 
@@ -81,13 +82,16 @@ Returns TRUE if passed parameter was valid. Returns FALSE otherwise.
 
 ###### Usage Examples
 ```php
+<?php
 $rets->SetParam("debug_mode", true);
 $rets->SetParam("debug_file", "debug_log.txt");
 ```
 ```php
+<?php
 $rets->SetParam("compression_enabled", true);
 ```
 ```php
+<?php
 $rets->SetParam("disable_follow_location", true);
 ```
 
@@ -114,6 +118,7 @@ If any part of the initial connection failed, returns FALSE (check [Error](#erro
 ###### Usage Examples
 Connects
 ```php
+<?php
 $connect = $rets->Connect("http://demo.crt.realtors.org:6103/rets/login", "Joe", "Schmoe");
 if (!$connect) {
         print_r($rets->Error());
@@ -121,6 +126,7 @@ if (!$connect) {
 ```
 Connects with User-Agent Authentication
 ```php
+<?php
 $connect = $rets->Connect("http://demo.crt.realtors.org:6103/rets/login", "Joe", "Schmoe", "ua-password");
 ```
 
