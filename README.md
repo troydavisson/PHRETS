@@ -31,6 +31,8 @@ PHRETS is maintained in a public Git repository on GitHub.  Issue submissions an
 
 # Documentation
 
+---
+
 ### AddHeader
 `AddHeader ( string $name, string $value )`
 
@@ -54,6 +56,7 @@ $rets->AddHeader("User-Agent", "CustomApp/1.0");
 ###### Related To
 [Connect](#connect), [SetParam](#setparam)
 
+---
 
 ### SetParam
 `SetParam ( string $name, string $value )`
@@ -98,6 +101,7 @@ $rets->SetParam("disable_follow_location", true);
 ###### Related To
 [Connect](#connect), [AddHeader](#addheader)
 
+---
 
 ### Connect
 `Connect ( string $login_url, string $username, string $password [, string $ua_pwd ] )`
@@ -119,15 +123,15 @@ If any part of the initial connection failed, returns FALSE (check [Error](#erro
 Connects
 ```php
 <?php
-$connect = $rets->Connect("http://demo.crt.realtors.org:6103/rets/login", "Joe", "Schmoe");
+$connect = $rets->Connect("http://retsserver:6103/rets/login", "Joe", "Schmoe");
 if (!$connect) {
-        print_r($rets->Error());
+  print_r($rets->Error());
 }
 ```
 Connects with User-Agent Authentication
 ```php
 <?php
-$connect = $rets->Connect("http://demo.crt.realtors.org:6103/rets/login", "Joe", "Schmoe", "ua-password");
+$connect = $rets->Connect("http://retsserver:6103/rets/login", "Joe", "Schmoe", "ua-password");
 ```
 
 ###### Related To
