@@ -29,5 +29,27 @@ The source code for PHRETS is available on [GitHub](http://github.com/troydaviss
 PHRETS is maintained in a public Git repository on GitHub.  Issue submissions and pull requests are encouraged if you run into issues or if you have fixes or changes to contribute.
 
 
-## Documentation
+# Documentation
+
+### AddHeader
+`AddHeader ( string $name, string $value )`
+
+###### Parameters
+    $name - Header name to be passed.
+    $value - Header value to be passed.
+
+###### Return Value
+Since the header is maintained in a local settings array, this always returns boolean TRUE
+
+###### Changelog
+1.0 - If RETS-Version isn't specifically set, it now defaults to RETS/1.5. If User-Agent isn't specifically set, it now defaults to PHRETS/1.0. If Accept isn't specifically set, it now defaults to */*. This makes calling AddHeader() optional prior to connecting
+
+###### Usage Examples
+Add a custom User-Agent (needed when using User-Agent Authentication):
+```php
+$rets->AddHeader("User-Agent", "CustomApp/1.0");
+```
+
+###### Related To
+[Connect](#connect), [SetParam](#setparam)
 
