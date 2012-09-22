@@ -695,7 +695,7 @@ class phRETS {
 					$this_lookup = array();
 
 					$lookup_xml_array = array();
-					if (($this->server_version == "RETS/1.7.2") || ($this->server_version == "RETS/1.8")) {
+					if (!empty($key->LookupType)) {
 						$lookup_xml_array = $key->LookupType;
 					}
 					else {
@@ -771,7 +771,7 @@ class phRETS {
 		if ($xml->METADATA && $xml->METADATA->{'METADATA-LOOKUP_TYPE'}) {
 
 			$lookup_xml_array = array();
-			if (($this->server_version == "RETS/1.7.2") || ($this->server_version == "RETS/1.8")) {
+			if (!empty($xml->METADATA->{'METADATA-LOOKUP_TYPE'}->LookupType)) {
 				$lookup_xml_array = $xml->METADATA->{'METADATA-LOOKUP_TYPE'}->LookupType;
 			}
 			else {
