@@ -17,7 +17,6 @@ class phRETS {
 *
 */
 
-	public $err;
 	public $capability_url = array();
 	private $ch;
 	private $server_hostname;
@@ -1530,7 +1529,6 @@ class phRETS {
 			$xml = @simplexml_load_string($data);
 			if (!is_object($xml)) {
 				$this->set_error_info("xml", -1, "XML parsing error: {$data}");
-				$this->err = "XML Parsing error: {$data}";
 				return false;
 			}
 			return $xml;
@@ -1545,7 +1543,6 @@ class phRETS {
 	public function RETSRequest($action, $parameters = "") {
 		$this->reset_error_info();
 
-		$this->err = "";
 		$this->last_response_headers = array();
 		$this->last_response_headers_raw = "";
 		$this->last_remembered_header = "";
