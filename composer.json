@@ -1,0 +1,21 @@
+{
+    "name": "troydavisson/phrets",
+    "type": "library",
+    "description": "RETS library in PHP",
+    "keywords": ["rets", "mls"],
+    "homepage": "http://github.com/troydavisson/PHRETS",
+    "authors": [
+        {
+            "name": "Troy Davisson",
+            "email": "troy.davisson@gmail.com",
+            "homepage": "http://troda.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.0"
+    },
+    "autoload": {
+        "files": ["phrets.php"]
+    }
+}
