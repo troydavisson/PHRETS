@@ -4,9 +4,10 @@ class phRETS {
 
 /**
 *  PHRETS - PHP library for RETS
-*  version 1.0rc3 (release candidate 3)  please send error reports and/or feedback to troy.davisson@gmail.com
+*  version 1.0
 *  http://troda.com/projects/phrets/
-*  Copyright (C) 2007-2011 Troy Davisson
+*  Copyright (C) 2007-2012 Troy Davisson
+*  please submit problem or error reports to https://github.com/troydavisson/PHRETS/issues
 *
 *  All rights reserved.
 *  Permission is hereby granted, free of charge, to use, copy or modify this software.  Use at your own risk.
