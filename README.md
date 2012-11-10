@@ -21,7 +21,7 @@ PHRETS handles the following aspects of RETS communication for you:
 
 ## Download
 
-**Install via Composer** - Add `troydavisson/phrets` to your `composer.json` file, run `composer update` and you're set.
+**Install via Composer** - Add [troydavisson/phrets](https://packagist.org/packages/troydavisson/phrets) to your `composer.json` file, run `composer update` and you're set.
 **Manual Download** - The source code for PHRETS is available on [GitHub](http://github.com/troydavisson/PHRETS)
 
 
