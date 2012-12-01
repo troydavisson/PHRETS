@@ -16,6 +16,6 @@
         "php": ">=5.2.0"
     },
     "autoload": {
-        "files": ["phrets.php"]
+        "classmap": ["phrets.php"]
     }
 }
