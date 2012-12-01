@@ -4,7 +4,7 @@ class phRETS {
 
 /**
 *  PHRETS - PHP library for RETS
-*  version 1.0
+*  version 1.0.1
 *  http://troda.com/projects/phrets/
 *  Copyright (C) 2007-2012 Troy Davisson
 *  please submit problem or error reports to https://github.com/troydavisson/PHRETS/issues
