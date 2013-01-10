@@ -1266,6 +1266,7 @@ class phRETS {
 		$system_id = "";
 		$system_description = "";
 		$system_comments = "";
+		$system_version = "";
 
 		if ($this->is_server_version("1_5_or_below")) {
 			if (isset($xml->METADATA->{'METADATA-SYSTEM'}->System->SystemID)) {
@@ -1291,12 +1292,16 @@ class phRETS {
 		if (isset($xml->METADATA->{'METADATA-SYSTEM'}->SYSTEM->Comments)) {
 			$system_comments = "{$xml->METADATA->{'METADATA-SYSTEM'}->SYSTEM->Comments}";
 		}
+		if (isset($xml->METADATA->{'METADATA-SYSTEM'}->attributes()->Version)) {
+			$system_version = (string) $xml->METADATA->{'METADATA-SYSTEM'}->attributes()->Version;
+		}
 
 		return array(
 				'SystemID' => $system_id,
 				'SystemDescription' => $system_description,
 				'TimeZoneOffset' => $timezone_offset,
-				'Comments' => $system_comments
+				'Comments' => $system_comments,
+				'Version' => $system_version
 				);
 	}
 
