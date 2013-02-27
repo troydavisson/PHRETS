@@ -1532,7 +1532,11 @@ class phRETS {
 
 		if (!empty($data)) {
 			// parse XML function.  ability to replace SimpleXML with something later fairly easily
-			$xml = @simplexml_load_string($data);
+			if (defined('LIBXML_PARSEHUGE')) {
+				$xml = @simplexml_load_string($data, 'SimpleXMLElement', LIBXML_PARSEHUGE);
+			} else {
+				$xml = @simplexml_load_string($data);
+			}
 			if (!is_object($xml)) {
 				$this->set_error_info("xml", -1, "XML parsing error: {$data}");
 				return false;
