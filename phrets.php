@@ -20,6 +20,7 @@ class phRETS {
 
 	public $capability_url = array();
 	private $ch;
+    private $original_login_url;
 	private $server_hostname;
 	private $server_port;
 	private $server_protocol;
@@ -1359,6 +1360,8 @@ class phRETS {
 			$this->AddHeader("Accept", "*/*");
 		}
 
+        $this->original_login_url = $login_url;
+
 		// chop up Login URL to use for later requests
 		$url_parts = parse_url($login_url);
 		$this->server_hostname = $url_parts['host'];
@@ -1561,8 +1564,13 @@ class phRETS {
 
 		$parse_results = parse_url($action, PHP_URL_HOST);
 		if (empty($parse_results)) {
-			// login transaction gave a relative path for this action
-			$request_url = $this->server_protocol.'://'.$this->server_hostname.':'.$this->server_port.''.$action;
+            if (substr($action, 0, 1) == "/") {
+                // login transaction gave a relative path for this action
+                $request_url = $this->server_protocol.'://'.$this->server_hostname.':'.$this->server_port.''.$action;
+            } else {
+                // login transaction gave a relative path based on the login URL
+                $request_url = dirname($this->original_login_url) . '/' . $action;
+            }
 		}
 		else {
 			// login transaction gave an absolute path for this action
