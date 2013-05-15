@@ -530,7 +530,7 @@ class phRETS {
 		}
 
 		// setup additional, optional request arguments
-		$search_arguments['Count'] = empty($optional_params['Count']) ? 1 : $optional_params['Count'];
+        $search_arguments['Count'] = (!array_key_exists('Count', $optional_params)) ? 1 : $optional_params['Count'];
 		$search_arguments['Format'] = empty($optional_params['Format']) ? "COMPACT-DECODED" : $optional_params['Format'];
 		$search_arguments['Limit'] = empty($optional_params['Limit']) ? 99999999 : $optional_params['Limit'];
 
