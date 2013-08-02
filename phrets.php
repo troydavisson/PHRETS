@@ -1531,6 +1531,8 @@ class phRETS {
 		$this->reset_error_info();
 
 		if (!empty($data)) {
+			// escape ampersands that aren't already escaped
+			$data = preg_replace('/\&(?!\w+\;)/', '&amp;', $data);
 			// parse XML function.  ability to replace SimpleXML with something later fairly easily
 			if (defined('LIBXML_PARSEHUGE')) {
 				$xml = @simplexml_load_string($data, 'SimpleXMLElement', LIBXML_PARSEHUGE);
