@@ -1576,7 +1576,7 @@ class phRETS {
 		// build query string from arguments
 		$request_arguments = "";
 		if (is_array($parameters)) {
-			$request_arguments = http_build_query($parameters);
+			$request_arguments = http_build_query($parameters, '', '&');
 		}
 
 		// build entire URL if needed
