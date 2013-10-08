@@ -66,7 +66,7 @@ class phRETS {
 	private $disable_encoding_fix = false;
 	private $offset_support = false;
 	private $override_offset_protection = false;
-
+	private $rewrite_url = null;
 
 
 	public function phRETS() { }
@@ -1584,6 +1584,13 @@ class phRETS {
 			$request_url = $request_url .'?'. $request_arguments;
 		}
 
+		if (is_callable($this->rewrite_url)) {
+			$new_url = call_user_func($this->rewrite_url, $request_url);
+			if ($new_url) {
+				$request_url = $new_url;
+			}
+		}
+
 		// build headers to pass in cURL
 		$request_headers = "";
 		if (is_array($this->static_headers)) {
@@ -1803,6 +1810,9 @@ class phRETS {
 		return true;
 	}
 
+	public function rewriteRequestURL($closure) {
+		$this->rewrite_url = $closure;
+		return $this;
+	}
 
 }
-
