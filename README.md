@@ -1,3 +1,7 @@
+[![Latest Stable Version](https://poser.pugx.org/troydavisson/PHRETS/v/stable.png)](https://packagist.org/packages/troydavisson/PHRETS)
+[![Total Downloads](https://poser.pugx.org/troydavisson/PHRETS/downloads.png)](https://packagist.org/packages/troydavisson/PHRETS)
+
+
 # PHRETS
 
 A simple, free, open source PHP library for using [RETS](http://rets.org).
