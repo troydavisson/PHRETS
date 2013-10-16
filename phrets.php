@@ -481,7 +481,7 @@ class phRETS {
 	}
 
 
-	public function SearchQuery($resource, $class, $query = "", $optional_params = array()) {
+	public function SearchQuery($resource, $class, $query = "", $optional_params = array(), $callback = null) {
 		$this->reset_error_info();
 
 		if (empty($resource)) {
@@ -604,7 +604,23 @@ class phRETS {
 				foreach ($xml->DATA as $key) {
 					$field_data = "{$key}";
 					// split up DATA row on delimiter found earlier
-					$this->search_data[$this->int_result_pointer]['data'][] = $field_data;
+                    if (is_callable($callback)) {
+                        $field_data = preg_replace("/^{$this->search_data[$this->int_result_pointer]['delimiter_character']}/", "", $field_data);
+                        $field_data = preg_replace("/{$this->search_data[$this->int_result_pointer]['delimiter_character']}\$/", "", $field_data);
+                        $record = array_combine(
+                            $this->search_data[$this->int_result_pointer]['column_names'],
+                            explode($this->search_data[$this->int_result_pointer]['delimiter_character'], $field_data)
+                        );
+                        call_user_func(
+                            $callback,
+                            $resource,
+                            $class,
+                            $record
+                        );
+                    } else {
+                        $this->search_data[$this->int_result_pointer]['data'][] = $field_data;
+                    }
+
 					$this->search_data[$this->int_result_pointer]['last_search_returned']++;
 				}
 			}
