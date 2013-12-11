@@ -1553,6 +1553,7 @@ class phRETS {
 	public function RETSRequest($action, $parameters = "") {
 		$this->reset_error_info();
 
+		$this->last_request = array();
 		$this->last_response_headers = array();
 		$this->last_response_headers_raw = "";
 		$this->last_remembered_header = "";
