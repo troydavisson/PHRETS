@@ -474,6 +474,9 @@ class phRETS {
 					$this_row[$name] = $field_data[$key];
 				}
 			}
+			else {
+				$this->FreeResult($pointer_id);
+			}
 		}
 
 		return $this_row;
