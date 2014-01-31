@@ -51,6 +51,7 @@ class phRETS {
 	private $last_response_headers_raw = "";
 	private $last_remembered_header = "";
 	private $compression_enabled = false;
+	private $curl_options = array();
 	private $ua_pwd = "";
 	private $ua_auth = false;
 	private $request_id = "";
@@ -1425,6 +1426,17 @@ class phRETS {
 		curl_setopt($this->ch, CURLOPT_TIMEOUT, 0);
 		curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
 
+		if (count($this->curl_options) > 0) {
+			if (function_exists('curl_setopt_array')) {
+				curl_setopt_array($this->ch, $this->curl_options);
+			}
+			else {
+				foreach ($this->$curl_options as $name => $value) {
+					curl_setopt($this->ch, $name, $value);
+				}
+			}
+		}
+
 		// make request to Login transaction
 		$result =  $this->RETSRequest($this->capability_url['Login']);
 		if (!$result) {
@@ -1527,6 +1539,16 @@ class phRETS {
 		// delete static header from cURL requests
 		unset($this->static_headers[$name]);
 		return true;
+	}
+
+
+	public function AddOption($name, $value) {
+		// add option to cURL object
+		$this->curl_options[$name] = $value;
+
+		if ($this->ch !== null) {
+			curl_setopt($this->ch, $name, $value);
+		}
 	}
 
 
