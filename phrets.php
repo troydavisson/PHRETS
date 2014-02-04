@@ -1394,8 +1394,11 @@ class phRETS {
 			return false;
 		}
 
-		// start cURL magic
-		$this->ch = curl_init();
+		if (!is_resource($this->ch)) {
+			// start cURL magic
+			$this->ch = curl_init();
+		}
+
 		curl_setopt($this->ch, CURLOPT_HEADERFUNCTION, array(&$this, 'read_custom_curl_headers'));
 		if ($this->debug_mode == true) {
 			// open file handler to be used by cURL debug log
@@ -1759,6 +1762,11 @@ class phRETS {
 		else {
 			return "";
 		}
+	}
+
+
+	public function SetCurl($ch) {
+		$this->ch = $ch;
 	}
 
 
