@@ -66,11 +66,36 @@ class phRETS {
 	private $disable_encoding_fix = false;
 	private $offset_support = false;
 	private $override_offset_protection = false;
-
+	protected $logger = null;
 
 
 	public function phRETS() { }
 
+	public function setLogger($logger) {
+		$this->logger = $logger;
+	}
+
+	protected function log($level, $msg, $context) {
+		if ($this->logger) {
+			$this->logger->log($level, $msg, $context);
+		}
+	}
+
+	protected function debug($msg, $context = array()) {
+		$this->log('debug', $msg, $context);
+	}
+
+	protected function info($msg, $context = array()) {
+		$this->log('info', $msg, $context);
+	}
+
+	protected function warning($msg, $context = array()) {
+		$this->log('warning', $msg, $context);
+	}
+
+	protected function err($msg, $context = array()) {
+		$this->log('error', $msg, $context);
+	}
 
 	public function GetLastServerResponse() {
 		return $this->last_server_response;
@@ -143,15 +168,19 @@ class phRETS {
 		$return_photos = array();
 
 		if (empty($resource)) {
+			$this->error("Resource parameter is required for GetObject() request.");
 			die("Resource parameter is required for GetObject() request.");
 		}
 		if (empty($type)) {
+			$this->error("Type parameter is required for GetObject() request.");
 			die("Type parameter is required for GetObject() request.");
 		}
 		if (empty($id)) {
+			$this->error("ID parameter is required for GetObject() request.");
 			die("ID parameter is required for GetObject() request.");
 		}
 		if (empty($this->capability_url['GetObject'])) {
+			$this->error("GetObject() called but unable to find GetObject location.  Failed login?");
 			die("GetObject() called but unable to find GetObject location.  Failed login?\n");
 		}
 
@@ -200,6 +229,7 @@ class phRETS {
 			$send_id = trim($id).':'.$send_numb;
 		}
 
+		$this->info("GetObject: Resource={$resource} Type={$type} ID={$send_id} Location={$location}");
 		// make request
 		$result = $this->RETSRequest($this->capability_url['GetObject'],
 						array(
@@ -398,6 +428,12 @@ class phRETS {
 			$return_photos[] = $this_photo;
 		}
 
+		if ($return_photos) {
+			$this->info(" :: GetObject returned " . number_format(count($return_photos)) . " objects");
+		} else {
+			$this->info(" :: GetObject errored", $this->Error());
+		}
+
 		// return everything
 		return $return_photos;
 	}
@@ -488,12 +524,15 @@ class phRETS {
 		$this->reset_error_info();
 
 		if (empty($resource)) {
+			$this->err("Resource parameter is required in SearchQuery() request.");
 			die("Resource parameter is required in SearchQuery() request.");
 		}
 		if (empty($class)) {
+			$this->err("Class parameter is required in SearchQuery() request.");
 			die("Class parameter is required in SearchQuery() request.");
 		}
 		if (empty($this->capability_url['Search'])) {
+			$this->err("SearchQuery() called but unable to find Search location.  Failed login?");
 			die("SearchQuery() called but unable to find Search location.  Failed login?\n");
 		}
 
@@ -514,6 +553,7 @@ class phRETS {
 		// check if the query passed is missing the outer parenthesis
 		// if so, add them
 		if (empty($query)) {
+			$this->debug("Enacting RETS RCP-80 'Optional Query' since no query given");
 			// do nothing.  http://retsdoc.onconfluence.com/display/rcpcenter/RCP+80+-+Optional+Query
 		}
 		elseif ($query == "*" || preg_match('/^\((.*)\)$/', $query)) {
@@ -566,10 +606,15 @@ class phRETS {
 				// which is considered excessive.  stopping the process in order to prevent
 				// abuse against the server.  almost ALWAYS happens when the user thinks Offset
 				// is supported by the server when it's actually NOT supported
+				$this->err("Last SearchQuery() has resulted in 300+ requests to the server.  Stopping to prevent abuse");
 				$this->set_error_info("phrets", -1, "Last SearchQuery() has resulted in 300+ requests to the server.  Stopping to prevent abuse");
 				return false;
 			}
 
+			$this->info(
+				"Search: SearchType={$search_arguments['SearchType']} Class={$search_arguments['Class']}",
+				$search_arguments
+			);
 			// make request
 			$result = $this->RETSRequest($this->capability_url['Search'], $search_arguments);
 			if (!$result) {
@@ -616,11 +661,13 @@ class phRETS {
 				// MAXROWS tag found.  the RETS server withheld records.
 				// if the server supports Offset, more requests can be sent to page through results
 				// until this tag isn't found anymore.
+				$this->debug("Maximum rows (MAXROWS) received in this response");
 				$this->search_data[$this->int_result_pointer]['maxrows_reached'] = true;
 			}
 
 			if (isset($xml->COUNT)) {
 				// found the record count returned.  save it
+				$this->debug("Total matching records reported: " . number_format((string) $xml->COUNT->attributes()->Records));
 				$this->search_data[$this->int_result_pointer]['total_records_found'] = "{$xml->COUNT->attributes()->Records}";
 			}
 
@@ -629,6 +676,7 @@ class phRETS {
 			}
 
 			if ($this->IsMaxrowsReached($this->int_result_pointer) && $this->offset_support) {
+				$this->debug("Automatic Offset support enabled, and more rows to retrieve");
 				$continue_searching = true;
 				$search_arguments['Offset'] = $this->NumRows($this->int_result_pointer) + 1;
 			}
@@ -1425,6 +1473,7 @@ class phRETS {
 		curl_setopt($this->ch, CURLOPT_TIMEOUT, 0);
 		curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
 
+		$this->info("Connect: {$login_url} as {$username}");
 		// make request to Login transaction
 		$result =  $this->RETSRequest($this->capability_url['Login']);
 		if (!$result) {
@@ -1488,6 +1537,7 @@ class phRETS {
 
 		// if 'Action' capability URL is provided, we MUST request it following the successful Login
 		if (isset($this->capability_url['Action']) && !empty($this->capability_url['Action'])) {
+			$this->debug("'Action' given during login, so making mandatory follow-up request.");
 			$result = $this->RETSRequest($this->capability_url['Action']);
 			if (!$result) {
 				return false;
@@ -1607,12 +1657,14 @@ class phRETS {
 		}
 
 		$this->last_request_url = $request_url;
+		$this->debug("Request URL: {$request_url}");
 		curl_setopt($this->ch, CURLOPT_URL, $request_url);
 
 		curl_setopt($this->ch, CURLOPT_HTTPHEADER, array(trim($request_headers)));
 		// do it
 		$response_body = curl_exec($this->ch);
 		$response_code = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
+		$this->debug("HTTP {$response_code} response - " . number_format(strlen($response_body)) . " bytes received");
 
 		if ($this->debug_mode == true) {
 			fwrite($this->debug_log, $response_body ."\n");
@@ -1763,6 +1815,8 @@ class phRETS {
 
 
 	public function SetParam($name, $value) {
+		$on_or_off = ($value) ? "Enabling" : "Disabling";
+
 		switch ($name) {
 			case "cookie_file":
 				$this->cookie_file = $value;
@@ -1771,6 +1825,7 @@ class phRETS {
 				$this->debug_file = $value;
 				break;
 			case "debug_mode":
+				$this->debug($on_or_off . " debug mode");
 				$this->debug_mode = $value;
 				break;
 			case "compression_enabled":
@@ -1780,9 +1835,11 @@ class phRETS {
 				$this->ua_auth = $value;
 				break;
 			case "disable_follow_location":
+				$this->debug($on_or_off . " 'Location' following");
 				$this->disable_follow_location = $value;
 				break;
 			case "force_basic_authentication":
+				$this->debug($on_or_off . " forced HTTP Basic authentication");
 				$this->force_basic_authentication = $value;
 				break;
 			case "use_interealty_ua_auth":
@@ -1795,6 +1852,7 @@ class phRETS {
 				$this->disable_encoding_fix = $value;
 				break;
 			case "offset_support":
+				$this->debug($on_or_off . " automatic Offset support");
 				$this->offset_support = $value;
 				break;
 			case "override_offset_protection":
