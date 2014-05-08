@@ -66,6 +66,7 @@ class phRETS {
 	private $disable_encoding_fix = false;
 	private $offset_support = false;
 	private $override_offset_protection = false;
+	private $use_post_method = false;
 
 
 
@@ -1583,9 +1584,21 @@ class phRETS {
 			$request_arguments = http_build_query($parameters, '', '&');
 		}
 
-		// build entire URL if needed
-		if (!empty($request_arguments)) {
-			$request_url = $request_url .'?'. $request_arguments;
+		// update request method on each request
+		if ($this->use_post_method) {
+			// setup cURL for POST requests
+			curl_setopt($this->ch, CURLOPT_POST, true);
+
+			// assign the POST data for this request
+			curl_setopt($this->ch, CURLOPT_POSTFIELDS, $request_arguments);
+		} else {
+			// setup cURL for GET requests
+			curl_setopt($this->ch, CURLOPT_HTTPGET, true);
+
+			// build entire URL if needed
+			if (!empty($request_arguments)) {
+				$request_url = $request_url .'?'. $request_arguments;
+			}
 		}
 
 		// build headers to pass in cURL
@@ -1799,6 +1812,9 @@ class phRETS {
 				break;
 			case "override_offset_protection":
 				$this->override_offset_protection = $value;
+				break;
+			case "use_post_method":
+				$this->use_post_method = $value;
 				break;
 			default:
 				return false;
