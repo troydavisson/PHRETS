@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Client;
 use Illuminate\Container\Container;
+use PHRETS\Exceptions\CapabilityUnavailable;
 use PHRETS\Exceptions\MissingConfiguration;
 use PHRETS\Http\Client as PHRETSClient;
 use PHRETS\Parsers\Login\OneFive;
@@ -16,6 +17,8 @@ class Session
     protected $client;
     /** @var Container */
     protected $container;
+    /** @var \PSR\Log\LoggerInterface */
+    protected $logger;
 
     function __construct(Configuration $configuration)
     {
@@ -43,6 +46,11 @@ class Session
         $this->container = new Container;
     }
 
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
+
     public function Login()
     {
         if (!$this->configuration or !$this->configuration->valid()) {
@@ -61,8 +69,22 @@ class Session
 
     protected function request($capability, $options = [])
     {
+        $url = $this->capabilities->get($capability);
+
+        if (!$url) {
+            throw new CapabilityUnavailable("'{$capability}' tried but no valid endpoint was found.  Did you forget to Login()?");
+        }
+
+        if ($this->logger) {
+            $this->logger->debug("Sending HTTP Request for {$url} ({$capability})", $options);
+        }
         /** @var \GuzzleHttp\Message\ResponseInterface $response */
-        $response = $this->client->get($this->capabilities->get($capability), $options);
+        $response = $this->client->get($url, $options);
+
+        if ($this->logger) {
+            $this->logger->debug('Response: HTTP ' . $response->getStatusCode() . ' - ' .
+                    $response->getBody()->getSize() . ' bytes');
+        }
         return $response->xml();
     }
 
