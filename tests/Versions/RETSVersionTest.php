@@ -7,30 +7,21 @@ class RETSVersionTest extends PHPUnit_Framework_TestCase {
     /** @test **/
     public function it_loads()
     {
-        $v = new RETSVersion;
-        $v->setVersion('1.7.2');
-
-        $this->assertSame('1.7.2', $v->getVersion());
+        $this->assertSame('1.7.2', (new RETSVersion)->setVersion('1.7.2')->getVersion());
     }
 
     /** @test **/
     public function it_cleans()
     {
-        $v = new RETSVersion;
-        $v->setVersion('RETS/1.7.2');
-
-        $this->assertSame('1.7.2', $v->getVersion());
+        $this->assertSame('1.7.2', (new RETSVersion)->setVersion('RETS/1.7.2')->getVersion());
     }
-    
+
     /** @test **/
     public function it_makes_the_header()
     {
-        $v = new RETSVersion;
-        $v->setVersion('1.7.2');
-        
-        $this->assertSame('RETS/1.7.2', $v->asHeader());
+        $this->assertSame('RETS/1.7.2', (new RETSVersion)->setVersion('1.7.2')->asHeader());
     }
-    
+
     /** @test **/
     public function it_is_15()
     {

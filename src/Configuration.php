@@ -167,15 +167,18 @@ class Configuration
             }
         }
 
-        $me->validate();
+        if (!$me->valid()) {
+            throw new InvalidConfiguration("Login URL and Username must be provided");
+        }
 
         return $me;
     }
 
-    public function validate()
+    public function valid()
     {
         if (!$this->getLoginUrl() or !$this->getUsername()) {
-            throw new InvalidConfiguration("Login URL and Username must be provided");
+            return false;
         }
+        return true;
     }
 }
