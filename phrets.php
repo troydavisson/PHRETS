@@ -1489,21 +1489,19 @@ class phRETS {
 
 		// if 'Action' capability URL is provided, we MUST request it following the successful Login
 		if (isset($this->capability_url['Action']) && !empty($this->capability_url['Action'])) {
+			$previous_reply_code = $this->last_request['ReplyCode'];
+			$previous_reply_text = $this->last_request['ReplyText'];
+
 			$result = $this->RETSRequest($this->capability_url['Action']);
 			if (!$result) {
 				return false;
 			}
-			list($headers,$body) = $result;
+			list($headers, $body) = $result;
 
-			// parse action body response
-			$xml = $this->ParseXMLResponse($body);
-			if (!$xml) {
-				return false;
-			}
-
-			// log replycode and replytext for reference later
-			$this->last_request['ReplyCode'] = "{$xml['ReplyCode']}";
-			$this->last_request['ReplyText'] = "{$xml['ReplyText']}";
+			// there are no formatting restrictions on the response from an Action transaction, so don't try to parse
+			// and just carry over the previous codes
+			$this->last_request['ReplyCode'] = $previous_reply_code;
+			$this->last_request['ReplyText'] = $previous_reply_text;
 		}
 
 		if ($this->compression_enabled == true) {
