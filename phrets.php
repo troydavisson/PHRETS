@@ -1494,6 +1494,16 @@ class phRETS {
 				return false;
 			}
 			list($headers,$body) = $result;
+
+			// parse action body response
+			$xml = $this->ParseXMLResponse($body);
+			if (!$xml) {
+				return false;
+			}
+
+			// log replycode and replytext for reference later
+			$this->last_request['ReplyCode'] = "{$xml['ReplyCode']}";
+			$this->last_request['ReplyText'] = "{$xml['ReplyText']}";
 		}
 
 		if ($this->compression_enabled == true) {
