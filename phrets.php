@@ -1366,7 +1366,7 @@ class phRETS {
 		// chop up Login URL to use for later requests
 		$url_parts = parse_url($login_url);
 		$this->server_hostname = $url_parts['host'];
-		$this->server_port = (empty($url_parts['port'])) ? 80 : $url_parts['port'];
+		$this->server_port = (empty($url_parts['port'])) ? (($url_parts['scheme'] == 'https') ? 443 : 80) : $url_parts['port'];
 		$this->server_protocol = $url_parts['scheme'];
 
 		$this->capability_url['Login'] = $url_parts['path'];
