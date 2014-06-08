@@ -1,0 +1,14 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "4.1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.1.*",
+        "psr/log": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHRETS\\": "src/"
+        }
+    }
+}
