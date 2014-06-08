@@ -67,6 +67,7 @@ class phRETS {
 	private $offset_support = false;
 	private $override_offset_protection = false;
 	private $use_post_method = false;
+	private $search_data = array();
 
 
 
