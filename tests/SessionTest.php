@@ -4,15 +4,17 @@ use PHRETS\Configuration;
 use PHRETS\Session;
 
 class SessionTest extends PHPUnit_Framework_TestCase {
-    
+
     /** @test **/
     public function it_builds()
     {
         $c = new Configuration;
+        $c->setLoginUrl('http://www.reso.org/login');
+
         $s = new Session($c);
         $this->assertSame($c, $s->getConfiguration());
     }
-    
+
     /** @test **/
     public function it_detects_invalid_configurations()
     {
@@ -20,7 +22,10 @@ class SessionTest extends PHPUnit_Framework_TestCase {
             'PHRETS\\Exceptions\\MissingConfiguration',
             "Cannot issue Login without a valid configuration loaded"
         );
-        $s = new Session(new Configuration);
+        $c = new Configuration;
+        $c->setLoginUrl('http://www.reso.org/login');
+
+        $s = new Session($c);
         $s->Login();
     }
 }

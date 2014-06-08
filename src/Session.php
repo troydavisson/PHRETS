@@ -2,9 +2,15 @@
 
 use GuzzleHttp\Client;
 use Illuminate\Container\Container;
+use Illuminate\Support\Collection;
 use PHRETS\Exceptions\CapabilityUnavailable;
 use PHRETS\Exceptions\MissingConfiguration;
 use PHRETS\Http\Client as PHRETSClient;
+use PHRETS\Interpreters\GetObject;
+use PHRETS\Models\Bulletin;
+use PHRETS\Models\Object;
+use PHRETS\Parsers\GetObject\Multiple;
+use PHRETS\Parsers\GetObject\Single;
 use PHRETS\Parsers\Login\OneFive;
 
 class Session
@@ -51,6 +57,11 @@ class Session
         $this->logger = $logger;
     }
 
+    /**
+     * @throws Exceptions\CapabilityUnavailable
+     * @throws Exceptions\MissingConfiguration
+     * @returns Bulletin
+     */
     public function Login()
     {
         if (!$this->configuration or !$this->configuration->valid()) {
@@ -60,13 +71,63 @@ class Session
         $response = $this->request('Login');
 
         $parser = new OneFive;
-        $parser->parse($response->{'RETS-RESPONSE'}->__toString());
+        $parser->parse($response->xml()->{'RETS-RESPONSE'}->__toString());
 
         foreach ($parser->getCapabilities() as $k => $v) {
             $this->capabilities->add($k, $v);
         }
+
+        if ($this->capabilities->get('Action')) {
+            $response = $this->request('Action');
+            $bulletin = new Bulletin;
+            $bulletin->setBody($response->getBody()->getContents());
+            return $bulletin;
+        } else {
+            return new Bulletin;
+        }
     }
 
+    public function GetPreferredObject($resource, $type, $content_id, $location = 0)
+    {
+        $collection = $this->GetObject($resource, $type, $content_id, '0', $location);
+        return $collection->first();
+    }
+
+    public function GetObject($resource, $type, $content_ids, $object_ids = '*', $location = 0)
+    {
+        $request_id = GetObject::ids($content_ids, $object_ids);
+
+        $response = $this->request(
+                'GetObject',
+                [
+                        'query' => [
+                                'Resource' => $resource,
+                                'Type' => $type,
+                                'ID' => implode(',', $request_id),
+                                'Location' => $location,
+                        ]
+                ]
+        );
+
+        if (preg_match('/multipart/', $response->getHeader('Content-Type'))) {
+            $parser = new Multiple;
+            $collection = $parser->parse($response);
+        } else {
+            $collection = new Collection;
+            $parser = new Single;
+            $object = $parser->parse($response);
+            $collection->push($object);
+        }
+
+        return $collection;
+    }
+
+    /**
+     * @param $capability
+     * @param array $options
+     * @return \GuzzleHttp\Message\ResponseInterface
+     * @throws Exceptions\CapabilityUnavailable
+     */
     protected function request($capability, $options = [])
     {
         $url = $this->capabilities->get($capability);
@@ -82,10 +143,9 @@ class Session
         $response = $this->client->get($url, $options);
 
         if ($this->logger) {
-            $this->logger->debug('Response: HTTP ' . $response->getStatusCode() . ' - ' .
-                    $response->getBody()->getSize() . ' bytes');
+            $this->logger->debug('Response: HTTP ' . $response->getStatusCode());
         }
-        return $response->xml();
+        return $response;
     }
 
     /**

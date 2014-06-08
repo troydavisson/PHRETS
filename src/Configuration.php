@@ -147,6 +147,11 @@ class Configuration
         return (array_key_exists($name, $this->options)) ? $this->options[$name] : null;
     }
 
+    /**
+     * @param array $configuration
+     * @return static
+     * @throws Exceptions\InvalidConfiguration
+     */
     public static function load($configuration = [])
     {
         $variables = [
@@ -174,6 +179,9 @@ class Configuration
         return $me;
     }
 
+    /**
+     * @return bool
+     */
     public function valid()
     {
         if (!$this->getLoginUrl() or !$this->getUsername()) {
