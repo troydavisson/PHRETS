@@ -17,6 +17,12 @@ class GetObjectTest extends PHPUnit_Framework_TestCase {
     }
 
     /** @test **/
+    public function it_combines_multiple_from_colon_string()
+    {
+        $this->assertEquals(['12345:1','67890:1'], GetObject::ids('12345:67890', 1));
+    }
+
+    /** @test **/
     public function it_combines_multiple_from_array()
     {
         $this->assertEquals(['12345:1','67890:1'], GetObject::ids([12345, 67890], 1));

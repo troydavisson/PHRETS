@@ -83,7 +83,7 @@ class Multiple
                             $header = "Content-Type";
                         }
 
-                        $headers[$header] = $value;
+                        $headers[$header] = [$value];
                     }
                 }
                 if ($on_body == true) {

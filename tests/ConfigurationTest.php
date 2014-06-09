@@ -3,7 +3,7 @@
 use PHRETS\Configuration;
 
 class ConfigurationTest extends PHPUnit_Framework_TestCase {
-    
+
     /** @test **/
     public function it_does_the_basics()
     {
@@ -45,5 +45,39 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf('PHRETS\\Versions\\RETSVersion', $config->getRetsVersion());
         $this->assertTrue($config->getRetsVersion()->is1_5());
+    }
+
+    /** @test **/
+    public function it_handles_versions_correctly()
+    {
+        $config = new Configuration;
+        $config->setRetsVersion('1.7.2');
+        $this->assertInstanceOf('PHRETS\\Versions\\RETSVersion', $config->getRetsVersion());
+    }
+
+    /** @test **/
+    public function it_handles_user_agents()
+    {
+        $config = new Configuration;
+        $config->setUserAgent('PHRETS/2.0');
+        $this->assertSame('PHRETS/2.0', $config->getUserAgent());
+    }
+
+    /** @test **/
+    public function it_handles_ua_passwords()
+    {
+        $config = new Configuration;
+        $config->setUserAgent('PHRETS/2.0');
+        $config->setUserAgentPassword('test12345');
+        $this->assertSame('PHRETS/2.0', $config->getUserAgent());
+        $this->assertSame('test12345', $config->getUserAgentPassword());
+    }
+
+    /** @test **/
+    public function it_tracks_options()
+    {
+        $config = new Configuration;
+        $config->setOption('param', true);
+        $this->assertTrue($config->readOption('param'));
     }
 }

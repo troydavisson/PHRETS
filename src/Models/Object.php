@@ -175,8 +175,20 @@ class Object
         }
     }
 
+    /**
+     * @return $this
+     */
     public function downloadFromURL()
     {
-        return file_get_contents($this->getLocation());
+        $this->setContent(file_get_contents($this->getLocation()));
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSize()
+    {
+        return strlen($this->getContent());
     }
 }
