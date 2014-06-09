@@ -6,7 +6,7 @@ abstract class OneX
     protected $details;
     protected $valid_transactions = [
         'Action', 'ChangePassword', 'GetObject', 'Login', 'LoginComplete', 'Logout', 'Search', 'GetMetadata',
-        'ServerInformation', 'Update',
+        'ServerInformation', 'Update', 'PostObject', 'GetPayloadList'
     ];
 
     public function parse($body)

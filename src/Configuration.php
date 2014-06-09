@@ -8,7 +8,7 @@ class Configuration
     protected $username;
     protected $password;
     protected $login_url;
-    protected $user_agent;
+    protected $user_agent = 'PHRETS/2.0';
     protected $user_agent_password;
     /** @var RETSVersion */
     protected $rets_version;

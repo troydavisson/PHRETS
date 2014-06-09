@@ -9,6 +9,9 @@ use PHRETS\Http\Client as PHRETSClient;
 use PHRETS\Interpreters\GetObject;
 use PHRETS\Models\Bulletin;
 use PHRETS\Models\Object;
+use PHRETS\Parsers\GetMetadata\Resource;
+use PHRETS\Parsers\GetMetadata\ResourceClass;
+use PHRETS\Parsers\GetMetadata\System;
 use PHRETS\Parsers\GetObject\Multiple;
 use PHRETS\Parsers\GetObject\Single;
 use PHRETS\Parsers\Login\OneFive;
@@ -41,6 +44,13 @@ class Session
                         $configuration->getUsername(),
                         $configuration->getPassword(),
                         'digest'
+                ]
+        );
+        $this->client->setDefaultOption(
+                'headers',
+                [
+                    'User-Agent' => $configuration->getUserAgent(),
+                    'RETS-Version' => $configuration->getRetsVersion()->asHeader(),
                 ]
         );
 
@@ -98,15 +108,15 @@ class Session
         $request_id = GetObject::ids($content_ids, $object_ids);
 
         $response = $this->request(
-                'GetObject',
-                [
-                        'query' => [
-                                'Resource' => $resource,
-                                'Type' => $type,
-                                'ID' => implode(',', $request_id),
-                                'Location' => $location,
-                        ]
+            'GetObject',
+            [
+                'query' => [
+                    'Resource' => $resource,
+                    'Type' => $type,
+                    'ID' => implode(',', $request_id),
+                    'Location' => $location,
                 ]
+            ]
         );
 
         if (preg_match('/multipart/', $response->getHeader('Content-Type'))) {
@@ -120,6 +130,61 @@ class Session
         }
 
         return $collection;
+    }
+
+    /**
+     * @return Models\Metadata\System
+     * @throws Exceptions\CapabilityUnavailable
+     */
+    public function GetSystemMetadata()
+    {
+        $response = $this->request(
+            'GetMetadata',
+            [
+                'query' => [
+                    'Type' => 'METADATA-SYSTEM',
+                    'ID' => 0,
+                    'Format' => 'STANDARD-XML',
+                ]
+            ]
+        );
+
+        $parser = new System;
+        return $parser->parse($this, $response);
+    }
+
+    public function GetResourcesMetadata($id = 0)
+    {
+        $response = $this->request(
+            'GetMetadata',
+            [
+                'query' => [
+                    'Type' => 'METADATA-RESOURCE',
+                    'ID' => $id,
+                    'Format' => 'STANDARD-XML',
+                ]
+            ]
+        );
+
+        $parser = new Resource;
+        return $parser->parse($this, $response);
+    }
+
+    public function GetClassesMetadata($resource_id)
+    {
+        $response = $this->request(
+            'GetMetadata',
+            [
+                'query' => [
+                    'Type' => 'METADATA-CLASS',
+                    'ID' => $resource_id,
+                    'Format' => 'STANDARD-XML',
+                ]
+            ]
+        );
+
+        $parser = new ResourceClass;
+        return $parser->parse($this, $response);
     }
 
     /**
@@ -163,7 +228,6 @@ class Session
     {
         return $this->configuration;
     }
-
     /**
      * @return Container
      */
