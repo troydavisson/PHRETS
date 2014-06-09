@@ -1,5 +1,6 @@
 <?php namespace PHRETS\Parsers\GetObject;
 
+use GuzzleHttp\Message\MessageParser;
 use GuzzleHttp\Message\Response;
 use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Stream\Stream;
@@ -42,66 +43,16 @@ class Multiple
         // take off anything after the last boundary (the epilogue)
         array_pop($multi_parts);
 
+        $message_parser = new MessageParser;
+        $parser = new Single;
+
         // go through each part of the multipart message
         foreach ($multi_parts as $part) {
-            // default to processing headers
-            $on_headers = true;
-            $on_body = false;
-            $first_body_found = false;
-            $body = "";
-            $headers = [];
+            // get Guzzle to parse this multipart section as if it's a whole HTTP message
+            $parts = $message_parser->parseResponse("HTTP/1.1 200 OK\r\n" . $part);
 
-            // go through the multipart chunk line-by-line
-            $body_parts = explode("\r\n", $part);
-            foreach ($body_parts as $line) {
-                if (empty($line) && $on_headers == true) {
-                    // blank line.  switching to processing a body and moving on
-                    $on_headers = false;
-                    $on_body = true;
-                    continue;
-                }
-                if ($on_headers == true) {
-                    // non blank line and we're processing headers so save the header
-                    $header = null;
-                    $value = null;
-
-                    if (strpos($line, ':') !== false) {
-                        @list($header, $value) = explode(':', $line, 2);
-                    }
-
-                    $header = trim($header);
-                    $value = trim($value);
-                    if (!empty($header)) {
-                        if ($header == "Description") {
-                            // for servers where the implementors didn't read the next word in the RETS spec.
-                            // 'Description' is the BNF term. Content-Description is the correct header.
-                            // fixing for sanity
-                            $header = "Content-Description";
-                        }
-                        // fix case issue if exists
-                        if ($header == "Content-type") {
-                            $header = "Content-Type";
-                        }
-
-                        $headers[$header] = [$value];
-                    }
-                }
-                if ($on_body == true) {
-                    if ($first_body_found == true) {
-                        // here again because a linebreak in the body section which was cut out in the explode
-                        // add the CRLF back
-                        $body .= "\r\n";
-                    }
-                    // non blank line and we're processing a body so save the line as part of Data
-                    $first_body_found = true;
-                    $body .= $line;
-                }
-            }
-            // done with parsing out the multipart response
-
-            $stream = Stream::factory($body);
-            $parser = new Single;
-            $single = new Response(200, $headers, $stream);
+            // now throw this single faked message through the Single GetObject response parser
+            $single = new Response($parts['code'], $parts['headers'], Stream::factory($parts['body']));
             $obj = $parser->parse($single);
 
             // add information about this multipart to the returned collection
