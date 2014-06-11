@@ -1,0 +1,21 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=1F76E429E6ED8A05FEBA0B588F5A894C; Path=/rets2_1
+MIME-Version: 1.0
+Content-ID: METADATA-SYSTEM
+Content-Type: text/xml
+Date: Tue, 10 Jun 2014 23:51:17 GMT
+Connection: close
+
+<?xml version="1.0" encoding="US-ASCII"?>
+<RETS ReplyCode="0" ReplyText="Success">
+  <METADATA>
+    <METADATA-SYSTEM Version="01.03.26167" Date="2014-06-11T00:51:56Z">
+      <SYSTEM SystemID="demomls" SystemDescription="flexmls Web Demo Database" TimeZoneOffset="-05:00">
+        <Comments/>
+      </SYSTEM>
+    </METADATA-SYSTEM>
+  </METADATA>
+</RETS>

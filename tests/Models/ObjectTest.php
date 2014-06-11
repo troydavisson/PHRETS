@@ -50,11 +50,11 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
     }
 
     /** @test **/
-    public function it_fetches_from_remote()
-    {
-        $o = new Object;
-        $o->setLocation('http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
-
-        $this->assertRegExp('/Twitter/', $o->downloadFromURL()->getContent());
-    }
+//    public function it_fetches_from_remote()
+//    {
+//        $o = new Object;
+//        $o->setLocation('http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+//
+//        $this->assertRegExp('/Twitter/', $o->downloadFromURL()->getContent());
+//    }
 }

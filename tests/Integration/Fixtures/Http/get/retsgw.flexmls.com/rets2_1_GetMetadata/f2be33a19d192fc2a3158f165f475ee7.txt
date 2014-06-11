@@ -1,0 +1,95 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=49819A9767BDB94EBB8C7EABDBB45BA5; Path=/rets2_1
+MIME-Version: 1.0
+Content-ID: METADATA-CLASS
+Content-Type: text/xml
+Date: Wed, 11 Jun 2014 00:17:57 GMT
+Connection: close
+
+<?xml version="1.0" encoding="US-ASCII"?>
+<RETS ReplyCode="0" ReplyText="Success">
+  <METADATA>
+    <METADATA-CLASS Resource="Property" Version="01.03.26167" Date="2014-06-11T00:51:56Z">
+      <Class>
+        <ClassName>A</ClassName>
+        <StandardName>ResidentialProperty</StandardName>
+        <VisibleName>Residential</VisibleName>
+        <Description>Residential</Description>
+        <TableVersion>01.03.26167</TableVersion>
+        <TableDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-06-11T00:51:56Z</TableDate>
+        <UpdateVersion/>
+        <UpdateDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <HasKeyIndex>1</HasKeyIndex>
+      </Class>
+      <Class>
+        <ClassName>B</ClassName>
+        <StandardName>LotsAndLand</StandardName>
+        <VisibleName>Lots/Acreage</VisibleName>
+        <Description>Lots/Acreage</Description>
+        <TableVersion>01.03.26167</TableVersion>
+        <TableDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-06-11T00:51:56Z</TableDate>
+        <UpdateVersion/>
+        <UpdateDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <HasKeyIndex>1</HasKeyIndex>
+      </Class>
+      <Class>
+        <ClassName>C</ClassName>
+        <StandardName>MultiFamily</StandardName>
+        <VisibleName>Commercial</VisibleName>
+        <Description>Commercial</Description>
+        <TableVersion>01.03.26167</TableVersion>
+        <TableDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-06-11T00:51:56Z</TableDate>
+        <UpdateVersion/>
+        <UpdateDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <HasKeyIndex>1</HasKeyIndex>
+      </Class>
+      <Class>
+        <ClassName>D</ClassName>
+        <StandardName/>
+        <VisibleName>Farm/Ranch/Orchard</VisibleName>
+        <Description>Farm/Ranch/Orchard</Description>
+        <TableVersion>01.03.26167</TableVersion>
+        <TableDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-06-11T00:51:56Z</TableDate>
+        <UpdateVersion/>
+        <UpdateDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <HasKeyIndex>1</HasKeyIndex>
+      </Class>
+      <Class>
+        <ClassName>E</ClassName>
+        <StandardName/>
+        <VisibleName>Residential Income</VisibleName>
+        <Description>Residential Income</Description>
+        <TableVersion>01.03.26167</TableVersion>
+        <TableDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-06-11T00:51:56Z</TableDate>
+        <UpdateVersion/>
+        <UpdateDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <HasKeyIndex>1</HasKeyIndex>
+      </Class>
+      <Class>
+        <ClassName>F</ClassName>
+        <StandardName>CommonInterest</StandardName>
+        <VisibleName>Business Op</VisibleName>
+        <Description>Business Op</Description>
+        <TableVersion>01.03.26167</TableVersion>
+        <TableDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-06-11T00:51:56Z</TableDate>
+        <UpdateVersion/>
+        <UpdateDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <HasKeyIndex>1</HasKeyIndex>
+      </Class>
+      <Class>
+        <ClassName>G</ClassName>
+        <StandardName/>
+        <VisibleName>Rental</VisibleName>
+        <Description>Rental</Description>
+        <TableVersion>01.03.26167</TableVersion>
+        <TableDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-06-11T00:51:56Z</TableDate>
+        <UpdateVersion/>
+        <UpdateDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <HasKeyIndex>1</HasKeyIndex>
+      </Class>
+    </METADATA-CLASS>
+  </METADATA>
+</RETS>

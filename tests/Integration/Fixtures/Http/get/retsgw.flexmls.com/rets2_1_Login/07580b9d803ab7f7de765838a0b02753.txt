@@ -1,0 +1,28 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=4D98CCF4B0690E77B8B14F3EF9C04B1D; Path=/rets2_1
+Content-Type: text/xml
+Date: Tue, 10 Jun 2014 23:33:12 GMT
+Connection: close
+
+<RETS ReplyCode="0" ReplyText="Success">
+
+  <RETS-RESPONSE>
+MemberName=UNKNOWN
+User=demomls,MASTER,4,20000426143505724628000000
+Broker=UNKNOWN
+MetadataVersion=01.03.26167
+MetadataTimestamp=2014-06-11T00:51:56Z
+MinMetadataTimestamp=2014-06-11T00:51:56Z
+Login=/rets2_1/Login
+Search=/rets2_1/Search
+GetMetadata=/rets2_1/GetMetadata
+X-SampleLinks=/rets2_1/Links
+X-SupportSite=http://flexmls.com/rets/
+X-NotificationFeed=http://retsgw.flexmls.com/atom/feed/private/atom.xml
+GetObject=/rets2_1/GetObject
+Logout=/rets2_1/Logout
+</RETS-RESPONSE>
+</RETS>

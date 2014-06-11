@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=0A0FF9A87CB2DD86129EDC85A57D2394; Path=/rets2_1
+MIME-Version: 1.0
+Content-ID: 00-1669
+Object-ID: 1
+Location: http://cdn.photos.flexmls.com/demomls/20140430153341745985000000.jpg
+Content-Description: Hydrangeas
+Preferred: 1
+Content-Type: image/jpeg
+Content-Length: 0
+Date: Tue, 10 Jun 2014 23:40:02 GMT
+

@@ -1,6 +1,7 @@
 <?php
 
 use PHRETS\Configuration;
+use PHRETS\Http\Client;
 use PHRETS\Session;
 
 class SessionTest extends PHPUnit_Framework_TestCase {
@@ -27,5 +28,16 @@ class SessionTest extends PHPUnit_Framework_TestCase {
 
         $s = new Session($c);
         $s->Login();
+    }
+
+    /** @test **/
+    public function it_gives_back_the_login_url()
+    {
+        $c = new Configuration;
+        $c->setLoginUrl('http://www.reso.org/login');
+
+        $s = new Session($c);
+
+        $this->assertSame('http://www.reso.org/login', $s->getLoginUrl());
     }
 }
