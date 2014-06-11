@@ -10,6 +10,7 @@ class Object
     protected $content_description;
     protected $content_sub_description;
     protected $content;
+    protected $preferred;
 
     /**
      * @return mixed
@@ -165,6 +166,7 @@ class Object
             'Location' => 'Location',
             'Content-Type' => 'ContentType',
             'MIME-Version' => 'MimeVersion',
+            'Preferred' => 'Preferred',
         ];
 
         $headers = array_change_key_case($headers, CASE_UPPER);
@@ -190,5 +192,28 @@ class Object
     public function getSize()
     {
         return strlen($this->getContent());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreferred()
+    {
+        return $this->preferred;
+    }
+
+    public function isPreferred()
+    {
+        return ($this->getPreferred() == '1');
+    }
+
+    /**
+     * @param mixed $preferred
+     * @return $this
+     */
+    public function setPreferred($preferred)
+    {
+        $this->preferred = $preferred;
+        return $this;
     }
 }

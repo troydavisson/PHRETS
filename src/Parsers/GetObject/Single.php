@@ -18,6 +18,7 @@ class Single
         $obj->setContentType(\array_get($headers, 'Content-Type', [null])[0]);
         $obj->setLocation(\array_get($headers, 'Location', [null])[0]);
         $obj->setMimeVersion(\array_get($headers, 'MIME-Version', [null])[0]);
+        $obj->setPreferred(\array_get($headers, 'Preferred', [null])[0]);
 
         return $obj;
     }
