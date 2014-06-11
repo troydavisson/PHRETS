@@ -4,6 +4,7 @@ use GuzzleHttp\Client;
 use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
 use PHRETS\Exceptions\CapabilityUnavailable;
+use PHRETS\Exceptions\MetadataNotFound;
 use PHRETS\Exceptions\MissingConfiguration;
 use PHRETS\Http\Client as PHRETSClient;
 use PHRETS\Interpreters\GetObject;
@@ -97,6 +98,13 @@ class Session
         }
     }
 
+    /**
+     * @param $resource
+     * @param $type
+     * @param $content_id
+     * @param int $location
+     * @return \PHRETS\Models\Object
+     */
     public function GetPreferredObject($resource, $type, $content_id, $location = 0)
     {
         $collection = $this->GetObject($resource, $type, $content_id, '0', $location);
@@ -153,21 +161,39 @@ class Session
         return $parser->parse($this, $response);
     }
 
-    public function GetResourcesMetadata($id = 0)
+    /**
+     * @param string $resource_id
+     * @throws Exceptions\CapabilityUnavailable
+     * @throws Exceptions\MetadataNotFound
+     * @return Collection|\PHRETS\Models\Metadata\Resource
+     */
+    public function GetResourcesMetadata($resource_id = null)
     {
         $response = $this->request(
             'GetMetadata',
             [
                 'query' => [
                     'Type' => 'METADATA-RESOURCE',
-                    'ID' => $id,
+                    'ID' => 0,
                     'Format' => 'STANDARD-XML',
                 ]
             ]
         );
 
         $parser = new Resource;
-        return $parser->parse($this, $response);
+        $result = $parser->parse($this, $response);
+
+        if ($resource_id) {
+            foreach ($result as $r) {
+                /** @var Resource $r */
+                if ($r->getResourceID() == $resource_id) {
+                    return $r;
+                }
+            }
+            throw new MetadataNotFound("Requested '{$resource_id}' resource metadata does not exist");
+        }
+
+        return $result;
     }
 
     public function GetClassesMetadata($resource_id)
@@ -211,6 +237,14 @@ class Session
             $this->logger->debug('Response: HTTP ' . $response->getStatusCode());
         }
         return $response;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLoginUrl()
+    {
+        return $this->capabilities->get('Login');
     }
 
     /**
