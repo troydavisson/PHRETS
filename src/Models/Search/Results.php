@@ -239,7 +239,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      */
     public function offsetExists($offset)
     {
-        return $this->offsetExists($offset);
+        return $this->results->offsetExists($offset);
     }
 
     /**
@@ -257,7 +257,11 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      */
     public function offsetSet($offset, $value)
     {
-        $this->results->offsetSet($offset, $value);
+        if ($offset) {
+            $this->addRecord($value, function () use ($offset) { return $offset; });
+        } else {
+            $this->addRecord($value);
+        }
     }
 
     /**

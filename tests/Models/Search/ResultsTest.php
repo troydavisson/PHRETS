@@ -111,8 +111,24 @@ class ResultsTest extends PHPUnit_Framework_TestCase
     /** @test **/
     public function it_allows_array_accessing_keyed_results()
     {
+        $r = new Record;
+        $r->set('id', 'extra');
+        $r->set('name', 'test');
+
+        $this->rs['extra'] = $r;
+
+        $r = new Record;
+        $r->set('id', 'bonus');
+        $r->set('name', 'test');
+        $this->rs[] = $r;
+
         $this->rs->keyResultsBy('id');
 
         $this->assertSame('left', $this->rs['1']->get('name'));
+        $this->assertFalse(isset($this->rs['bogus_record']));
+        unset($this->rs['1']);
+        $this->assertFalse(isset($this->rs['1']));
+        $this->assertTrue(isset($this->rs['extra']));
+        $this->assertTrue(isset($this->rs['bonus']));
     }
 }

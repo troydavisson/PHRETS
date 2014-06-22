@@ -89,8 +89,14 @@ class RecordTest extends PHPUnit_Framework_TestCase
         $r->set('one', '1');
         $r->set(2, 'two');
         $r->set(3, 'three');
+        $r['something'] = 'else';
+        $r['to'] = 'remove';
+        unset($r['to']);
 
         $this->assertSame('1', $r['one']);
+        $this->assertFalse(isset($r['bogus']));
         $this->assertNull($r['bogus']);
+        $this->assertSame('else', $r['something']);
+        $this->assertNull($r['to']);
     }
 }
