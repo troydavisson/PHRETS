@@ -10,13 +10,6 @@ use PHRETS\Http\Client as PHRETSClient;
 use PHRETS\Interpreters\GetObject;
 use PHRETS\Models\Bulletin;
 use PHRETS\Models\Object;
-use PHRETS\Parsers\GetMetadata\Resource;
-use PHRETS\Parsers\GetMetadata\ResourceClass;
-use PHRETS\Parsers\GetMetadata\System;
-use PHRETS\Parsers\GetMetadata\Table;
-use PHRETS\Parsers\GetObject\Multiple;
-use PHRETS\Parsers\GetObject\Single;
-use PHRETS\Parsers\Login\OneFive;
 
 class Session
 {
@@ -82,7 +75,7 @@ class Session
 
         $response = $this->request('Login');
 
-        $parser = new OneFive;
+        $parser = new \PHRETS\Parsers\Login\OneFive;
         $parser->parse($response->xml()->{'RETS-RESPONSE'}->__toString());
 
         foreach ($parser->getCapabilities() as $k => $v) {
@@ -129,11 +122,11 @@ class Session
         );
 
         if (preg_match('/multipart/', $response->getHeader('Content-Type'))) {
-            $parser = new Multiple;
+            $parser = new \PHRETS\Parsers\GetObject\Multiple;
             $collection = $parser->parse($response);
         } else {
             $collection = new Collection;
-            $parser = new Single;
+            $parser = new \PHRETS\Parsers\GetObject\Single;
             $object = $parser->parse($response);
             $collection->push($object);
         }
@@ -158,7 +151,7 @@ class Session
             ]
         );
 
-        $parser = new System;
+        $parser = new \PHRETS\Parsers\GetMetadata\System;
         return $parser->parse($this, $response);
     }
 
@@ -181,12 +174,11 @@ class Session
             ]
         );
 
-        $parser = new Resource;
+        $parser = new \PHRETS\Parsers\GetMetadata\Resource;
         $result = $parser->parse($this, $response);
 
         if ($resource_id) {
             foreach ($result as $r) {
-                /** @var Resource $r */
                 if ($r->getResourceID() == $resource_id) {
                     return $r;
                 }
@@ -210,7 +202,7 @@ class Session
             ]
         );
 
-        $parser = new ResourceClass;
+        $parser = new \PHRETS\Parsers\GetMetadata\ResourceClass;
         return $parser->parse($this, $response);
     }
 
@@ -227,7 +219,7 @@ class Session
             ]
         );
 
-        $parser = new Table;
+        $parser = new \PHRETS\Parsers\GetMetadata\Table;
         return $parser->parse($this, $response);
     }
 
@@ -245,6 +237,23 @@ class Session
         );
 
         $parser = new \PHRETS\Parsers\GetMetadata\Object;
+        return $parser->parse($this, $response);
+    }
+
+    public function GetLookupValues($resource_id, $lookup_name)
+    {
+        $response = $this->request(
+            'GetMetadata',
+            [
+                'query' => [
+                    'Type' => 'METADATA-LOOKUP_TYPE',
+                    'ID' => $resource_id . ':' . $lookup_name,
+                    'Format' => 'STANDARD-XML',
+                ]
+            ]
+        );
+
+        $parser = new \PHRETS\Parsers\GetMetadata\LookupType;
         return $parser->parse($this, $response);
     }
 

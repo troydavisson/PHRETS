@@ -128,4 +128,17 @@ class GetMetadataIntegrationTest extends BaseIntegration
         $this->assertSame('Photo', $object_types->first()->getObjectType());
         $this->assertSame('LIST_133', $object_types->first()->getObjectCount());
     }
+
+    /**
+     * Lookups
+     */
+
+    /** @test **/
+    public function it_gets_lookup_values()
+    {
+        $values = $this->session->GetLookupValues('Property', '20000426151013376279000000');
+        $this->assertTrue($values instanceof \Illuminate\Support\Collection);
+        $this->assertSame('Lake/Other', $values->first()->getLongValue());
+        $this->assertSame('5PSUX49PM1Q', $values->first()->getValue());
+    }
 }
