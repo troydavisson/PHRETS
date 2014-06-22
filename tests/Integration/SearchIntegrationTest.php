@@ -33,4 +33,12 @@ class SearchIntegrationTest extends BaseIntegration
         $this->assertSame(3, $results->getReturnedResultsCount());
         $this->assertSame(9051, $results->getTotalResultsCount());
     }
+
+    /** @test **/
+    public function it_sees_maxrows_reached()
+    {
+        $results = $this->session->Search('Property', 'A', '*', ['Limit' => 3]);
+
+        $this->assertTrue($results->isMaxRowsReached());
+    }
 }

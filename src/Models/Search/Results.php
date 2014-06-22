@@ -20,6 +20,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
     protected $results;
     protected $headers = [];
     protected $restricted_indicator = '****';
+    protected $maxrows_reached = false;
 
     public function __construct()
     {
@@ -291,5 +292,22 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
     public function last()
     {
         return $this->results->last();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMaxRowsReached()
+    {
+        return ($this->maxrows_reached == true);
+    }
+
+    /**
+     * @return $this
+     */
+    public function setMaxRowsReached()
+    {
+        $this->maxrows_reached = true;
+        return $this;
     }
 }

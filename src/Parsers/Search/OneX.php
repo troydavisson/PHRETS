@@ -55,6 +55,13 @@ class OneX
             $rs->setTotalResultsCount((int)"{$xml->COUNT->attributes()->Records}");
         }
 
+        if (isset($xml->MAXROWS)) {
+            // MAXROWS tag found.  the RETS server withheld records.
+            // if the server supports Offset, more requests can be sent to page through results
+            // until this tag isn't found anymore.
+            $rs->setMaxRowsReached();
+        }
+
         if (isset($xml)) {
             unset($xml);
         }
