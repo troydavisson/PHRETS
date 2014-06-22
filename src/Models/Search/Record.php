@@ -1,6 +1,6 @@
 <?php namespace PHRETS\Models\Search;
 
-class Record
+class Record implements \ArrayAccess
 {
     /** @var Results */
     protected $parent = null;
@@ -90,5 +90,27 @@ class Record
     public function __toString()
     {
         return $this->toJson();
+    }
+
+    public function offsetExists($offset)
+    {
+        return array_key_exists($offset, $this->values);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->get($offset);
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        $this->set($offset, $value);
+    }
+
+    public function offsetUnset($offset)
+    {
+        if (array_key_exists($offset, $this->values)) {
+            unset($this->values[$offset]);
+        }
     }
 }

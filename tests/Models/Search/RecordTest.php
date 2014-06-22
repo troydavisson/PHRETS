@@ -81,4 +81,16 @@ class RecordTest extends PHPUnit_Framework_TestCase
             $this->assertSame(['LIST_1', 'LIST_2', 'LIST_3'], $r->getFields());
         }
     }
+
+    /** @test **/
+    public function it_allows_array_access()
+    {
+        $r = new Record;
+        $r->set('one', '1');
+        $r->set(2, 'two');
+        $r->set(3, 'three');
+
+        $this->assertSame('1', $r['one']);
+        $this->assertNull($r['bogus']);
+    }
 }
