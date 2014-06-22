@@ -9,7 +9,6 @@ use PHRETS\Exceptions\MissingConfiguration;
 use PHRETS\Http\Client as PHRETSClient;
 use PHRETS\Interpreters\GetObject;
 use PHRETS\Models\Bulletin;
-use PHRETS\Models\Object;
 
 class Session
 {
@@ -206,7 +205,7 @@ class Session
         return $parser->parse($this, $response);
     }
 
-    public function GetTableMetadata($resource_id, $class_id)
+    public function GetTableMetadata($resource_id, $class_id, $keyed_by = 'SystemName')
     {
         $response = $this->request(
             'GetMetadata',
@@ -220,7 +219,7 @@ class Session
         );
 
         $parser = new \PHRETS\Parsers\GetMetadata\Table;
-        return $parser->parse($this, $response);
+        return $parser->parse($this, $response, $keyed_by);
     }
 
     public function GetObjectMetadata($resource_id)
@@ -255,6 +254,32 @@ class Session
 
         $parser = new \PHRETS\Parsers\GetMetadata\LookupType;
         return $parser->parse($this, $response);
+    }
+
+    public function Search($resource_id, $class_id, $dmql_query, $optional_parameters = [])
+    {
+        $defaults = [
+            'SearchType' => $resource_id,
+            'Class' => $class_id,
+            'Query' => $dmql_query,
+            'QueryType' => 'DMQL2',
+            'Count' => 1,
+            'Format' => 'COMPACT-DECODED',
+            'Limit' => 99999999,
+            'StandardNames' => 0,
+        ];
+
+        $parameters = array_merge($defaults, $optional_parameters);
+
+        $response = $this->request(
+            'Search',
+            [
+                'query' => $parameters
+            ]
+        );
+
+        $parser = new \PHRETS\Parsers\Search\OneX;
+        return $parser->parse($this, $response, $resource_id, $class_id);
     }
 
     /**

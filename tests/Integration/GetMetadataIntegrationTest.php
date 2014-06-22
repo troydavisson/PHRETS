@@ -115,6 +115,22 @@ class GetMetadataIntegrationTest extends BaseIntegration
         $this->assertSame('A', $fields->last()->getClass());
     }
 
+    /** @test **/
+    public function it_sees_fields_by_key()
+    {
+        $fields = $this->session->GetTableMetadata('Property', 'A');
+        $this->assertTrue($fields instanceof \Illuminate\Support\Collection);
+        $this->assertSame('Listing ID', $fields->get('LIST_105')->getLongName());
+    }
+
+    /** @test **/
+    public function it_sees_fields_by_standard_key()
+    {
+        $fields = $this->session->GetTableMetadata('Property', 'A', 'StandardName');
+        $this->assertTrue($fields instanceof \Illuminate\Support\Collection);
+        $this->assertSame('Listing ID', $fields->get('ListingID')->getLongName());
+    }
+
     /**
      * Object
      */

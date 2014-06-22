@@ -6,7 +6,7 @@ use PHRETS\Session;
 
 class Table extends Base
 {
-    public function parse(Session $rets, ResponseInterface $response)
+    public function parse(Session $rets, ResponseInterface $response, $keyed_by)
     {
         $xml = $response->xml();
 
@@ -16,7 +16,9 @@ class Table extends Base
             foreach ($xml->METADATA->{'METADATA-TABLE'}->Field as $key => $value) {
                 $metadata = new \PHRETS\Models\Metadata\Table;
                 $metadata->setSession($rets);
-                $collection->push($this->loadFromXml($metadata, $value, $xml->METADATA->{'METADATA-TABLE'}));
+                $this->loadFromXml($metadata, $value, $xml->METADATA->{'METADATA-TABLE'});
+                $method = 'get' . $keyed_by;
+                $collection->put((string)$metadata->$method(), $metadata);
             }
         }
 
