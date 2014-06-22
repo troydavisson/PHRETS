@@ -7,14 +7,18 @@ use PHRETS\Session;
 
 class OneX
 {
-    public function parse(Session $rets, ResponseInterface $response, $resource, $class)
+    public function parse(Session $rets, ResponseInterface $response, $parameters)
     {
         $xml = $response->xml();
 
         $rs = new Results;
         $rs->setSession($rets)
-            ->setResource($resource)
-            ->setClass($class);
+            ->setResource($parameters['SearchType'])
+            ->setClass($parameters['Class']);
+
+        if (array_key_exists('RestrictedIndicator', $parameters)) {
+            $rs->setRestrictedIndicator($parameters['RestrictedIndicator']);
+        }
 
         if (isset($xml->DELIMITER)) {
             // delimiter found so we have at least a COLUMNS row to parse

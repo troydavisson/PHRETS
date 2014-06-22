@@ -279,7 +279,7 @@ class Session
         );
 
         $parser = new \PHRETS\Parsers\Search\OneX;
-        return $parser->parse($this, $response, $resource_id, $class_id);
+        return $parser->parse($this, $response, $parameters);
     }
 
     /**
