@@ -5,3 +5,5 @@ php:
   - 5.6
   - hhvm
 before_script: composer install
+env:
+  - PHRETS_TESTING_USERNAME=fake PHRETS_TESTING_PASSWORD=fake
