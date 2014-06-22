@@ -2,7 +2,7 @@
 
 class Resource extends Base
 {
-    public $attributes = [
+    protected $elements = [
         'ResourceID',
         'StandardName',
         'VisibleName',
@@ -28,9 +28,18 @@ class Resource extends Base
         'ValidationExternalVersion',
         'ValidationExternalDate',
     ];
+    protected $attributes = [
+        'Version',
+        'Date',
+    ];
 
     public function getClasses()
     {
         return $this->getSession()->GetClassesMetadata($this->getResourceID());
+    }
+
+    public function getObject()
+    {
+        return $this->getSession()->GetObjectMetadata($this->getResourceID());
     }
 }

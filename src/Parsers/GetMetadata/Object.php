@@ -4,7 +4,7 @@ use GuzzleHttp\Message\ResponseInterface;
 use Illuminate\Support\Collection;
 use PHRETS\Session;
 
-class ResourceClass extends Base
+class Object extends Base
 {
     public function parse(Session $rets, ResponseInterface $response)
     {
@@ -13,10 +13,10 @@ class ResourceClass extends Base
         $collection = new Collection;
 
         if ($xml->METADATA) {
-            foreach ($xml->METADATA->{'METADATA-CLASS'}->Class as $key => $value) {
-                $metadata = new \PHRETS\Models\Metadata\ResourceClass;
+            foreach ($xml->METADATA->{'METADATA-OBJECT'}->Object as $key => $value) {
+                $metadata = new \PHRETS\Models\Metadata\Object;
                 $metadata->setSession($rets);
-                $collection->push($this->loadFromXml($metadata, $value, $xml->METADATA->{'METADATA-CLASS'}));
+                $collection->push($this->loadFromXml($metadata, $value, $xml->METADATA->{'METADATA-OBJECT'}));
             }
         }
 

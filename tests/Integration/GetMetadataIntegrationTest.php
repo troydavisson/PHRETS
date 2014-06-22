@@ -66,6 +66,13 @@ class GetMetadataIntegrationTest extends BaseIntegration
         $this->assertEquals($resource_classes, $classes);
     }
 
+    /** @test **/
+    public function it_gets_related_object_metadata()
+    {
+        $object_types = $this->session->GetResourcesMetadata('Property')->getObject();
+        $this->assertSame('Photo', $object_types->first()->getObjectType());
+    }
+
     /**
      * Classes
      */
@@ -77,5 +84,48 @@ class GetMetadataIntegrationTest extends BaseIntegration
         $this->assertTrue($classes instanceof \Illuminate\Support\Collection);
         $this->assertSame(7, $classes->count());
         $this->assertSame('A', $classes->first()->getClassName());
+    }
+
+    /** @test **/
+    public function it_gets_related_table_data()
+    {
+        $classes = $this->session->GetClassesMetadata('Property');
+        $this->assertTrue($classes instanceof \Illuminate\Support\Collection);
+        $this->assertSame('LIST_0', $classes->first()->getTable()->first()->getSystemName());
+    }
+
+    /**
+     * Table
+     */
+
+    /** @test **/
+    public function it_gets_table_data()
+    {
+        $fields = $this->session->GetTableMetadata('Property', 'A');
+        $this->assertTrue($fields instanceof \Illuminate\Support\Collection);
+        $this->assertTrue($fields->count() > 100, "Verify that a lot of fields came back");
+        $this->assertSame('LIST_0', $fields->first()->getSystemName());
+    }
+
+    /** @test **/
+    public function it_sees_table_attributes()
+    {
+        $fields = $this->session->GetTableMetadata('Property', 'A');
+        $this->assertSame('Property', $fields->first()->getResource());
+        $this->assertSame('A', $fields->last()->getClass());
+    }
+
+    /**
+     * Object
+     */
+
+    /** @test **/
+    public function it_gets_object_metadata()
+    {
+        $object_types = $this->session->GetObjectMetadata('Property');
+        $this->assertTrue($object_types instanceof \Illuminate\Support\Collection);
+        $this->assertTrue($object_types->count() > 4, "Verify that a few came back");
+        $this->assertSame('Photo', $object_types->first()->getObjectType());
+        $this->assertSame('LIST_133', $object_types->first()->getObjectCount());
     }
 }

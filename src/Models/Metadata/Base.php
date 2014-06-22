@@ -3,6 +3,7 @@
 abstract class Base
 {
     protected $session;
+    protected $elements = [];
     protected $attributes = [];
     protected $values = [];
 
@@ -27,7 +28,7 @@ abstract class Base
     public function __call($name, $args = [])
     {
         if (preg_match('/^set/', strtolower($name))) {
-            foreach ($this->attributes as $attr) {
+            foreach (array_merge($this->getXmlElements(), $this->getXmlAttributes()) as $attr) {
                 if (strtolower('set' . $attr) == strtolower($name)) {
                     $this->values[$attr] = $args[0];
                     break;
@@ -35,7 +36,7 @@ abstract class Base
             }
             return $this;
         } elseif (preg_match('/^get/', strtolower($name))) {
-            foreach ($this->attributes as $attr) {
+            foreach (array_merge($this->getXmlElements(), $this->getXmlAttributes()) as $attr) {
                 if (strtolower('get' . $attr) == strtolower($name)) {
                     return \array_get($this->values, $attr);
                 }
@@ -44,5 +45,15 @@ abstract class Base
         }
 
         throw new \BadMethodCallException;
+    }
+
+    public function getXmlElements()
+    {
+        return $this->elements;
+    }
+
+    public function getXmlAttributes()
+    {
+        return $this->attributes;
     }
 }

@@ -2,7 +2,7 @@
 
 class System extends Base
 {
-    public $attributes = [
+    protected $elements = [
         'SystemID',
         'SystemDescription',
         'TimeZoneOffset',

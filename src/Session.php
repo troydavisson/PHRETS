@@ -13,6 +13,7 @@ use PHRETS\Models\Object;
 use PHRETS\Parsers\GetMetadata\Resource;
 use PHRETS\Parsers\GetMetadata\ResourceClass;
 use PHRETS\Parsers\GetMetadata\System;
+use PHRETS\Parsers\GetMetadata\Table;
 use PHRETS\Parsers\GetObject\Multiple;
 use PHRETS\Parsers\GetObject\Single;
 use PHRETS\Parsers\Login\OneFive;
@@ -210,6 +211,40 @@ class Session
         );
 
         $parser = new ResourceClass;
+        return $parser->parse($this, $response);
+    }
+
+    public function GetTableMetadata($resource_id, $class_id)
+    {
+        $response = $this->request(
+            'GetMetadata',
+            [
+                'query' => [
+                    'Type' => 'METADATA-TABLE',
+                    'ID' => $resource_id . ':' . $class_id,
+                    'Format' => 'STANDARD-XML',
+                ]
+            ]
+        );
+
+        $parser = new Table;
+        return $parser->parse($this, $response);
+    }
+
+    public function GetObjectMetadata($resource_id)
+    {
+        $response = $this->request(
+            'GetMetadata',
+            [
+                'query' => [
+                    'Type' => 'METADATA-OBJECT',
+                    'ID' => $resource_id,
+                    'Format' => 'STANDARD-XML',
+                ]
+            ]
+        );
+
+        $parser = new \PHRETS\Parsers\GetMetadata\Object;
         return $parser->parse($this, $response);
     }
 

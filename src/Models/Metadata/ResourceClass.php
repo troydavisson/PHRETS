@@ -2,7 +2,7 @@
 
 class ResourceClass extends Base
 {
-    public $attributes = [
+    protected $elements = [
         'ClassName',
         'VisibleName',
         'StandardName',
@@ -15,6 +15,15 @@ class ResourceClass extends Base
         'DeletedFlagField',
         'DeletedFlagValue',
         'HasKeyIndex',
-
     ];
+    protected $attributes = [
+        'Version',
+        'Date',
+        'Resource',
+    ];
+
+    public function getTable()
+    {
+        return $this->getSession()->GetTableMetadata($this->getResource(), $this->getClass());
+    }
 }

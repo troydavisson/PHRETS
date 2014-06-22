@@ -1,0 +1,89 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=6501F65C970FD6A6720D339754176C84; Path=/rets2_1
+MIME-Version: 1.0
+Content-ID: METADATA-OBJECT
+Content-Type: text/xml
+Date: Sat, 21 Jun 2014 23:53:49 GMT
+Connection: close
+
+<?xml version="1.0" encoding="US-ASCII"?>
+<RETS ReplyCode="0" ReplyText="Success">
+  <METADATA>
+    <METADATA-OBJECT Resource="Property" Version="01.03.28564" Date="2014-06-20T22:37:45Z" System="demomls">
+      <Object>
+        <MetadataEntryID>6ab9bf659ca6600b33ff3321fde5bb96</MetadataEntryID>
+        <ObjectType>Photo</ObjectType>
+        <MimeType>image/jpeg</MimeType>
+        <VisibleName>image</VisibleName>
+        <Description>Standard Photo (300x192)</Description>
+        <ObjectTimeStamp>LIST_134</ObjectTimeStamp>
+        <ObjectCount>LIST_133</ObjectCount>
+      </Object>
+      <Object>
+        <MetadataEntryID>14f6becc6b7c8d35ed8f8e189a072b3f</MetadataEntryID>
+        <ObjectType>Thumbnail</ObjectType>
+        <MimeType>image/jpeg</MimeType>
+        <VisibleName>image</VisibleName>
+        <Description>Thumbnail Photo (65x42)</Description>
+        <ObjectTimeStamp>LIST_134</ObjectTimeStamp>
+        <ObjectCount>LIST_133</ObjectCount>
+      </Object>
+      <Object>
+        <MetadataEntryID>207460b6ebc96b6edc2f7f2309ebc175</MetadataEntryID>
+        <ObjectType>640x480</ObjectType>
+        <MimeType>image/jpeg</MimeType>
+        <VisibleName>image</VisibleName>
+        <Description>640x480 Photo</Description>
+        <ObjectTimeStamp>LIST_134</ObjectTimeStamp>
+        <ObjectCount>LIST_133</ObjectCount>
+      </Object>
+      <Object>
+        <MetadataEntryID>8a60dea0b51da84256fc91e6ed1733d6</MetadataEntryID>
+        <ObjectType>HiRes</ObjectType>
+        <MimeType>image/jpeg</MimeType>
+        <VisibleName>image</VisibleName>
+        <Description>Higher Resolution Photo</Description>
+        <ObjectTimeStamp>LIST_134</ObjectTimeStamp>
+        <ObjectCount>LIST_133</ObjectCount>
+      </Object>
+      <Object>
+        <MetadataEntryID>ff3683f9be44f986d7e14c4f6dc6d4c2</MetadataEntryID>
+        <ObjectType>Supplement</ObjectType>
+        <MimeType>text/plain</MimeType>
+        <VisibleName/>
+        <Description>Supplemental Listing Data</Description>
+      </Object>
+      <Object>
+        <MetadataEntryID>72d3e5fe363b6ba2dc94f156baa51ed3</MetadataEntryID>
+        <ObjectType>OfficeRemarks</ObjectType>
+        <MimeType>text/plain</MimeType>
+        <VisibleName/>
+        <Description>Internal Office Remarks</Description>
+      </Object>
+      <Object>
+        <MetadataEntryID>0b3a67b986de133a8ee92c58d4bf62c1</MetadataEntryID>
+        <ObjectType>PDF</ObjectType>
+        <MimeType>application/pdf</MimeType>
+        <VisibleName/>
+        <Description>PDF Listing Document</Description>
+      </Object>
+      <Object>
+        <MetadataEntryID>412aae0015d702ababbc944d452704db</MetadataEntryID>
+        <ObjectType>PNG</ObjectType>
+        <MimeType>image/png</MimeType>
+        <VisibleName/>
+        <Description>PNG Listing Document</Description>
+      </Object>
+      <Object>
+        <MetadataEntryID>5ed5c725e60469d2bdbd013113410cd5</MetadataEntryID>
+        <ObjectType>UnbrandedVideo</ObjectType>
+        <MimeType>text/html</MimeType>
+        <VisibleName/>
+        <Description>HTML for Video Embedding</Description>
+      </Object>
+    </METADATA-OBJECT>
+  </METADATA>
+</RETS>
