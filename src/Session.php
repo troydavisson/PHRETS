@@ -296,6 +296,8 @@ class Session
             throw new CapabilityUnavailable("'{$capability}' tried but no valid endpoint was found.  Did you forget to Login()?");
         }
 
+        $options = array_merge($options, ['cookies' => true]);
+
         if ($this->logger) {
             $this->logger->debug("Sending HTTP Request for {$url} ({$capability})", $options);
         }
