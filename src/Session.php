@@ -281,6 +281,11 @@ class Session
 
         $parameters = array_merge($defaults, $optional_parameters);
 
+        // if the Select parameter given is an array, format it as it needs to be
+        if (array_key_exists('Select', $parameters) and is_array($parameters['Select'])) {
+            $parameters['Select'] = implode(',', $parameters['Select']);
+        }
+
         $response = $this->request(
             'Search',
             [
