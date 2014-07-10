@@ -298,15 +298,11 @@ class Session
 
         $options = array_merge($options, ['cookies' => true]);
 
-        if ($this->logger) {
-            $this->logger->debug("Sending HTTP Request for {$url} ({$capability})", $options);
-        }
+        $this->debug("Sending HTTP Request for {$url} ({$capability})", $options);
         /** @var \GuzzleHttp\Message\ResponseInterface $response */
         $response = $this->client->get($url, $options);
 
-        if ($this->logger) {
-            $this->logger->debug('Response: HTTP ' . $response->getStatusCode());
-        }
+        $this->debug('Response: HTTP ' . $response->getStatusCode());
         return $response;
     }
 
@@ -339,5 +335,12 @@ class Session
     public function getContainer()
     {
         return $this->container;
+    }
+
+    public function debug($message, $context = [])
+    {
+        if ($this->logger) {
+            $this->logger->debug($message, $context);
+        }
     }
 }

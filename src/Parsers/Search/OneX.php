@@ -26,6 +26,7 @@ class OneX
         } else {
             // assume tab delimited since it wasn't given
             $delimiter_character = chr("09");
+            $rets->debug('Assuming TAB delimiter since none specified in response');
         }
 
         // break out and track the column names in the response
@@ -33,6 +34,7 @@ class OneX
         $column_names = preg_replace("/^{$delimiter_character}/", "", $column_names);
         $column_names = preg_replace("/{$delimiter_character}\$/", "", $column_names);
         $rs->setHeaders(explode($delimiter_character, $column_names));
+        $rets->debug(count($rs->getHeaders()) . ' column headers/fields given');
 
         if (isset($xml->DATA)) {
             foreach ($xml->DATA as $field_data) {
@@ -57,13 +59,16 @@ class OneX
         if (isset($xml->COUNT)) {
             // found the record count returned.  save it
             $rs->setTotalResultsCount((int)"{$xml->COUNT->attributes()->Records}");
+            $rets->debug($rs->getTotalResultsCount() . ' total results found');
         }
+        $rets->debug($rs->getReturnedResultsCount() . ' results given');
 
         if (isset($xml->MAXROWS)) {
             // MAXROWS tag found.  the RETS server withheld records.
             // if the server supports Offset, more requests can be sent to page through results
             // until this tag isn't found anymore.
             $rs->setMaxRowsReached();
+            $rets->debug('Maximum rows returned in response');
         }
 
         if (isset($xml)) {
