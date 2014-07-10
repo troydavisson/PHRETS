@@ -22,6 +22,7 @@ class Session
     protected $container;
     /** @var \PSR\Log\LoggerInterface */
     protected $logger;
+    protected $rets_session_id;
 
     function __construct(Configuration $configuration)
     {
@@ -104,6 +105,15 @@ class Session
         return $collection->first();
     }
 
+    /**
+     * @param $resource
+     * @param $type
+     * @param $content_ids
+     * @param string $object_ids
+     * @param int $location
+     * @return Collection
+     * @throws Exceptions\CapabilityUnavailable
+     */
     public function GetObject($resource, $type, $content_ids, $object_ids = '*', $location = 0)
     {
         $request_id = GetObject::ids($content_ids, $object_ids);
@@ -296,11 +306,28 @@ class Session
             throw new CapabilityUnavailable("'{$capability}' tried but no valid endpoint was found.  Did you forget to Login()?");
         }
 
+        // user-agent authentication
+        if ($this->configuration->getUserAgentPassword()) {
+            $ua_a1 = md5($this->configuration->getUserAgent() .':'. $this->configuration->getUserAgentPassword());
+            $ua_dig_resp = md5(
+                trim($ua_a1) .'::'. trim($this->rets_session_id) .
+                ':'. trim($this->configuration->getRetsVersion()->asHeader())
+            );
+            $options = array_merge($options, ['headers' => ['RETS-UA-Authorization' => 'Digest ' . $ua_dig_resp]]);
+        }
+
         $options = array_merge($options, ['cookies' => true]);
 
         $this->debug("Sending HTTP Request for {$url} ({$capability})", $options);
         /** @var \GuzzleHttp\Message\ResponseInterface $response */
         $response = $this->client->get($url, $options);
+
+        $cookie = $response->getHeader('Set-Cookie');
+        if ($cookie) {
+            if (preg_match('/RETS-Session-ID\=(.*?)(\;|\s+|$)/', $cookie, $matches)) {
+                $this->rets_session_id = $matches[1];
+            }
+        }
 
         $this->debug('Response: HTTP ' . $response->getStatusCode());
         return $response;
