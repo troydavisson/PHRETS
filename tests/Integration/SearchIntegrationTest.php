@@ -41,4 +41,24 @@ class SearchIntegrationTest extends BaseIntegration
 
         $this->assertTrue($results->isMaxRowsReached());
     }
+
+    /** @test **/
+    public function it_limits_fields()
+    {
+        /** @var PHRETS\Models\Search\Results $results */
+        $results = $this->session->Search('Property', 'A', '*', ['Limit' => 3, 'Select' => 'LIST_1,LIST_105']);
+        $this->assertContains('LIST_1', $results->getHeaders());
+        $this->assertCount(2, $results->getHeaders());
+        $this->assertNotContains('LIST_22', $results->getHeaders());
+    }
+
+    /** @test **/
+    public function it_limits_fields_with_an_array()
+    {
+        /** @var PHRETS\Models\Search\Results $results */
+        $results = $this->session->Search('Property', 'A', '*', ['Limit' => 3, 'Select' => ['LIST_1', 'LIST_105']]);
+        $this->assertContains('LIST_1', $results->getHeaders());
+        $this->assertCount(2, $results->getHeaders());
+        $this->assertNotContains('LIST_22', $results->getHeaders());
+    }
 }

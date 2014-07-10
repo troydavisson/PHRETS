@@ -40,4 +40,42 @@ class SessionTest extends PHPUnit_Framework_TestCase {
 
         $this->assertSame('http://www.reso.org/login', $s->getLoginUrl());
     }
+
+    /** @test **/
+    public function it_uses_the_container()
+    {
+        $c = new Configuration;
+        $c->setLoginUrl('http://www.reso.org/login');
+
+        $s = new Session($c);
+
+        $container = $s->getContainer();
+        $this->assertInstanceOf('Illuminate\Container\Container', $container);
+    }
+
+    /** @test **/
+    public function it_registers_default_parsers()
+    {
+        $c = new Configuration;
+        $c->setLoginUrl('http://www.reso.org/login');
+
+        $s = new Session($c);
+
+        $container = $s->getContainer();
+        $parser = $container->make('parser.login');
+        $this->assertInstanceOf('PHRETS\Parsers\Login\OneFive', $parser);
+    }
+
+    /** @test **/
+    public function it_tracks_capabilities()
+    {
+        $login_url = 'http://www.reso.org/login';
+        $c = new Configuration;
+        $c->setLoginUrl($login_url);
+
+        $s = new Session($c);
+        $capabilities = $s->getCapabilities();
+        $this->assertInstanceOf('PHRETS\Capabilities', $capabilities);
+        $this->assertSame($login_url, $capabilities->get('Login'));
+    }
 }
