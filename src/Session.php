@@ -55,8 +55,30 @@ class Session
 
         // start up the service locator
         $this->container = new Container;
+
+        $default_parsers = [
+            'login' => '\PHRETS\Parsers\Login\OneFive',
+            'object.single' => '\PHRETS\Parsers\GetObject\Single',
+            'object.multiple' => '\PHRETS\Parsers\GetObject\Multiple',
+            'search' => '\PHRETS\Parsers\Search\OneX',
+            'metadata.system' => '\PHRETS\Parsers\GetMetadata\System',
+            'metadata.resource' => '\PHRETS\Parsers\GetMetadata\Resource',
+            'metadata.class' => '\PHRETS\Parsers\GetMetadata\ResourceClass',
+            'metadata.table' => '\PHRETS\Parsers\GetMetadata\Table',
+            'metadata.object' => '\PHRETS\Parsers\GetMetadata\Object',
+            'metadata.lookuptype' => '\PHRETS\Parsers\GetMetadata\LookupType',
+        ];
+
+        foreach ($default_parsers as $k => $v) {
+            $this->container->bind('parser.' . $k, function () use ($v) { return new $v; });
+        }
     }
 
+    /**
+     * PSR-3 compatible logger can be attached here
+     *
+     * @param $logger
+     */
     public function setLogger($logger)
     {
         $this->logger = $logger;
@@ -75,7 +97,7 @@ class Session
 
         $response = $this->request('Login');
 
-        $parser = new \PHRETS\Parsers\Login\OneFive;
+        $parser = $this->container->make('parser.login');
         $parser->parse($response->xml()->{'RETS-RESPONSE'}->__toString());
 
         foreach ($parser->getCapabilities() as $k => $v) {
@@ -131,11 +153,11 @@ class Session
         );
 
         if (preg_match('/multipart/', $response->getHeader('Content-Type'))) {
-            $parser = new \PHRETS\Parsers\GetObject\Multiple;
+            $parser = $this->container->make('parser.object.multiple');
             $collection = $parser->parse($response);
         } else {
             $collection = new Collection;
-            $parser = new \PHRETS\Parsers\GetObject\Single;
+            $parser = $this->container->make('parser.object.single');
             $object = $parser->parse($response);
             $collection->push($object);
         }
@@ -149,19 +171,7 @@ class Session
      */
     public function GetSystemMetadata()
     {
-        $response = $this->request(
-            'GetMetadata',
-            [
-                'query' => [
-                    'Type' => 'METADATA-SYSTEM',
-                    'ID' => 0,
-                    'Format' => 'STANDARD-XML',
-                ]
-            ]
-        );
-
-        $parser = new \PHRETS\Parsers\GetMetadata\System;
-        return $parser->parse($this, $response);
+        return $this->MakeMetadataRequest('METADATA-SYSTEM', 0, 'metadata.system');
     }
 
     /**
@@ -172,19 +182,7 @@ class Session
      */
     public function GetResourcesMetadata($resource_id = null)
     {
-        $response = $this->request(
-            'GetMetadata',
-            [
-                'query' => [
-                    'Type' => 'METADATA-RESOURCE',
-                    'ID' => 0,
-                    'Format' => 'STANDARD-XML',
-                ]
-            ]
-        );
-
-        $parser = new \PHRETS\Parsers\GetMetadata\Resource;
-        $result = $parser->parse($this, $response);
+        $result = $this->MakeMetadataRequest('METADATA-RESOURCE', 0, 'metadata.resource');
 
         if ($resource_id) {
             foreach ($result as $r) {
@@ -198,74 +196,82 @@ class Session
         return $result;
     }
 
+    /**
+     * @param $resource_id
+     * @return mixed
+     * @throws Exceptions\CapabilityUnavailable
+     */
     public function GetClassesMetadata($resource_id)
     {
-        $response = $this->request(
-            'GetMetadata',
-            [
-                'query' => [
-                    'Type' => 'METADATA-CLASS',
-                    'ID' => $resource_id,
-                    'Format' => 'STANDARD-XML',
-                ]
-            ]
-        );
-
-        $parser = new \PHRETS\Parsers\GetMetadata\ResourceClass;
-        return $parser->parse($this, $response);
+        return $this->MakeMetadataRequest('METADATA-CLASS', $resource_id, 'metadata.class');
     }
 
+    /**
+     * @param $resource_id
+     * @param $class_id
+     * @param string $keyed_by
+     * @return mixed
+     * @throws Exceptions\CapabilityUnavailable
+     */
     public function GetTableMetadata($resource_id, $class_id, $keyed_by = 'SystemName')
+    {
+        return $this->MakeMetadataRequest('METADATA-TABLE', $resource_id . ':' . $class_id, 'metadata.table', $keyed_by);
+    }
+
+    /**
+     * @param $resource_id
+     * @return mixed
+     * @throws Exceptions\CapabilityUnavailable
+     */
+    public function GetObjectMetadata($resource_id)
+    {
+        return $this->MakeMetadataRequest('METADATA-OBJECT', $resource_id, 'metadata.object');
+    }
+
+    /**
+     * @param $resource_id
+     * @param $lookup_name
+     * @return mixed
+     * @throws Exceptions\CapabilityUnavailable
+     */
+    public function GetLookupValues($resource_id, $lookup_name)
+    {
+        return $this->MakeMetadataRequest('METADATA-LOOKUP_TYPE', $resource_id . ':' . $lookup_name, 'metadata.lookuptype');
+    }
+
+    /**
+     * @param $type
+     * @param $id
+     * @param $parser
+     * @param null $keyed_by
+     * @throws Exceptions\CapabilityUnavailable
+     * @return mixed
+     */
+    protected function MakeMetadataRequest($type, $id, $parser, $keyed_by = null)
     {
         $response = $this->request(
             'GetMetadata',
             [
                 'query' => [
-                    'Type' => 'METADATA-TABLE',
-                    'ID' => $resource_id . ':' . $class_id,
+                    'Type' => $type,
+                    'ID' => $id,
                     'Format' => 'STANDARD-XML',
                 ]
             ]
         );
 
-        $parser = new \PHRETS\Parsers\GetMetadata\Table;
+        $parser = $this->container->make('parser.' . $parser);
         return $parser->parse($this, $response, $keyed_by);
     }
 
-    public function GetObjectMetadata($resource_id)
-    {
-        $response = $this->request(
-            'GetMetadata',
-            [
-                'query' => [
-                    'Type' => 'METADATA-OBJECT',
-                    'ID' => $resource_id,
-                    'Format' => 'STANDARD-XML',
-                ]
-            ]
-        );
-
-        $parser = new \PHRETS\Parsers\GetMetadata\Object;
-        return $parser->parse($this, $response);
-    }
-
-    public function GetLookupValues($resource_id, $lookup_name)
-    {
-        $response = $this->request(
-            'GetMetadata',
-            [
-                'query' => [
-                    'Type' => 'METADATA-LOOKUP_TYPE',
-                    'ID' => $resource_id . ':' . $lookup_name,
-                    'Format' => 'STANDARD-XML',
-                ]
-            ]
-        );
-
-        $parser = new \PHRETS\Parsers\GetMetadata\LookupType;
-        return $parser->parse($this, $response);
-    }
-
+    /**
+     * @param $resource_id
+     * @param $class_id
+     * @param $dmql_query
+     * @param array $optional_parameters
+     * @return mixed
+     * @throws Exceptions\CapabilityUnavailable
+     */
     public function Search($resource_id, $class_id, $dmql_query, $optional_parameters = [])
     {
         $defaults = [
@@ -293,7 +299,7 @@ class Session
             ]
         );
 
-        $parser = new \PHRETS\Parsers\Search\OneX;
+        $parser = $this->container->make('parser.search');
         return $parser->parse($this, $response, $parameters);
     }
 
@@ -361,6 +367,7 @@ class Session
     {
         return $this->configuration;
     }
+
     /**
      * @return Container
      */
@@ -369,9 +376,16 @@ class Session
         return $this->container;
     }
 
+    /**
+     * @param $message
+     * @param array $context
+     */
     public function debug($message, $context = [])
     {
         if ($this->logger) {
+            if (!is_array($context)) {
+                $context = [$context];
+            }
             $this->logger->debug($message, $context);
         }
     }
