@@ -4,8 +4,20 @@ use PHRETS\Exceptions\InvalidRETSVersion;
 
 class RETSVersion
 {
+    const VERSION_1_5 = '1.5';
+    const VERSION_1_7 = '1.7';
+    const VERSION_1_7_1 = '1.7.1';
+    const VERSION_1_7_2 = '1.7.2';
+    const VERSION_1_8 = '1.8';
+
     protected $number;
-    protected $valid_versions = ['1.5', '1.7', '1.7.1', '1.7.2', '1.8'];
+    protected $valid_versions = [
+        self::VERSION_1_5,
+        self::VERSION_1_7,
+        self::VERSION_1_7_1,
+        self::VERSION_1_7_2,
+        self::VERSION_1_8,
+    ];
 
     public function setVersion($version)
     {
@@ -28,22 +40,22 @@ class RETSVersion
 
     public function is1_5()
     {
-        return ($this->number == '1.5');
+        return ($this->number == self::VERSION_1_5);
     }
 
     public function is1_7()
     {
-        return ($this->number == '1.7');
+        return ($this->number == self::VERSION_1_7);
     }
 
     public function is1_7_2()
     {
-        return ($this->number == '1.7.2');
+        return ($this->number == self::VERSION_1_7_2);
     }
 
     public function is1_8()
     {
-        return ($this->number == '1.8');
+        return ($this->number == self::VERSION_1_8);
     }
 
     public function isAtLeast($version)
@@ -53,22 +65,22 @@ class RETSVersion
 
     public function isAtLeast1_5()
     {
-        return $this->isAtLeast('1.5');
+        return $this->isAtLeast(self::VERSION_1_5);
     }
 
     public function isAtLeast1_7()
     {
-        return $this->isAtLeast('1.7');
+        return $this->isAtLeast(self::VERSION_1_7);
     }
 
     public function isAtLeast1_7_2()
     {
-        return $this->isAtLeast('1.7.2');
+        return $this->isAtLeast(self::VERSION_1_7_2);
     }
 
     public function isAtLeast1_8()
     {
-        return $this->isAtLeast('1.8');
+        return $this->isAtLeast(self::VERSION_1_8);
     }
 
     public function __toString()
