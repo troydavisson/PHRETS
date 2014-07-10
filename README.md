@@ -30,8 +30,8 @@ $system = $rets->GetSystemMetadata();
 var_dump($system);
 
 $resources = $system->getResources();
-$class = $resources->first()->getClasses();
-var_dump($class);
+$classes = $resources->first()->getClasses();
+var_dump($classes);
 
 $classes = $rets->GetClassesMetadata('Property');
 var_dump($classes->first());
