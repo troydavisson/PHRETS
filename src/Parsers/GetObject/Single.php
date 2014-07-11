@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Message\ResponseInterface;
 use PHRETS\Models\Object;
+use PHRETS\Models\RETSError;
 
 class Single
 {
@@ -20,6 +21,28 @@ class Single
         $obj->setMimeVersion(\array_get($headers, 'MIME-Version', [null])[0]);
         $obj->setPreferred(\array_get($headers, 'Preferred', [null])[0]);
 
+        if ($this->isError($response)) {
+            $xml = $response->xml();
+            $error = new RETSError;
+            $error->setCode((string)\array_get($xml, 'ReplyCode'));
+            $error->setMessage((string)\array_get($xml, 'ReplyText'));
+            $obj->setError($error);
+        }
+
         return $obj;
+    }
+
+    protected function isError(ResponseInterface $response)
+    {
+        if (\array_get($response->getHeaders(), 'RETS-Error', [null])[0] == 1) {
+            return true;
+        }
+
+        $content_type = \array_get($response->getHeaders(), 'Content-Type', [null])[0];
+        if ($content_type and strpos($content_type, 'xml') !== false) {
+            return true;
+        }
+
+        return false;
     }
 }

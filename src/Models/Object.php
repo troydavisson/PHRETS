@@ -11,6 +11,7 @@ class Object
     protected $content_sub_description;
     protected $content;
     protected $preferred;
+    protected $error;
 
     /**
      * @return mixed
@@ -215,5 +216,31 @@ class Object
     {
         $this->preferred = $preferred;
         return $this;
+    }
+
+    /**
+     * @return \PHRETS\Models\RETSError
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * @param RETSError $error
+     * @return $this
+     */
+    public function setError(RETSError $error)
+    {
+        $this->error = $error;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isError()
+    {
+        return ($this->error !== null);
     }
 }
