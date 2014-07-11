@@ -290,6 +290,12 @@ class Session
      */
     public function Search($resource_id, $class_id, $dmql_query, $optional_parameters = [], $recursive = false)
     {
+
+        // automatically surround the given query with parentheses if it doesn't have them already
+        if (!empty($dmql_query) and $dmql_query != "*" and !preg_match('/^\((.*)\)$/', $dmql_query)) {
+            $dmql_query = '(' . $dmql_query . ')';
+        }
+
         $defaults = [
             'SearchType' => $resource_id,
             'Class' => $class_id,
