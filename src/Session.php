@@ -66,6 +66,7 @@ class Session
             'object.single' => '\PHRETS\Parsers\GetObject\Single',
             'object.multiple' => '\PHRETS\Parsers\GetObject\Multiple',
             'search' => '\PHRETS\Parsers\Search\OneX',
+            'search.recursive' => '\PHRETS\Parsers\Search\RecursiveOneX',
             'metadata.system' => '\PHRETS\Parsers\GetMetadata\System',
             'metadata.resource' => '\PHRETS\Parsers\GetMetadata\Resource',
             'metadata.class' => '\PHRETS\Parsers\GetMetadata\ResourceClass',
@@ -274,10 +275,10 @@ class Session
      * @param $class_id
      * @param $dmql_query
      * @param array $optional_parameters
-     * @return mixed
+     * @return \PHRETS\Models\Search\Results
      * @throws Exceptions\CapabilityUnavailable
      */
-    public function Search($resource_id, $class_id, $dmql_query, $optional_parameters = [])
+    public function Search($resource_id, $class_id, $dmql_query, $optional_parameters = [], $recursive = false)
     {
         $defaults = [
             'SearchType' => $resource_id,
@@ -304,7 +305,11 @@ class Session
             ]
         );
 
-        $parser = $this->container->make('parser.search');
+        if ($recursive) {
+            $parser = $this->container->make('parser.search.recursive');
+        } else {
+            $parser = $this->container->make('parser.search');
+        }
         return $parser->parse($this, $response, $parameters);
     }
 

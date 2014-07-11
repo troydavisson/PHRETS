@@ -307,11 +307,12 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
     }
 
     /**
+     * @param bool $boolean
      * @return $this
      */
-    public function setMaxRowsReached()
+    public function setMaxRowsReached($boolean = true)
     {
-        $this->maxrows_reached = true;
+        $this->maxrows_reached = $boolean;
         return $this;
     }
 }
