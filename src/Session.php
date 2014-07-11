@@ -26,6 +26,7 @@ class Session
     protected $logger;
     protected $rets_session_id;
     protected $cookie_jar;
+    protected $last_request_url;
 
     function __construct(Configuration $configuration)
     {
@@ -351,6 +352,13 @@ class Session
 
         $this->debug("Sending HTTP Request for {$url} ({$capability})", $options);
         /** @var \GuzzleHttp\Message\ResponseInterface $response */
+
+        if (array_key_exists('query', $options)) {
+            $this->last_request_url = $url . '?' . \http_build_query($options['query']);
+        } else {
+            $this->last_request_url = $url;
+        }
+
         $response = $this->client->get($url, $options);
 
         $cookie = $response->getHeader('Set-Cookie');
@@ -434,5 +442,13 @@ class Session
     public function getEventEmitter()
     {
         return $this->client->getEmitter();
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastRequestURL()
+    {
+        return $this->last_request_url;
     }
 }

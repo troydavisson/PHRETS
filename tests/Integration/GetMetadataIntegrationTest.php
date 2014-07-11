@@ -14,6 +14,16 @@ class GetMetadataIntegrationTest extends BaseIntegration
     }
 
     /** @test **/
+    public function it_makes_a_good_url()
+    {
+        $this->session->GetSystemMetadata();
+        $this->assertSame(
+            'http://retsgw.flexmls.com:80/rets2_1/GetMetadata?Type=METADATA-SYSTEM&ID=0&Format=STANDARD-XML',
+            $this->session->getLastRequestURL()
+        );
+    }
+
+    /** @test **/
     public function it_sees_some_attributes()
     {
         $system = $this->session->GetSystemMetadata();
