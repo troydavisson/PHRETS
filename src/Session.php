@@ -1,6 +1,8 @@
 <?php namespace PHRETS;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Cookie\CookieJarInterface;
 use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
 use PHRETS\Exceptions\CapabilityUnavailable;
@@ -23,6 +25,7 @@ class Session
     /** @var \PSR\Log\LoggerInterface */
     protected $logger;
     protected $rets_session_id;
+    protected $cookie_jar;
 
     function __construct(Configuration $configuration)
     {
@@ -31,6 +34,8 @@ class Session
 
         // start up our Guzzle HTTP client
         $this->client = PHRETSClient::make();
+
+        $this->cookie_jar = new CookieJar;
 
         // set the authentication as defaults to use for the entire client
         $this->client->setDefaultOption(
@@ -327,7 +332,7 @@ class Session
             $options = array_merge($options, ['headers' => ['RETS-UA-Authorization' => 'Digest ' . $ua_dig_resp]]);
         }
 
-        $options = array_merge($options, ['cookies' => true]);
+        $options = array_merge($options, ['cookies' => $this->cookie_jar]);
 
         $this->debug("Sending HTTP Request for {$url} ({$capability})", $options);
         /** @var \GuzzleHttp\Message\ResponseInterface $response */
@@ -388,5 +393,23 @@ class Session
             }
             $this->logger->debug($message, $context);
         }
+    }
+
+    /**
+     * @return CookieJarInterface
+     */
+    public function getCookieJar()
+    {
+        return $this->cookie_jar;
+    }
+
+    /**
+     * @param CookieJarInterface $cookie_jar
+     * @return $this
+     */
+    public function setCookieJar(CookieJarInterface $cookie_jar)
+    {
+        $this->cookie_jar = $cookie_jar;
+        return $this;
     }
 }
