@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use PHRETS\Exceptions\CapabilityUnavailable;
 use PHRETS\Exceptions\MetadataNotFound;
 use PHRETS\Exceptions\MissingConfiguration;
+use PHRETS\Exceptions\RETSException;
 use PHRETS\Http\Client as PHRETSClient;
 use PHRETS\Interpreters\GetObject;
 use PHRETS\Models\Bulletin;
@@ -335,8 +336,9 @@ class Session
     /**
      * @param $capability
      * @param array $options
-     * @return \GuzzleHttp\Message\ResponseInterface
      * @throws Exceptions\CapabilityUnavailable
+     * @throws Exceptions\RETSException
+     * @return \GuzzleHttp\Message\ResponseInterface
      */
     protected function request($capability, $options = [])
     {
@@ -381,6 +383,17 @@ class Session
         if ($cookie) {
             if (preg_match('/RETS-Session-ID\=(.*?)(\;|\s+|$)/', $cookie, $matches)) {
                 $this->rets_session_id = $matches[1];
+            }
+        }
+
+        if ($response->getHeader('Content-Type') == 'text/xml' and $capability != 'GetObject') {
+            $xml = $response->xml();
+            if ($xml and isset($xml['ReplyCode'])) {
+                $rc = (string)$xml['ReplyCode'];
+                // 20201 - No records found - not exception worthy in my mind
+                if ($rc != "0" and $rc != "20201") {
+                    throw new RETSException($xml['ReplyText'], (int)$xml['ReplyCode']);
+                }
             }
         }
 
