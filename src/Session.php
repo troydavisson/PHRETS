@@ -314,6 +314,16 @@ class Session
     }
 
     /**
+     * @return bool
+     * @throws Exceptions\CapabilityUnavailable
+     */
+    public function Disconnect()
+    {
+        $response = $this->request('Logout');
+        return true;
+    }
+
+    /**
      * @param $capability
      * @param array $options
      * @return \GuzzleHttp\Message\ResponseInterface
