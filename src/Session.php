@@ -367,7 +367,14 @@ class Session
         }
 
         /** @var \GuzzleHttp\Message\ResponseInterface $response */
-        $response = $this->client->get($url, $options);
+        if ($this->configuration->readOption('use_post_method')) {
+            $this->debug('Using POST method per use_post_method option');
+            $query = (array_key_exists('query', $options)) ? $options['query'] : null;
+            $response = $this->client->post($url, ['body' => $query]);
+        } else {
+            $response = $this->client->get($url, $options);
+        }
+
         $this->last_response = $response;
 
         $cookie = $response->getHeader('Set-Cookie');
