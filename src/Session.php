@@ -58,6 +58,11 @@ class Session
                 ]
         );
 
+        // disable following 'Location' header (redirects) automatically
+        if ($this->configuration->readOption('disable_follow_location')) {
+            $this->client->setDefaultOption('allow_redirects', false);
+        }
+
         // start up the Capabilities tracker and add Login as the first one
         $this->capabilities = new Capabilities;
         $this->capabilities->add('Login', $configuration->getLoginUrl());
