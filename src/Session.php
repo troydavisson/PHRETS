@@ -417,4 +417,12 @@ class Session
         $this->cookie_jar = $cookie_jar;
         return $this;
     }
+
+    /**
+     * @return \GuzzleHttp\Event\EmitterInterface
+     */
+    public function getEventEmitter()
+    {
+        return $this->client->getEmitter();
+    }
 }
