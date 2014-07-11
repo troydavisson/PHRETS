@@ -1,0 +1,253 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+MIME-Version: 1.0
+Content-ID: METADATA-RESOURCE
+Content-Type: text/xml
+Content-Encoding: gzip
+Vary: Accept-Encoding
+Date: Fri, 11 Jul 2014 15:39:39 GMT
+Connection: close
+
+<?xml version="1.0" encoding="US-ASCII"?>
+<RETS ReplyCode="0" ReplyText="Success">
+  <METADATA>
+    <METADATA-RESOURCE System="demomls" Version="01.03.28598" Date="2014-07-08T20:10:20Z">
+      <Resource>
+        <ResourceID>ActiveAgent</ResourceID>
+        <StandardName>ActiveAgent</StandardName>
+        <VisibleName>ActiveAgent</VisibleName>
+        <Description>ActiveAgent</Description>
+        <KeyField>MEMBER_0</KeyField>
+        <ClassCount Type="INTEGER">1</ClassCount>
+        <ClassVersion>01.03.28598</ClassVersion>
+        <ClassDate>2014-07-08T20:10:20Z</ClassDate>
+        <ObjectVersion>01.03.28598</ObjectVersion>
+        <ObjectDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</ObjectDate>
+        <SearchHelpVersion>01.03.28598</SearchHelpVersion>
+        <SearchHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</SearchHelpDate>
+        <EditMaskVersion>01.03.28598</EditMaskVersion>
+        <EditMaskDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</EditMaskDate>
+        <LookupVersion>01.03.28598</LookupVersion>
+        <LookupDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</LookupDate>
+        <UpdateHelpVersion/>
+        <UpdateHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationExpressionVersion/>
+        <ValidationExpressionDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationLookupVersion/>
+        <ValidationLookupDate/>
+        <ValidationExternalVersion/>
+        <ValidationExternalDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+      </Resource>
+      <Resource>
+        <ResourceID>Agent</ResourceID>
+        <StandardName>Agent</StandardName>
+        <VisibleName>Agent</VisibleName>
+        <Description>Agent</Description>
+        <KeyField>MEMBER_0</KeyField>
+        <ClassCount Type="INTEGER">1</ClassCount>
+        <ClassVersion>01.03.28598</ClassVersion>
+        <ClassDate>2014-07-08T20:10:20Z</ClassDate>
+        <ObjectVersion>01.03.28598</ObjectVersion>
+        <ObjectDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</ObjectDate>
+        <SearchHelpVersion>01.03.28598</SearchHelpVersion>
+        <SearchHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</SearchHelpDate>
+        <EditMaskVersion>01.03.28598</EditMaskVersion>
+        <EditMaskDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</EditMaskDate>
+        <LookupVersion>01.03.28598</LookupVersion>
+        <LookupDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</LookupDate>
+        <UpdateHelpVersion/>
+        <UpdateHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationExpressionVersion/>
+        <ValidationExpressionDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationLookupVersion/>
+        <ValidationLookupDate/>
+        <ValidationExternalVersion/>
+        <ValidationExternalDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+      </Resource>
+      <Resource>
+        <ResourceID>Office</ResourceID>
+        <StandardName>Office</StandardName>
+        <VisibleName>Office</VisibleName>
+        <Description>Office</Description>
+        <KeyField>OFFICE_0</KeyField>
+        <ClassCount Type="INTEGER">1</ClassCount>
+        <ClassVersion>01.03.28598</ClassVersion>
+        <ClassDate>2014-07-08T20:10:20Z</ClassDate>
+        <ObjectVersion>01.03.28598</ObjectVersion>
+        <ObjectDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</ObjectDate>
+        <SearchHelpVersion>01.03.28598</SearchHelpVersion>
+        <SearchHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</SearchHelpDate>
+        <EditMaskVersion>01.03.28598</EditMaskVersion>
+        <EditMaskDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</EditMaskDate>
+        <LookupVersion>01.03.28598</LookupVersion>
+        <LookupDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</LookupDate>
+        <UpdateHelpVersion/>
+        <UpdateHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationExpressionVersion/>
+        <ValidationExpressionDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationLookupVersion/>
+        <ValidationLookupDate/>
+        <ValidationExternalVersion/>
+        <ValidationExternalDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+      </Resource>
+      <Resource>
+        <ResourceID>OpenHouse</ResourceID>
+        <StandardName>OpenHouse</StandardName>
+        <VisibleName>Open House</VisibleName>
+        <Description>Open House</Description>
+        <KeyField>EVENT0</KeyField>
+        <ClassCount Type="INTEGER">1</ClassCount>
+        <ClassVersion>01.03.28598</ClassVersion>
+        <ClassDate>2014-07-08T20:10:20Z</ClassDate>
+        <ObjectVersion>01.03.28598</ObjectVersion>
+        <ObjectDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</ObjectDate>
+        <SearchHelpVersion>01.03.28598</SearchHelpVersion>
+        <SearchHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</SearchHelpDate>
+        <EditMaskVersion>01.03.28598</EditMaskVersion>
+        <EditMaskDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</EditMaskDate>
+        <LookupVersion>01.03.28598</LookupVersion>
+        <LookupDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</LookupDate>
+        <UpdateHelpVersion/>
+        <UpdateHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationExpressionVersion/>
+        <ValidationExpressionDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationLookupVersion/>
+        <ValidationLookupDate/>
+        <ValidationExternalVersion/>
+        <ValidationExternalDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+      </Resource>
+      <Resource>
+        <ResourceID>Property</ResourceID>
+        <StandardName>Property</StandardName>
+        <VisibleName>Property</VisibleName>
+        <Description>Property</Description>
+        <KeyField>LIST_1</KeyField>
+        <ClassCount Type="INTEGER">7</ClassCount>
+        <ClassVersion>01.03.28598</ClassVersion>
+        <ClassDate>2014-07-08T20:10:20Z</ClassDate>
+        <ObjectVersion>01.03.28598</ObjectVersion>
+        <ObjectDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</ObjectDate>
+        <SearchHelpVersion>01.03.28598</SearchHelpVersion>
+        <SearchHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</SearchHelpDate>
+        <EditMaskVersion>01.03.28598</EditMaskVersion>
+        <EditMaskDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</EditMaskDate>
+        <LookupVersion>01.03.28598</LookupVersion>
+        <LookupDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</LookupDate>
+        <UpdateHelpVersion/>
+        <UpdateHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationExpressionVersion/>
+        <ValidationExpressionDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationLookupVersion/>
+        <ValidationLookupDate/>
+        <ValidationExternalVersion/>
+        <ValidationExternalDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+      </Resource>
+      <Resource>
+        <ResourceID>RentalSchedule</ResourceID>
+        <StandardName>RentalSchedule</StandardName>
+        <VisibleName>Rental Schedule</VisibleName>
+        <Description>Rental Schedule</Description>
+        <KeyField>RENTAL_0</KeyField>
+        <ClassCount Type="INTEGER">1</ClassCount>
+        <ClassVersion>01.03.28598</ClassVersion>
+        <ClassDate>2014-07-08T20:10:20Z</ClassDate>
+        <ObjectVersion>01.03.28598</ObjectVersion>
+        <ObjectDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</ObjectDate>
+        <SearchHelpVersion>01.03.28598</SearchHelpVersion>
+        <SearchHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</SearchHelpDate>
+        <EditMaskVersion>01.03.28598</EditMaskVersion>
+        <EditMaskDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</EditMaskDate>
+        <LookupVersion>01.03.28598</LookupVersion>
+        <LookupDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</LookupDate>
+        <UpdateHelpVersion/>
+        <UpdateHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationExpressionVersion/>
+        <ValidationExpressionDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationLookupVersion/>
+        <ValidationLookupDate/>
+        <ValidationExternalVersion/>
+        <ValidationExternalDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+      </Resource>
+      <Resource>
+        <ResourceID>Room</ResourceID>
+        <StandardName>Room</StandardName>
+        <VisibleName>Room</VisibleName>
+        <Description>Property Room Information</Description>
+        <KeyField>ROOM_0</KeyField>
+        <ClassCount Type="INTEGER">2</ClassCount>
+        <ClassVersion>01.03.28598</ClassVersion>
+        <ClassDate>2014-07-08T20:10:20Z</ClassDate>
+        <ObjectVersion>01.03.28598</ObjectVersion>
+        <ObjectDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</ObjectDate>
+        <SearchHelpVersion>01.03.28598</SearchHelpVersion>
+        <SearchHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</SearchHelpDate>
+        <EditMaskVersion>01.03.28598</EditMaskVersion>
+        <EditMaskDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</EditMaskDate>
+        <LookupVersion>01.03.28598</LookupVersion>
+        <LookupDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</LookupDate>
+        <UpdateHelpVersion/>
+        <UpdateHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationExpressionVersion/>
+        <ValidationExpressionDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationLookupVersion/>
+        <ValidationLookupDate/>
+        <ValidationExternalVersion/>
+        <ValidationExternalDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+      </Resource>
+      <Resource>
+        <ResourceID>Tour</ResourceID>
+        <StandardName>Tour</StandardName>
+        <VisibleName>Tour of Homes</VisibleName>
+        <Description>Tour of Homes</Description>
+        <KeyField>EVENT0</KeyField>
+        <ClassCount Type="INTEGER">1</ClassCount>
+        <ClassVersion>01.03.28598</ClassVersion>
+        <ClassDate>2014-07-08T20:10:20Z</ClassDate>
+        <ObjectVersion>01.03.28598</ObjectVersion>
+        <ObjectDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</ObjectDate>
+        <SearchHelpVersion>01.03.28598</SearchHelpVersion>
+        <SearchHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</SearchHelpDate>
+        <EditMaskVersion>01.03.28598</EditMaskVersion>
+        <EditMaskDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</EditMaskDate>
+        <LookupVersion>01.03.28598</LookupVersion>
+        <LookupDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</LookupDate>
+        <UpdateHelpVersion/>
+        <UpdateHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationExpressionVersion/>
+        <ValidationExpressionDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationLookupVersion/>
+        <ValidationLookupDate/>
+        <ValidationExternalVersion/>
+        <ValidationExternalDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+      </Resource>
+      <Resource>
+        <ResourceID>VirtualTour</ResourceID>
+        <StandardName>VirtualTour</StandardName>
+        <VisibleName>VirtualTour</VisibleName>
+        <Description>VirtualTour</Description>
+        <KeyField>VT_0</KeyField>
+        <ClassCount Type="INTEGER">1</ClassCount>
+        <ClassVersion>01.03.28598</ClassVersion>
+        <ClassDate>2014-07-08T20:10:20Z</ClassDate>
+        <ObjectVersion>01.03.28598</ObjectVersion>
+        <ObjectDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</ObjectDate>
+        <SearchHelpVersion>01.03.28598</SearchHelpVersion>
+        <SearchHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</SearchHelpDate>
+        <EditMaskVersion>01.03.28598</EditMaskVersion>
+        <EditMaskDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</EditMaskDate>
+        <LookupVersion>01.03.28598</LookupVersion>
+        <LookupDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]">2014-07-08T20:10:20Z</LookupDate>
+        <UpdateHelpVersion/>
+        <UpdateHelpDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationExpressionVersion/>
+        <ValidationExpressionDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+        <ValidationLookupVersion/>
+        <ValidationLookupDate/>
+        <ValidationExternalVersion/>
+        <ValidationExternalDate Type="DATE-TIME" Format="YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]"/>
+      </Resource>
+    </METADATA-RESOURCE>
+  </METADATA>
+</RETS>

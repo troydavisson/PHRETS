@@ -5,9 +5,9 @@ class GetObjectIntegrationTest extends BaseIntegration
     /** @test */
     public function it_fetches_objects()
     {
-        $objects = $this->session->GetObject('Property', 'Photo', '00-1669', '*', 0);
+        $objects = $this->session->GetObject('Property', 'Photo', '14-52', '*', 0);
         $this->assertTrue($objects instanceof \Illuminate\Support\Collection);
-        $this->assertSame(2, $objects->count());
+        $this->assertSame(22, $objects->count());
     }
 
     /** @test */
