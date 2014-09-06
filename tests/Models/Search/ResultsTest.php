@@ -131,4 +131,20 @@ class ResultsTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(isset($this->rs['extra']));
         $this->assertTrue(isset($this->rs['bonus']));
     }
+    
+    /** @test **/
+    public function it_holds_errors()
+    {
+        $rs = new Results;
+        $rs->setError('test');
+        $this->assertSame('test', $rs->getError());
+    }
+    
+    /** @test **/
+    public function it_holds_a_session()
+    {
+        $rs = new Results;
+        $rs->setSession('test');
+        $this->assertSame('test', $rs->getSession());
+    }
 }

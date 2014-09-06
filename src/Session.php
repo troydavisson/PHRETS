@@ -90,6 +90,7 @@ class Session
     public function setLogger($logger)
     {
         $this->logger = $logger;
+        $this->debug("Loading " . get_class($logger) . " logger");
     }
 
     /**
@@ -112,13 +113,13 @@ class Session
             $this->capabilities->add($k, $v);
         }
 
+        $bulletin = new Bulletin;
         if ($this->capabilities->get('Action')) {
             $response = $this->request('Action');
-            $bulletin = new Bulletin;
             $bulletin->setBody($response->getBody()->getContents());
             return $bulletin;
         } else {
-            return new Bulletin;
+            return $bulletin;
         }
     }
 
@@ -348,12 +349,8 @@ class Session
 
         // user-agent authentication
         if ($this->configuration->getUserAgentPassword()) {
-            $ua_a1 = md5($this->configuration->getUserAgent() .':'. $this->configuration->getUserAgentPassword());
-            $ua_dig_resp = md5(
-                trim($ua_a1) .'::'. trim($this->rets_session_id) .
-                ':'. trim($this->configuration->getRetsVersion()->asHeader())
-            );
-            $options = array_merge($options, ['headers' => ['RETS-UA-Authorization' => 'Digest ' . $ua_dig_resp]]);
+            $ua_digest = $this->generateUserAgentDigestHash();
+            $options = array_merge($options, ['headers' => ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]]);
         }
 
         $options = array_merge($options, ['cookies' => $this->cookie_jar]);
@@ -485,5 +482,22 @@ class Session
     public function getLastResponse()
     {
         return (string)$this->last_response->getBody();
+    }
+
+    /**
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    protected function generateUserAgentDigestHash()
+    {
+        $ua_a1 = md5($this->configuration->getUserAgent() .':'. $this->configuration->getUserAgentPassword());
+        return md5(
+            trim($ua_a1) .'::'. trim($this->rets_session_id) .
+            ':'. trim($this->configuration->getRetsVersion()->asHeader())
+        );
     }
 }

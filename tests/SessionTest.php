@@ -102,4 +102,30 @@ class SessionTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($s->getContainer()->bound('parser.login'));
         $this->assertInstanceOf('\PHRETS\Parsers\Login\OneEight', $s->getContainer()->make('parser.login'));
     }
+
+    /** @test **/
+    public function it_disables_redirects_when_desired()
+    {
+        $c = new Configuration;
+        $c->setLoginUrl('http://www.reso.org/login');
+        $c->setOption('disable_follow_location', true);
+
+        $s = new Session($c);
+
+        $this->assertFalse($s->getClient()->getDefaultOption('allow_redirects'));
+    }
+
+    /** @test **/
+    public function it_uses_the_set_logger()
+    {
+        $logger = $this->getMock('Logger', ['debug']);
+        // just expect that a debug message is spit out
+        $logger->expects($this->atLeastOnce())->method('debug')->with($this->matchesRegularExpression('/logger/'));
+
+        $c = new Configuration;
+        $c->setLoginUrl('http://www.reso.org/login');
+
+        $s = new Session($c);
+        $s->setLogger($logger);
+    }
 }

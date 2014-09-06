@@ -104,4 +104,14 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
 
         $this->assertSame('\PHRETS\Parsers\Login\OneEight', $config->getStrategy()->getBindings()['parser.login']);
     }
+
+    /** @test **/
+    public function it_allows_overriding_the_strategy()
+    {
+        $config = new Configuration;
+        $strategy = new \PHRETS\Strategies\StandardStrategy($config);
+        $config->setStrategy($strategy);
+
+        $this->assertSame($strategy, $config->getStrategy());
+    }
 }

@@ -60,4 +60,13 @@ class SearchIntegrationTest extends BaseIntegration
         $this->assertCount(2, $results->getHeaders());
         $this->assertNotContains('LIST_22', $results->getHeaders());
     }
+
+    /** @test **/
+    public function it_provides_access_to_associated_metadata()
+    {
+        /** @var PHRETS\Models\Search\Results $results */
+        $results = $this->session->Search('Property', 'A', '*', ['Limit' => 3, 'Select' => ['LIST_1', 'LIST_105']]);
+        $this->assertInstanceOf('\Illuminate\Support\Collection', $results->getMetadata());
+        $this->assertInstanceOf('\PHRETS\Models\Metadata\Table', $results->getMetadata()->first());
+    }
 }
