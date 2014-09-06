@@ -1,6 +1,8 @@
 <?php namespace PHRETS;
 
 use PHRETS\Exceptions\InvalidConfiguration;
+use PHRETS\Strategies\StandardStrategy;
+use PHRETS\Strategies\Strategy;
 use PHRETS\Versions\RETSVersion;
 
 class Configuration
@@ -12,11 +14,14 @@ class Configuration
     protected $user_agent_password;
     /** @var RETSVersion */
     protected $rets_version;
+    /** @var \PHRETS\Strategies\Strategy */
+    protected $strategy;
     protected $options = [];
 
     public function __construct()
     {
         $this->rets_version = (new RETSVersion)->setVersion('1.5');
+        $this->strategy = new StandardStrategy($this);
     }
 
     /**
@@ -188,5 +193,23 @@ class Configuration
             return false;
         }
         return true;
+    }
+
+    /**
+     * @return Strategies\Strategy
+     */
+    public function getStrategy()
+    {
+        return $this->strategy;
+    }
+
+    /**
+     * @param Strategies\Strategy $strategy
+     * @return $this
+     */
+    public function setStrategy(Strategy $strategy)
+    {
+        $this->strategy = $strategy;
+        return $this;
     }
 }

@@ -80,4 +80,28 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
         $config->setOption('param', true);
         $this->assertTrue($config->readOption('param'));
     }
+
+    /** @test **/
+    public function it_loads_a_strategy()
+    {
+        $config = new Configuration;
+        $this->assertInstanceOf('PHRETS\Strategies\Strategy', $config->getStrategy());
+        $this->assertInstanceOf('PHRETS\Strategies\StandardStrategy', $config->getStrategy());
+    }
+
+    /** @test **/
+    public function it_loads_the_default_login_parser_for_1_5()
+    {
+        $config = new Configuration;
+        $this->assertSame('\PHRETS\Parsers\Login\OneFive', $config->getStrategy()->getBindings()['parser.login']);
+    }
+
+    /** @test **/
+    public function it_adjusts_the_login_parser_with_1_8()
+    {
+        $config = new Configuration;
+        $config->setRetsVersion('1.8');
+
+        $this->assertSame('\PHRETS\Parsers\Login\OneEight', $config->getStrategy()->getBindings()['parser.login']);
+    }
 }

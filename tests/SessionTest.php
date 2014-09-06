@@ -89,4 +89,17 @@ class SessionTest extends PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf('GuzzleHttp\Event\EmitterInterface', $s->getEventEmitter());
     }
+
+    /** @test **/
+    public function it_binds_from_a_strategy()
+    {
+        $c = new Configuration;
+        $c->setLoginUrl('http://www.reso.org/login');
+        $c->setRetsVersion('1.8');
+
+        $s = new Session($c);
+
+        $this->assertTrue($s->getContainer()->bound('parser.login'));
+        $this->assertInstanceOf('\PHRETS\Parsers\Login\OneEight', $s->getContainer()->make('parser.login'));
+    }
 }
