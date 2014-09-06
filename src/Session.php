@@ -370,7 +370,7 @@ class Session
         if ($this->configuration->readOption('use_post_method')) {
             $this->debug('Using POST method per use_post_method option');
             $query = (array_key_exists('query', $options)) ? $options['query'] : null;
-            $response = $this->client->post($url, ['body' => $query]);
+            $response = $this->client->post($url, array_merge($options, ['body' => $query]));
         } else {
             $response = $this->client->get($url, $options);
         }
