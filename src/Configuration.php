@@ -212,4 +212,17 @@ class Configuration
         $this->strategy = $strategy;
         return $this;
     }
+
+    /**
+     * @param Session $session
+     * @return string
+     */
+    public function userAgentDigestHash(Session $session)
+    {
+        $ua_a1 = md5($this->getUserAgent() .':'. $this->getUserAgentPassword());
+        return md5(
+            trim($ua_a1) .'::'. trim($session->getRetsSessionId()) .
+            ':'. trim($this->getRetsVersion()->asHeader())
+        );
+    }
 }

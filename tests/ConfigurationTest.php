@@ -114,4 +114,17 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
 
         $this->assertSame($strategy, $config->getStrategy());
     }
+
+    /** @test **/
+    public function it_generates_user_agent_auth_hashes_correctly()
+    {
+        $c = new Configuration;
+        $c->setLoginUrl('http://www.reso.org/login')
+            ->setUserAgent('PHRETS/2.0')
+            ->setUserAgentPassword('12345')
+            ->setRetsVersion('1.7.2');
+
+        $s = new \PHRETS\Session($c);
+        $this->assertSame('123c96e02e514da469db6bc61ab998dc', $c->userAgentDigestHash($s));
+    }
 }

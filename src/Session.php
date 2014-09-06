@@ -349,7 +349,7 @@ class Session
 
         // user-agent authentication
         if ($this->configuration->getUserAgentPassword()) {
-            $ua_digest = $this->generateUserAgentDigestHash();
+            $ua_digest = $this->configuration->userAgentDigestHash($this);
             $options = array_merge($options, ['headers' => ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]]);
         }
 
@@ -492,12 +492,11 @@ class Session
         return $this->client;
     }
 
-    protected function generateUserAgentDigestHash()
+    /**
+     * @return mixed
+     */
+    public function getRetsSessionId()
     {
-        $ua_a1 = md5($this->configuration->getUserAgent() .':'. $this->configuration->getUserAgentPassword());
-        return md5(
-            trim($ua_a1) .'::'. trim($this->rets_session_id) .
-            ':'. trim($this->configuration->getRetsVersion()->asHeader())
-        );
+        return $this->rets_session_id;
     }
 }
