@@ -179,15 +179,6 @@ class Object
     }
 
     /**
-     * @return $this
-     */
-    public function downloadFromURL()
-    {
-        $this->setContent(file_get_contents($this->getLocation()));
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getSize()

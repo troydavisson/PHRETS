@@ -116,6 +116,19 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
     }
 
     /** @test **/
+    public function it_provides_access_to_the_strategys_container()
+    {
+        $config = new Configuration;
+        $config->setLoginUrl('http://www.reso.org/login');
+        $strategy = new \PHRETS\Strategies\StandardStrategy($config);
+        $config->setStrategy($strategy);
+
+        $s = new \PHRETS\Session($config);
+
+        $this->assertInstanceOf('\Illuminate\Container\Container', $config->getStrategy()->getContainer());
+    }
+
+    /** @test **/
     public function it_generates_user_agent_auth_hashes_correctly()
     {
         $c = new Configuration;

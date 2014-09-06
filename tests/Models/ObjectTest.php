@@ -50,11 +50,27 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
     }
 
     /** @test **/
-//    public function it_fetches_from_remote()
-//    {
-//        $o = new Object;
-//        $o->setLocation('http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
-//
-//        $this->assertRegExp('/Twitter/', $o->downloadFromURL()->getContent());
-//    }
+    public function it_marks_preferred_objects()
+    {
+        $o = new Object;
+        $this->assertFalse($o->isPreferred());
+        $o->setPreferred(1);
+        $this->assertTrue($o->isPreferred());
+        $this->assertSame(1, $o->getPreferred());
+    }
+
+    /** @test **/
+    public function it_marks_errors()
+    {
+        $e = new \PHRETS\Models\RETSError;
+        $e->setCode(1234);
+        $e->setMessage('Test Error Message');
+
+        $o = new Object;
+        $this->assertFalse($o->isError());
+        $o->setError($e);
+        $this->assertTrue($o->isError());
+        $this->assertSame(1234, $o->getError()->getCode());
+        $this->assertSame('Test Error Message', $o->getError()->getMessage());
+    }
 }
