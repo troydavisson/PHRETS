@@ -12,7 +12,7 @@ class RecursiveOneX
         // we're given the first response automatically, so parse this and start the recursion
 
         /** @var \PHRETS\Parsers\Search\OneX $parser */
-        $parser = $rets->getContainer()->make('parser.search');
+        $parser = $rets->getConfiguration()->getStrategy()->provide('parser.search');
         $rs = $parser->parse($rets, $response, $parameters);
 
         while ($this->continuePaginating($rets, $parameters, $rs)) {

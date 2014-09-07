@@ -2,47 +2,17 @@
 
 use PHRETS\Configuration;
 
-abstract class Strategy
+interface Strategy
 {
-    protected $container;
-    protected $configuration;
-
     /**
-     * @return array
+     * @param $component
+     * @return mixed
      */
-    abstract public function getBindings();
+    public function provide($component);
 
     /**
      * @param Configuration $configuration
+     * @return mixed
      */
-    public function __construct(Configuration $configuration)
-    {
-        $this->configuration = $configuration;
-    }
-
-    /**
-     * @param $container
-     * @return $this
-     */
-    public function setContainer($container)
-    {
-        $this->container = $container;
-        return $this;
-    }
-
-    /**
-     * @return \PHRETS\Configuration
-     */
-    public function getConfiguration()
-    {
-        return $this->configuration;
-    }
-
-    /**
-     * @return \Illuminate\Container\Container
-     */
-    public function getContainer()
-    {
-        return $this->container;
-    }
+    public function initialize(Configuration $configuration);
 }

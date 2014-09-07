@@ -42,31 +42,6 @@ class SessionTest extends PHPUnit_Framework_TestCase {
     }
 
     /** @test **/
-    public function it_uses_the_container()
-    {
-        $c = new Configuration;
-        $c->setLoginUrl('http://www.reso.org/login');
-
-        $s = new Session($c);
-
-        $container = $s->getContainer();
-        $this->assertInstanceOf('Illuminate\Container\Container', $container);
-    }
-
-    /** @test **/
-    public function it_registers_default_parsers()
-    {
-        $c = new Configuration;
-        $c->setLoginUrl('http://www.reso.org/login');
-
-        $s = new Session($c);
-
-        $container = $s->getContainer();
-        $parser = $container->make('parser.login');
-        $this->assertInstanceOf('PHRETS\Parsers\Login\OneFive', $parser);
-    }
-
-    /** @test **/
     public function it_tracks_capabilities()
     {
         $login_url = 'http://www.reso.org/login';
@@ -88,19 +63,6 @@ class SessionTest extends PHPUnit_Framework_TestCase {
         $s = new Session($c);
 
         $this->assertInstanceOf('GuzzleHttp\Event\EmitterInterface', $s->getEventEmitter());
-    }
-
-    /** @test **/
-    public function it_binds_from_a_strategy()
-    {
-        $c = new Configuration;
-        $c->setLoginUrl('http://www.reso.org/login');
-        $c->setRetsVersion('1.8');
-
-        $s = new Session($c);
-
-        $this->assertTrue($s->getContainer()->bound('parser.login'));
-        $this->assertInstanceOf('\PHRETS\Parsers\Login\OneEight', $s->getContainer()->make('parser.login'));
     }
 
     /** @test **/

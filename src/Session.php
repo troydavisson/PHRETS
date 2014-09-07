@@ -3,7 +3,6 @@
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\CookieJarInterface;
-use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
 use PHRETS\Exceptions\CapabilityUnavailable;
 use PHRETS\Exceptions\MetadataNotFound;
@@ -21,8 +20,6 @@ class Session
     protected $capabilities;
     /** @var Client */
     protected $client;
-    /** @var Container */
-    protected $container;
     /** @var \PSR\Log\LoggerInterface */
     protected $logger;
     protected $rets_session_id;
@@ -67,19 +64,6 @@ class Session
         // start up the Capabilities tracker and add Login as the first one
         $this->capabilities = new Capabilities;
         $this->capabilities->add('Login', $configuration->getLoginUrl());
-
-        // start up the service locator
-        $this->container = new Container;
-
-        // pull the necessary container bindings to modify the behavior used with this session
-        $bindings = $this->configuration->getStrategy()
-            ->setContainer($this->container)
-            ->getBindings();
-
-        // given keys referencing binding names and values as class names, bind away
-        foreach ($bindings as $k => $v) {
-            $this->container->bind($k, function () use ($v) { return new $v; });
-        }
     }
 
     /**
@@ -106,7 +90,7 @@ class Session
 
         $response = $this->request('Login');
 
-        $parser = $this->container->make('parser.login');
+        $parser = $this->grab('parser.login');
         $parser->parse($response->xml()->{'RETS-RESPONSE'}->__toString());
 
         foreach ($parser->getCapabilities() as $k => $v) {
@@ -162,11 +146,11 @@ class Session
         );
 
         if (preg_match('/multipart/', $response->getHeader('Content-Type'))) {
-            $parser = $this->container->make('parser.object.multiple');
+            $parser = $this->grab('parser.object.multiple');
             $collection = $parser->parse($response);
         } else {
             $collection = new Collection;
-            $parser = $this->container->make('parser.object.single');
+            $parser = $this->grab('parser.object.single');
             $object = $parser->parse($response);
             $collection->push($object);
         }
@@ -269,7 +253,7 @@ class Session
             ]
         );
 
-        $parser = $this->container->make('parser.' . $parser);
+        $parser = $this->grab('parser.' . $parser);
         return $parser->parse($this, $response, $keyed_by);
     }
 
@@ -315,9 +299,9 @@ class Session
         );
 
         if ($recursive) {
-            $parser = $this->container->make('parser.search.recursive');
+            $parser = $this->grab('parser.search.recursive');
         } else {
-            $parser = $this->container->make('parser.search');
+            $parser = $this->grab('parser.search');
         }
         return $parser->parse($this, $response, $parameters);
     }
@@ -421,14 +405,6 @@ class Session
     }
 
     /**
-     * @return Container
-     */
-    public function getContainer()
-    {
-        return $this->container;
-    }
-
-    /**
      * @param $message
      * @param array $context
      */
@@ -498,5 +474,14 @@ class Session
     public function getRetsSessionId()
     {
         return $this->rets_session_id;
+    }
+
+    /**
+     * @param $component
+     * @return mixed
+     */
+    protected function grab($component)
+    {
+        return $this->configuration->getStrategy()->provide($component);
     }
 }

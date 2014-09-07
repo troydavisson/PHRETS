@@ -90,42 +90,14 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
     }
 
     /** @test **/
-    public function it_loads_the_default_login_parser_for_1_5()
-    {
-        $config = new Configuration;
-        $this->assertSame('\PHRETS\Parsers\Login\OneFive', $config->getStrategy()->getBindings()['parser.login']);
-    }
-
-    /** @test **/
-    public function it_adjusts_the_login_parser_with_1_8()
-    {
-        $config = new Configuration;
-        $config->setRetsVersion('1.8');
-
-        $this->assertSame('\PHRETS\Parsers\Login\OneEight', $config->getStrategy()->getBindings()['parser.login']);
-    }
-
-    /** @test **/
     public function it_allows_overriding_the_strategy()
     {
         $config = new Configuration;
-        $strategy = new \PHRETS\Strategies\StandardStrategy($config);
+        $strategy = new \PHRETS\Strategies\StandardStrategy;
+        $strategy->initialize($config);
         $config->setStrategy($strategy);
 
         $this->assertSame($strategy, $config->getStrategy());
-    }
-
-    /** @test **/
-    public function it_provides_access_to_the_strategys_container()
-    {
-        $config = new Configuration;
-        $config->setLoginUrl('http://www.reso.org/login');
-        $strategy = new \PHRETS\Strategies\StandardStrategy($config);
-        $config->setStrategy($strategy);
-
-        $s = new \PHRETS\Session($config);
-
-        $this->assertInstanceOf('\Illuminate\Container\Container', $config->getStrategy()->getContainer());
     }
 
     /** @test **/

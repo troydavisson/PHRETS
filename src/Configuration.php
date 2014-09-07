@@ -21,7 +21,6 @@ class Configuration
     public function __construct()
     {
         $this->rets_version = (new RETSVersion)->setVersion('1.5');
-        $this->strategy = new StandardStrategy($this);
     }
 
     /**
@@ -200,6 +199,9 @@ class Configuration
      */
     public function getStrategy()
     {
+        if (!$this->strategy) {
+            $this->setStrategy(new StandardStrategy);
+        }
         return $this->strategy;
     }
 
@@ -209,6 +211,7 @@ class Configuration
      */
     public function setStrategy(Strategy $strategy)
     {
+        $strategy->initialize($this);
         $this->strategy = $strategy;
         return $this;
     }
