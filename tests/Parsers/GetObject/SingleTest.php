@@ -16,4 +16,32 @@ class SingleTest extends PHPUnit_Framework_TestCase {
         $this->assertSame('Test', $obj->getContent());
         $this->assertSame('text/plain', $obj->getContentType());
     }
+
+    /** @test **/
+    public function it_detects_and_handles_errors()
+    {
+        $error = '<RETS ReplyCode="20203" ReplyText="RETS Server: Some error">
+        Valid Classes are: A B C E F G H I
+        </RETS>';
+        $parser = new Single;
+        $single = new Response(200, ['Content-Type' => 'text/xml'], Stream::factory($error));
+        $obj = $parser->parse($single);
+
+        $this->assertTrue($obj->isError());
+        $this->assertSame(20203, $obj->getError()->getCode());
+        $this->assertSame('RETS Server: Some error', $obj->getError()->getMessage());
+    }
+
+    /** @test **/
+    public function it_sees_the_new_rets_error_header()
+    {
+        $error = '<RETS ReplyCode="20203" ReplyText="RETS Server: Some error">
+        Valid Classes are: A B C E F G H I
+        </RETS>';
+        $parser = new Single;
+        $single = new Response(200, ['Content-Type' => 'text/plain', 'RETS-Error' => '1'], Stream::factory($error));
+        $obj = $parser->parse($single);
+
+        $this->assertTrue($obj->isError());
+    }
 }
