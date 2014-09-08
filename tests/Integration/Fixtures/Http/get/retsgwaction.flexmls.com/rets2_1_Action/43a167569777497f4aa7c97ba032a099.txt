@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Date: Mon, 08 Sep 2014 04:46:15 GMT
+Server: Apache/2.2.26 (Unix) mod_ssl/2.2.26 OpenSSL/1.0.0-fips mod_auth_passthrough/2.1 mod_bwlimited/1.4 FrontPage/5.0.2.2635
+Last-Modified: Mon, 08 Sep 2014 04:45:14 GMT
+ETag: "35ffb8-1a-502867c124a80"
+Accept-Ranges: bytes
+Content-Length: 26
+Connection: close
+Content-Type: text/plain
+
+You have found an Action!

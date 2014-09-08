@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=FC0B98B93A6259735E31FD802BAB4C89; Path=/rets2_1
+Content-Type: text/xml
+Content-Encoding: gzip
+Vary: Accept-Encoding
+Date: Mon, 08 Sep 2014 04:28:43 GMT
+Connection: close
+
+<RETS ReplyText="Logout Successful" ReplyCode="0">
+  <RETS-RESPONSE>
+SignOffMessage=Good Bye
+</RETS-RESPONSE>
+</RETS>

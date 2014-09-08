@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=09268CCA90AFF1ECA0DA1B1669B89784; Path=/rets2_1
+Content-Type: text/xml
+Content-Encoding: gzip
+Vary: Accept-Encoding
+Date: Mon, 08 Sep 2014 04:13:27 GMT
+Connection: close
+
+<RETS ReplyCode="20203" ReplyText="RETS Server: Specified Class (Z) is not valid. See: https://www.flexmls.com/rets/e/19">
+Valid Classes are:
+	A
+	B
+	C
+	E
+	F
+	G
+	H
+	I
+</RETS>

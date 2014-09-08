@@ -15,4 +15,48 @@ class SessionIntegrationTest extends BaseIntegration
         $connect = $this->session->Login();
         $this->assertSame('http://retsgw.flexmls.com:80/rets2_1/Login', $this->session->getLastRequestURL());
     }
+
+    /** @test **/
+    public function it_throws_an_exception_when_making_a_bad_request()
+    {
+        $this->session->Login();
+        $this->setExpectedException('\PHRETS\Exceptions\RETSException', null, 20203);
+
+        $this->session->Search('Property', 'Z', '*'); // no such class by that name
+    }
+
+    /** @test **/
+    public function it_tracks_the_last_response_body()
+    {
+        $this->session->Login();
+
+        // find something in the login response that we can count on
+        $this->assertRegExp('/NotificationFeed/', $this->session->getLastResponse());
+    }
+
+    /** @test **/
+    public function it_disconnects()
+    {
+        $this->session->Login();
+
+        $this->assertTrue($this->session->Disconnect());
+    }
+
+    /** @test **/
+    public function it_requests_the_servers_action_transaction()
+    {
+        $config = new \PHRETS\Configuration;
+
+        // this endpoint doesn't actually exist, but the response is mocked, so...
+        $config->setLoginUrl('http://retsgwaction.flexmls.com/rets2_1/Login')
+                ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
+                ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
+                ->setRetsVersion('1.7.2');
+
+        $session = new \PHRETS\Session($config);
+        $bulletin = $session->Login();
+
+        $this->assertInstanceOf('\PHRETS\Models\Bulletin', $bulletin);
+        $this->assertRegExp('/found an Action/', $bulletin->getBody());
+    }
 }

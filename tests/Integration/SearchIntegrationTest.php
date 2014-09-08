@@ -69,4 +69,20 @@ class SearchIntegrationTest extends BaseIntegration
         $this->assertInstanceOf('\Illuminate\Support\Collection', $results->getMetadata());
         $this->assertInstanceOf('\PHRETS\Models\Metadata\Table', $results->getMetadata()->first());
     }
+
+    /** @test **/
+    public function it_recursively_retrieves_all_results()
+    {
+        $this->session->Login();
+
+        $results = $this->session->Search(
+            'Property',
+            'A',
+            '(LIST_22=90000000+)',
+            ['Limit' => '15', 'Select' => 'LIST_1'],
+            true
+        );
+
+        $this->assertCount(40, $results);
+    }
 }
