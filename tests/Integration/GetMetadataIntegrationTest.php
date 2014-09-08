@@ -14,6 +14,23 @@ class GetMetadataIntegrationTest extends BaseIntegration
     }
 
     /** @test **/
+    public function it_gets_system_data_for_1_5()
+    {
+        $config = new \PHRETS\Configuration;
+        $config->setLoginUrl('http://retsgw.flexmls.com/rets2_1/Login')
+                ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
+                ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
+                ->setRetsVersion('1.5');
+
+        $session = new \PHRETS\Session($config);
+        $session->Login();
+
+        $system = $session->GetSystemMetadata();
+        $this->assertTrue($system instanceof \PHRETS\Models\Metadata\System);
+        $this->assertSame('demomls', $system->getSystemId());
+    }
+
+    /** @test **/
     public function it_makes_a_good_url()
     {
         $this->session->GetSystemMetadata();
@@ -166,5 +183,21 @@ class GetMetadataIntegrationTest extends BaseIntegration
         $this->assertTrue($values instanceof \Illuminate\Support\Collection);
         $this->assertSame('Lake/Other', $values->first()->getLongValue());
         $this->assertSame('5PSUX49PM1Q', $values->first()->getValue());
+    }
+
+    /** @test **/
+    public function it_recovers_from_bad_lookuptype_tag()
+    {
+        $config = new \PHRETS\Configuration;
+        $config->setLoginUrl('http://retsgwlookup.flexmls.com/rets2_1/Login')
+                ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
+                ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
+                ->setRetsVersion('1.5');
+
+        $session = new \PHRETS\Session($config);
+        $session->Login();
+
+        $values = $this->session->GetLookupValues('Property', '20000426151013376279000000');
+        $this->assertCount(6, $values);
     }
 }

@@ -85,4 +85,54 @@ class SearchIntegrationTest extends BaseIntegration
 
         $this->assertCount(40, $results);
     }
+
+    /** @test **/
+    public function it_recovers_from_missing_delimiter()
+    {
+        $this->session->Login();
+
+        // this is manually faked in the fixture
+        $results = $this->session->Search(
+            'Property',
+            'BROKENDELIMITER',
+            '(LIST_22=90000000+)',
+            ['Limit' => '15', 'Select' => 'LIST_1']
+        );
+
+        $this->assertCount(1, $results->getHeaders());
+    }
+
+    /** @test **/
+    public function it_doesnt_die_when_no_count_is_given()
+    {
+        $this->session->Login();
+
+        // this is manually faked in the fixtures
+        $results = $this->session->Search(
+            'Property',
+            'NOCOUNT',
+            '(LIST_22=90000000+)',
+            ['Limit' => '15', 'Select' => 'LIST_1'],
+            true
+        );
+
+        $this->assertCount(40, $results);
+    }
+
+    /** @test **/
+    public function it_detects_broken_pagination()
+    {
+        $this->session->Login();
+
+        $this->setExpectedException('\PHRETS\Exceptions\AutomaticPaginationError');
+
+        // this is manually faked in the fixture
+        $results = $this->session->Search(
+            'Property',
+            'BROKENPAGINATION',
+            '(LIST_22=90000000+)',
+            ['Limit' => '15', 'Select' => 'LIST_1'],
+            true
+        );
+    }
 }

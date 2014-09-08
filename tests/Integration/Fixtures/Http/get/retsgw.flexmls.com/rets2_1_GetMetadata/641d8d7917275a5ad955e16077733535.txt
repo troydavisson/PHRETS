@@ -1,0 +1,50 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.5
+Set-Cookie: JSESSIONID=B00D86C3D57814D8FD7EE3FDA82D03EA; Path=/rets2_1
+MIME-Version: 1.0
+Content-ID: METADATA-LOOKUP_TYPE
+Content-Type: text/xml
+Content-Encoding: gzip
+Vary: Accept-Encoding
+Date: Mon, 08 Sep 2014 05:36:56 GMT
+Connection: close
+
+<?xml version="1.0" encoding="US-ASCII"?>
+<RETS ReplyCode="0" ReplyText="Success">
+  <METADATA>
+    <METADATA-LOOKUP_TYPE Resource="Property" Version="01.03.32188" Date="Fri, 5 Sep 2014 21:35:01 GMT" Lookup="20000426151013376279000000" System="demomls">
+      <Lookup>
+        <LongValue>Lake/Other</LongValue>
+        <ShortValue>Lake/Other</ShortValue>
+        <Value>5PSUX49PM1Q</Value>
+      </Lookup>
+      <Lookup>
+        <LongValue>Fractional Ownership</LongValue>
+        <ShortValue>Fractional Ownership</ShortValue>
+        <Value>RNKXIIVU9UW</Value>
+      </Lookup>
+      <Lookup>
+        <LongValue>Green House</LongValue>
+        <ShortValue>Green House</ShortValue>
+        <Value>OS578T9FARZ</Value>
+      </Lookup>
+      <Lookup>
+        <LongValue>Townhouse and Condos</LongValue>
+        <ShortValue>Townhouse and Condos</ShortValue>
+        <Value>5PSUX4AVW7L</Value>
+      </Lookup>
+      <Lookup>
+        <LongValue>Residential In City</LongValue>
+        <ShortValue>Residential In City</ShortValue>
+        <Value>5PSUX4ARGCS</Value>
+      </Lookup>
+      <Lookup>
+        <LongValue>Multi Family</LongValue>
+        <ShortValue>Multi Family</ShortValue>
+        <Value>5PSUX49WBEO</Value>
+      </Lookup>
+    </METADATA-LOOKUP_TYPE>
+  </METADATA>
+</RETS>

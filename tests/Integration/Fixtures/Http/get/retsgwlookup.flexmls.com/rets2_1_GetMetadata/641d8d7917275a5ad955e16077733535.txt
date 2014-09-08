@@ -1,0 +1,56 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=2191E803E281452BB03C8DD23071FA6A; Path=/rets2_1
+MIME-Version: 1.0
+Content-ID: METADATA-LOOKUP_TYPE
+Content-Type: text/xml
+Content-Encoding: gzip
+Vary: Accept-Encoding
+Date: Fri, 11 Jul 2014 15:39:46 GMT
+Connection: close
+
+<?xml version="1.0" encoding="US-ASCII"?>
+<RETS ReplyCode="0" ReplyText="Success">
+  <METADATA>
+    <METADATA-LOOKUP_TYPE Resource="Property" Version="01.03.28598" Date="2014-07-08T20:10:20Z" Lookup="20000426151013376279000000" System="demomls">
+      <Lookup>
+        <MetadataEntryID>ac4ea1b3269ccea07da848d2557bd4d1</MetadataEntryID>
+        <LongValue>Lake/Other</LongValue>
+        <ShortValue>Lake/Other</ShortValue>
+        <Value>5PSUX49PM1Q</Value>
+      </Lookup>
+      <Lookup>
+        <MetadataEntryID>ae88d9957ce1cbe667815653eba7bb18</MetadataEntryID>
+        <LongValue>Fractional Ownership</LongValue>
+        <ShortValue>Fractional Ownership</ShortValue>
+        <Value>RNKXIIVU9UW</Value>
+      </Lookup>
+      <Lookup>
+        <MetadataEntryID>8ff222ca0e24807b63b63ef247cd506d</MetadataEntryID>
+        <LongValue>Green House</LongValue>
+        <ShortValue>Green House</ShortValue>
+        <Value>OS578T9FARZ</Value>
+      </Lookup>
+      <Lookup>
+        <MetadataEntryID>46a4caa24b09714ad6ed0b2e460c10a2</MetadataEntryID>
+        <LongValue>Townhouse and Condos</LongValue>
+        <ShortValue>Townhouse and Condos</ShortValue>
+        <Value>5PSUX4AVW7L</Value>
+      </Lookup>
+      <Lookup>
+        <MetadataEntryID>5c81b0edc4a56204ef91c5e515cdae4d</MetadataEntryID>
+        <LongValue>Residential In City</LongValue>
+        <ShortValue>Residential In City</ShortValue>
+        <Value>5PSUX4ARGCS</Value>
+      </Lookup>
+      <Lookup>
+        <MetadataEntryID>85df184dc55d5a1b140a5a979adbdced</MetadataEntryID>
+        <LongValue>Multi Family</LongValue>
+        <ShortValue>Multi Family</ShortValue>
+        <Value>5PSUX49WBEO</Value>
+      </Lookup>
+    </METADATA-LOOKUP_TYPE>
+  </METADATA>
+</RETS>
