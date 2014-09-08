@@ -2,11 +2,11 @@ HTTP/1.1 200 OK
 Server: Apache-Coyote/1.1
 Cache-Control: private
 RETS-Version: RETS/1.7.2
-Set-Cookie: JSESSIONID=E0B5B7A86B614777492BF5ADB1CF3765; Path=/rets2_1
+Set-Cookie: JSESSIONID=C30D60C9A20076CA5FBDC5A106A06ABF; Path=/rets2_1
 Content-Type: text/xml
 Content-Encoding: gzip
 Vary: Accept-Encoding
-Date: Mon, 08 Sep 2014 05:46:28 GMT
+Date: Mon, 08 Sep 2014 15:29:59 GMT
 Connection: close
 
 <RETS ReplyCode="0" ReplyText="Success">
