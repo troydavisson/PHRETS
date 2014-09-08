@@ -38,4 +38,16 @@ class StandardStrategyTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($parser, $another_parser);
     }
+
+    /** @test **/
+    public function it_uses_the_container()
+    {
+        $config = new Configuration;
+        $strategy = new StandardStrategy;
+        $strategy->initialize($config);
+
+        $this->assertInstanceOf('\Illuminate\Container\Container', $strategy->getContainer());
+        // get the default login parser
+        $this->assertInstanceOf('\PHRETS\Parsers\Login\OneFive', $strategy->getContainer()->make('parser.login'));
+    }
 }

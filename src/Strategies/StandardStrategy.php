@@ -55,4 +55,12 @@ class StandardStrategy implements Strategy
             $this->container->singleton($k, function () use ($v) { return new $v; });
         }
     }
+
+    /**
+     * @return Container
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
 }
