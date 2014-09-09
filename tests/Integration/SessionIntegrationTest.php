@@ -81,4 +81,58 @@ class SessionIntegrationTest extends BaseIntegration
         $results = $session->Search('Property', 'A', '*', ['Limit' => 1, 'Select' => 'LIST_1']);
         $this->assertCount(1, $results);
     }
+
+    /** @test **/
+    public function it_tracks_a_given_session_id()
+    {
+        $this->session->Login();
+
+        // mocked request to give back a session ID
+        $this->session->GetTableMetadata('Property', 'RETSSESSIONID');
+
+        $this->assertSame('21AC8993DC98DDCE648423628ECF4AB5', $this->session->getRetsSessionId());
+    }
+    
+    /** @test **/
+    public function it_detects_when_to_use_user_agent_authentication()
+    {
+        $config = new \PHRETS\Configuration;
+
+        $config->setLoginUrl('http://retsgw.flexmls.com/rets2_1/Login')
+                ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
+                ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
+                ->setUserAgent('PHRETS/2.0')
+                ->setUserAgentPassword('bogus_password')
+                ->setRetsVersion('1.7.2');
+
+        $session = new \PHRETS\Session($config);
+
+        $history = new \GuzzleHttp\Subscriber\History;
+        $session->getEventEmitter()->attach($history);
+
+        $session->Login();
+
+        $request = $history->getLastRequest();
+        $this->assertRegExp('/Digest/', $request->getHeader('RETS-UA-Authorization'));
+    }
+    
+    /** @test **/
+    public function it_doesnt_allow_requests_to_unsupported_capabilities()
+    {
+        $config = new \PHRETS\Configuration;
+
+        // fake, mocked endpoint
+        $config->setLoginUrl('http://retsgwlimited.flexmls.com/rets2_1/Login')
+                ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
+                ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
+                ->setRetsVersion('1.7.2');
+
+        $session = new \PHRETS\Session($config);
+        $session->Login();
+
+        $this->setExpectedException('\PHRETS\Exceptions\CapabilityUnavailable');
+
+        // make a request for metadata to a server that doesn't support metadata
+        $session->GetSystemMetadata();
+    }
 }
