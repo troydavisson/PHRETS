@@ -16,7 +16,8 @@ class Object extends Base
             foreach ($xml->METADATA->{'METADATA-OBJECT'}->Object as $key => $value) {
                 $metadata = new \PHRETS\Models\Metadata\Object;
                 $metadata->setSession($rets);
-                $collection->push($this->loadFromXml($metadata, $value, $xml->METADATA->{'METADATA-OBJECT'}));
+                $obj = $this->loadFromXml($metadata, $value, $xml->METADATA->{'METADATA-OBJECT'});
+                $collection->put($obj->getObjectType(), $obj);
             }
         }
 

@@ -16,7 +16,8 @@ class Resource extends Base
             foreach ($xml->METADATA->{'METADATA-RESOURCE'}->Resource as $key => $value) {
                 $metadata = new \PHRETS\Models\Metadata\Resource;
                 $metadata->setSession($rets);
-                $collection->push($this->loadFromXml($metadata, $value, $xml->METADATA->{'METADATA-RESOURCE'}));
+                $obj = $this->loadFromXml($metadata, $value, $xml->METADATA->{'METADATA-RESOURCE'});
+                $collection->put($obj->getResourceId(), $obj);
             }
         }
 

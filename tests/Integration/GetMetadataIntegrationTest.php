@@ -79,6 +79,13 @@ class GetMetadataIntegrationTest extends BaseIntegration
     }
 
     /** @test **/
+    public function it_gets_keyed_resource_data()
+    {
+        $resources = $this->session->GetResourcesMetadata();
+        $this->assertInstanceOf('\PHRETS\Models\Metadata\Resource', $resources['Property']);
+    }
+
+    /** @test **/
     public function it_errors_with_bad_resource_name()
     {
         $this->setExpectedException('PHRETS\\Exceptions\\MetadataNotFound');
@@ -119,6 +126,13 @@ class GetMetadataIntegrationTest extends BaseIntegration
         $classes = $this->session->GetClassesMetadata('Property');
         $this->assertTrue($classes instanceof \Illuminate\Support\Collection);
         $this->assertSame('LIST_0', $classes->first()->getTable()->first()->getSystemName());
+    }
+
+    /** @test **/
+    public function it_gets_keyed_class_metadata()
+    {
+        $classes = $this->session->GetClassesMetadata('Property');
+        $this->assertInstanceOf('\PHRETS\Models\Metadata\ResourceClass', $classes['A']);
     }
 
     /**
@@ -170,6 +184,13 @@ class GetMetadataIntegrationTest extends BaseIntegration
         $this->assertTrue($object_types->count() > 4, "Verify that a few came back");
         $this->assertSame('Photo', $object_types->first()->getObjectType());
         $this->assertSame('LIST_133', $object_types->first()->getObjectCount());
+    }
+
+    /** @test **/
+    public function it_gets_keyed_object_metadata()
+    {
+        $object_types = $this->session->GetObjectMetadata('Property');
+        $this->assertInstanceOf('\PHRETS\Models\Metadata\Object', $object_types['Photo']);
     }
 
     /**
