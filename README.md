@@ -61,7 +61,7 @@ PHRETS provides PHP developers a way to integrate RETS functionality directly wi
 
 ### Installation
 
-The easiest way to get started is using [Composer](http://getcomposer.org):
+The easiest way to get started is using [Composer](http://getcomposer.org) to install [troydavisson/phrets](https://packagist.org/packages/troydavisson/phrets):
 
 ```js
 {
