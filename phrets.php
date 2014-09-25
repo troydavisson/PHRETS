@@ -69,15 +69,11 @@ class phRETS {
 	private $use_post_method = false;
 	private $search_data = array();
 
-
-
-	public function phRETS() { }
-
+	public function __construct() { }
 
 	public function GetLastServerResponse() {
 		return $this->last_server_response;
 	}
-
 
 	public function FirewallTest() {
 		$google = $this->FirewallTestConn("google.com", 80);
@@ -120,9 +116,7 @@ class phRETS {
 
 		echo "Firewall Results: Unable to guess the issue.  See individual test results above.";
 		return false;
-
 	}
-
 
 	private function FirewallTestConn($hostname, $port = 6103) {
 		$fp = @fsockopen($hostname, $port, $errno, $errstr, 5);
@@ -136,9 +130,7 @@ class phRETS {
 			echo "Firewall Test: {$hostname}:{$port} GOOD<br>\n";
 			return true;
 		}
-
 	}
-
 
 	public function GetObject($resource, $type, $id, $photo_number = '*', $location = 0) {
 		$this->reset_error_info();
@@ -404,14 +396,12 @@ class phRETS {
 		return $return_photos;
 	}
 
-
 	public function IsMaxrowsReached($pointer_id = "") {
 		if (empty($pointer_id)) {
 			$pointer_id = $this->int_result_pointer;
 		}
 		return $this->search_data[$pointer_id]['maxrows_reached'];
 	}
-
 
 	public function TotalRecordsFound($pointer_id = "") {
 		if (empty($pointer_id)) {
@@ -420,14 +410,12 @@ class phRETS {
 		return $this->search_data[$pointer_id]['total_records_found'];
 	}
 
-
 	public function NumRows($pointer_id = "") {
 		if (empty($pointer_id)) {
 			$pointer_id = $this->int_result_pointer;
 		}
 		return $this->search_data[$pointer_id]['last_search_returned'];
 	}
-
 
 	public function SearchGetFields($pointer_id) {
 		if (!empty($pointer_id)) {
@@ -437,7 +425,6 @@ class phRETS {
 			return false;
 		}
 	}
-
 
 	public function FreeResult($pointer_id) {
 		if (!empty($pointer_id)) {
@@ -450,7 +437,6 @@ class phRETS {
 			return false;
 		}
 	}
-
 
 	public function FetchRow($pointer_id) {
 
@@ -482,9 +468,7 @@ class phRETS {
 		}
 
 		return $this_row;
-
 	}
-
 
 	public function SearchQuery($resource, $class, $query = "", $optional_params = array()) {
 		$this->reset_error_info();
@@ -642,7 +626,6 @@ class phRETS {
 		return $this->int_result_pointer;
 	}
 
-
 	public function Search($resource, $class, $query = "", $optional_params = array()) {
 		$data_table = array();
 
@@ -654,7 +637,6 @@ class phRETS {
 
 		return $data_table;
 	}
-
 
 	public function GetAllLookupValues($resource) {
 		$this->reset_error_info();
@@ -732,7 +714,6 @@ class phRETS {
 		return $this_table;
 	}
 
-
 	public function GetLookupValues($resource, $lookupname) {
 		$this->reset_error_info();
 
@@ -806,7 +787,6 @@ class phRETS {
 		return $this_table;
 	}
 
-
 	public function GetMetadataResources($id = 0) {
 		$this->reset_error_info();
 
@@ -876,14 +856,10 @@ class phRETS {
 		return $this_resource;
 	}
 
-
+	// alias to GetMetadataResources (deprecated?)
 	public function GetMetadataInfo($id = 0) {
-		if (empty($this->capability_url['GetMetadata'])) {
-			die("GetMetadataInfo() called but unable to find GetMetadata location.  Failed login?\n");
-		}
 		return $this->GetMetadataResources($id);
 	}
-
 
 	public function GetMetadataTable($resource, $class) {
 		$this->reset_error_info();
@@ -969,14 +945,12 @@ class phRETS {
 		return $this_table;
 	}
 
-
 	public function GetMetadata($resource, $class) {
 		if (empty($this->capability_url['GetMetadata'])) {
 			die("GetMetadata() called but unable to find GetMetadata location.  Failed login?\n");
 		}
 		return $this->GetMetadataTable($resource, $class);
 	}
-
 
 	public function GetMetadataObjects($id) {
 		$this->reset_error_info();
@@ -1041,7 +1015,6 @@ class phRETS {
 		// send back array
 		return $return_data;
 	}
-
 
 	public function GetMetadataClasses($id) {
 		$this->reset_error_info();
@@ -1111,7 +1084,6 @@ class phRETS {
 		return $return_data;
 	}
 
-
 	public function GetMetadataTypes($id = 0) {
 		$this->reset_error_info();
 
@@ -1177,16 +1149,13 @@ class phRETS {
 		return $return_data;
 	}
 
-
 	public function GetServerSoftware() {
 		return $this->server_software;
 	}
 
-
 	public function GetServerVersion() {
 		return $this->server_version;
 	}
-
 
 	public function CheckAuthSupport($type = "") {
 		if ($type == "basic") {
@@ -1199,7 +1168,6 @@ class phRETS {
 		return false;
 	}
 
-
 	public function GetAllTransactions() {
 		// read through capability_urls read during the Login and return
 		$transactions = array();
@@ -1211,11 +1179,9 @@ class phRETS {
 		return $transactions;
 	}
 
-
 	public function LastRequestURL() {
 		return $this->last_request_url;
 	}
-
 
 	public function GetLoginURL() {
 		// see if the saved Login URL has a hostname included.
@@ -1235,7 +1201,6 @@ class phRETS {
 		}
 		return $request_url;
 	}
-
 
 	public function GetServerInformation() {
 		$this->reset_error_info();
@@ -1310,7 +1275,6 @@ class phRETS {
 				);
 	}
 
-
 	public function Disconnect() {
 		$this->reset_error_info();
 
@@ -1338,9 +1302,7 @@ class phRETS {
 		}
 
 		return true;
-
 	}
-
 
 	public function Connect($login_url, $username, $password, $ua_pwd = "") {
 		$this->reset_error_info();
@@ -1516,15 +1478,12 @@ class phRETS {
 			$this->set_error_info("rets", $this->last_request['ReplyCode'], $this->last_request['ReplyText']);
 			return false;
 		}
-
 	}
-
 
 	public function LastRequest() {
 		// return replycode and replytext from last request
 		return $this->last_request;
 	}
-
 
 	public function AddHeader($name, $value) {
 		// add static header for cURL requests
@@ -1532,13 +1491,11 @@ class phRETS {
 		return true;
 	}
 
-
 	public function DeleteHeader($name) {
 		// delete static header from cURL requests
 		unset($this->static_headers[$name]);
 		return true;
 	}
-
 
 	public function ParseXMLResponse($data = "") {
 		$this->reset_error_info();
@@ -1561,7 +1518,6 @@ class phRETS {
 			return false;
 		}
 	}
-
 
 	public function RETSRequest($action, $parameters = "") {
 		$this->reset_error_info();
@@ -1676,7 +1632,6 @@ class phRETS {
 		return array($this->last_response_headers_raw, $response_body);
 	}
 
-
 	private function read_custom_curl_headers($handle, $call_string) {
 		$this->last_response_headers_raw .= $call_string;
 		$header = null;
@@ -1710,7 +1665,6 @@ class phRETS {
 		return strlen($call_string);
 	}
 
-
 	public function Error() {
 		if (isset($this->error_info['type']) && !empty($this->error_info['type'])) {
 			return $this->error_info;
@@ -1720,7 +1674,6 @@ class phRETS {
 		}
 	}
 
-
 	private function set_error_info($type, $code, $text) {
 		$this->error_info['type'] = $type;
 		$this->error_info['code'] = $code;
@@ -1728,14 +1681,12 @@ class phRETS {
 		return true;
 	}
 
-
 	private function reset_error_info() {
 		$this->error_info['type'] = "";
 		$this->error_info['code'] = "";
 		$this->error_info['text'] = "";
 		return true;
 	}
-
 
 	private function is_server_version($check_version) {
 		if ($check_version == "1_5_or_below") {
@@ -1757,7 +1708,6 @@ class phRETS {
 		return false;
 	}
 
-
 	private function fix_encoding($in_str) {
 		if ($this->disable_encoding_fix == true || !function_exists("mb_detect_encoding")) {
 			return $in_str;
@@ -1773,7 +1723,6 @@ class phRETS {
 		}
 	}
 
-
 	public function ServerDetail($detail) {
 		if (isset($this->server_information[$detail])) {
 			return $this->server_information[$detail];
@@ -1782,7 +1731,6 @@ class phRETS {
 			return "";
 		}
 	}
-
 
 	public function SetParam($name, $value) {
 		switch ($name) {
@@ -1828,10 +1776,6 @@ class phRETS {
 			default:
 				return false;
 		}
-
 		return true;
 	}
-
-
 }
-
