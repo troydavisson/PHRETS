@@ -598,16 +598,24 @@ class phRETS {
 				}
 			}
 
-			if (isset($xml->MAXROWS)) {
-				// MAXROWS tag found.  the RETS server withheld records.
-				// if the server supports Offset, more requests can be sent to page through results
-				// until this tag isn't found anymore.
-				$this->search_data[$this->int_result_pointer]['maxrows_reached'] = true;
-			}
-
 			if (isset($xml->COUNT)) {
 				// found the record count returned.  save it
 				$this->search_data[$this->int_result_pointer]['total_records_found'] = "{$xml->COUNT->attributes()->Records}";
+			}
+
+			if (isset($xml->MAXROWS)) {
+				// MAXROWS tag found. the RETS server withheld records.
+				// if the server supports Offset, more requests can be sent to page through results
+				// until this tag isn't found anymore.
+				if(isset($xml->COUNT)) {
+					// Check to see if this is the last batch based on the total size of the result set. Server may set MAX ROWS even if this
+					// batch is the last possible set, if the total records found is perfectly divisible by max rows.
+					if($this->NumRows($this->int_result_pointer) < $this->search_data[$this->int_result_pointer]['total_records_found']) {
+						$this->search_data[$this->int_result_pointer]['maxrows_reached'] = true;
+					}
+				} else {
+					$this->search_data[$this->int_result_pointer]['maxrows_reached'] = true;
+				}
 			}
 
 			if (isset($xml)) {
