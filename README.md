@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/troydavisson/PHRETS.svg?branch=2)](https://travis-ci.org/troydavisson/PHRETS)
 
-<iframe width="420" height="315" src="//www.youtube.com/embed/115mx-9jYVM" frameborder="0" allowfullscreen></iframe>
+[![ScreenShot](http://troda.com/newfeatures.png)](http://youtu.be/115mx-9jYVM)
 
 PHRETS
 ======
