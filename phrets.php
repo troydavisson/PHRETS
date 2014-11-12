@@ -614,7 +614,7 @@ class phRETS {
 				unset($xml);
 			}
 
-			if ($this->IsMaxrowsReached($this->int_result_pointer) && $this->offset_support) {
+			if ($this->IsMaxrowsReached($this->int_result_pointer) && $this->offset_support && ($search_arguments['Limit'] > count($this->search_data[$this->int_result_pointer]['data']))) {
 				$continue_searching = true;
 				$search_arguments['Offset'] = $this->NumRows($this->int_result_pointer) + 1;
 			}
