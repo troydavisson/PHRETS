@@ -315,4 +315,22 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
         $this->maxrows_reached = $boolean;
         return $this;
     }
+
+    /**
+     * Returns an array containing the values from the given field
+     *
+     * @param $field
+     * @return array
+     */
+    public function lists($field)
+    {
+        $l = [];
+        foreach ($this->results as $r) {
+            $v = $r->get($field);
+            if ($v and !$r->isRestricted($field)) {
+                $l[] = $v;
+            }
+        }
+        return $l;
+    }
 }

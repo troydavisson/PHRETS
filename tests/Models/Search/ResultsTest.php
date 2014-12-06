@@ -147,4 +147,51 @@ class ResultsTest extends PHPUnit_Framework_TestCase
         $rs->setSession('test');
         $this->assertSame('test', $rs->getSession());
     }
+
+    /** @test **/
+    public function it_gives_a_list()
+    {
+        $rs = new Results;
+
+        $r = new Record;
+        $r->set('id', 'extra');
+        $r->set('name', 'test');
+        $rs->addRecord($r);
+
+        $r = new Record;
+        $r->set('id', 'bonus');
+        $r->set('name', 'test');
+        $rs->addRecord($r);
+
+        $r = new Record;
+        $r->set('id', ''); // this is empty so it won't be included in the resulting list
+        $r->set('name', 'another');
+        $rs->addRecord($r);
+
+        $this->assertSame(['extra', 'bonus'], $rs->lists('id'));
+    }
+
+    /** @test **/
+    public function it_gives_a_list_excluding_restricted_values()
+    {
+        $rs = new Results;
+        $rs->setRestrictedIndicator('****');
+
+        $r = new Record;
+        $r->set('id', 'extra');
+        $r->set('name', 'test');
+        $rs->addRecord($r);
+
+        $r = new Record;
+        $r->set('id', '****');
+        $r->set('name', 'test');
+        $rs->addRecord($r);
+
+        $r = new Record;
+        $r->set('id', 'bonus');
+        $r->set('name', 'test');
+        $rs->addRecord($r);
+
+        $this->assertSame(['extra', 'bonus'], $rs->lists('id'));
+    }
 }
