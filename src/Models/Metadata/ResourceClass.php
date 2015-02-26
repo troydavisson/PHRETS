@@ -24,6 +24,6 @@ class ResourceClass extends Base
 
     public function getTable()
     {
-        return $this->getSession()->GetTableMetadata($this->getResource(), $this->getClass());
+        return $this->getSession()->GetTableMetadata($this->getResource(), $this->getClassName());
     }
 }
