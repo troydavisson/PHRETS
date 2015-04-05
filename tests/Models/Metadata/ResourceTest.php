@@ -20,4 +20,11 @@ class ResourceTest extends PHPUnit_Framework_TestCase {
         $metadata = new Resource;
         $metadata->totallyBogus();
     }
+
+    /** @test **/
+    public function it_returns_null_for_unrecognized_attributes()
+    {
+        $metadata = new Resource;
+        $this->assertNull($metadata->getSomethingFake());
+    }
 }
