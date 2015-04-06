@@ -328,10 +328,17 @@ class Session
             throw new CapabilityUnavailable("'{$capability}' tried but no valid endpoint was found.  Did you forget to Login()?");
         }
 
+        if (!array_key_exists('headers', $options)) {
+            $options['headers'] = [];
+        }
+
+        // Guzzle 5 changed the order that headers are added to the request, so we'll do this manually
+        $options['headers'] = array_merge($this->client->getDefaultOption('headers'), $options['headers']);
+
         // user-agent authentication
         if ($this->configuration->getUserAgentPassword()) {
             $ua_digest = $this->configuration->userAgentDigestHash($this);
-            $options = array_merge($options, ['headers' => ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]]);
+            $options['headers'] = array_merge($options['headers'], ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]);
         }
 
         $options = array_merge($options, ['cookies' => $this->cookie_jar]);
