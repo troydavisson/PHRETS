@@ -204,7 +204,7 @@ class Session
      * @param $resource_id
      * @param $class_id
      * @param string $keyed_by
-     * @return mixed
+     * @return \Illuminate\Support\Collection|\PHRETS\Models\Metadata\Table[]
      * @throws Exceptions\CapabilityUnavailable
      */
     public function GetTableMetadata($resource_id, $class_id, $keyed_by = 'SystemName')

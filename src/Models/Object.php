@@ -157,6 +157,10 @@ class Object
         return $this;
     }
 
+    /**
+     * @param $name
+     * @param $value
+     */
     public function setFromHeader($name, $value)
     {
         $headers = [
@@ -194,6 +198,11 @@ class Object
         return $this->preferred;
     }
 
+    /**
+     * Check whether or not this object is marked as Preferred (primary)
+     *
+     * @return bool
+     */
     public function isPreferred()
     {
         return ($this->getPreferred() == '1');

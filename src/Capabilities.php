@@ -4,6 +4,11 @@ class Capabilities
 {
     protected $capabilities = [];
 
+    /**
+     * @param $name
+     * @param $uri
+     * @return $this
+     */
     public function add($name, $uri)
     {
         $parse_results = parse_url($uri);
@@ -27,6 +32,10 @@ class Capabilities
         return $this;
     }
 
+    /**
+     * @param $name
+     * @return null
+     */
     public function get($name)
     {
         return (array_key_exists($name, $this->capabilities)) ? $this->capabilities[$name] : null;

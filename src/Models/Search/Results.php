@@ -45,6 +45,10 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
         return $this;
     }
 
+    /**
+     * @param Record $record
+     * @param null $keyed_by
+     */
     public function addRecord(Record $record, $keyed_by = null)
     {
         // register this Results object as the record's parent automatically
@@ -61,6 +65,11 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
         }
     }
 
+    /**
+     * Set which field's value will be used to key the records by
+     *
+     * @param $field
+     */
     public function keyResultsBy($field)
     {
         $results = clone $this->results;

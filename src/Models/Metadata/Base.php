@@ -2,6 +2,7 @@
 
 abstract class Base
 {
+    /** @var \PHRETS\Session */
     protected $session;
     protected $elements = [];
     protected $attributes = [];
@@ -25,6 +26,11 @@ abstract class Base
         return $this;
     }
 
+    /**
+     * @param $name
+     * @param array $args
+     * @return $this|mixed|null
+     */
     public function __call($name, $args = [])
     {
         if (preg_match('/^set/', strtolower($name))) {
@@ -47,11 +53,17 @@ abstract class Base
         throw new \BadMethodCallException;
     }
 
+    /**
+     * @return array
+     */
     public function getXmlElements()
     {
         return $this->elements;
     }
 
+    /**
+     * @return array
+     */
     public function getXmlAttributes()
     {
         return $this->attributes;

@@ -19,6 +19,11 @@ class RETSVersion
         self::VERSION_1_8,
     ];
 
+    /**
+     * @param $version
+     * @return $this
+     * @throws InvalidRETSVersion
+     */
     public function setVersion($version)
     {
         $this->number = str_replace('RETS/', '', $version);
@@ -28,61 +33,98 @@ class RETSVersion
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getVersion()
     {
         return $this->number;
     }
 
+    /**
+     * @return string
+     */
     public function asHeader()
     {
         return 'RETS/' . $this->number;
     }
 
+    /**
+     * @return bool
+     */
     public function is1_5()
     {
         return ($this->number == self::VERSION_1_5);
     }
 
+    /**
+     * @return bool
+     */
     public function is1_7()
     {
         return ($this->number == self::VERSION_1_7);
     }
 
+    /**
+     * @return bool
+     */
     public function is1_7_2()
     {
         return ($this->number == self::VERSION_1_7_2);
     }
 
+    /**
+     * @return bool
+     */
     public function is1_8()
     {
         return ($this->number == self::VERSION_1_8);
     }
 
+    /**
+     * @param $version
+     * @return bool
+     */
     public function isAtLeast($version)
     {
         return (version_compare($this->number, $version) >= 0);
     }
 
+    /**
+     * @return bool
+     */
     public function isAtLeast1_5()
     {
         return $this->isAtLeast(self::VERSION_1_5);
     }
 
+    /**
+     * @return bool
+     */
     public function isAtLeast1_7()
     {
         return $this->isAtLeast(self::VERSION_1_7);
     }
 
+    /**
+     * @return bool
+     */
     public function isAtLeast1_7_2()
     {
         return $this->isAtLeast(self::VERSION_1_7_2);
     }
 
+    /**
+     * @return bool
+     */
     public function isAtLeast1_8()
     {
         return $this->isAtLeast(self::VERSION_1_8);
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->asHeader();

@@ -92,21 +92,36 @@ class Record implements \ArrayAccess
         return $this->toJson();
     }
 
+    /**
+     * @param mixed $offset
+     * @return bool
+     */
     public function offsetExists($offset)
     {
         return array_key_exists($offset, $this->values);
     }
 
+    /**
+     * @param mixed $offset
+     * @return null|string
+     */
     public function offsetGet($offset)
     {
         return $this->get($offset);
     }
 
+    /**
+     * @param mixed $offset
+     * @param mixed $value
+     */
     public function offsetSet($offset, $value)
     {
         $this->set($offset, $value);
     }
 
+    /**
+     * @param mixed $offset
+     */
     public function offsetUnset($offset)
     {
         if (array_key_exists($offset, $this->values)) {

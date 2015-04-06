@@ -203,6 +203,9 @@ $results->first();
 
 // return the last record in the set
 $results->last();
+
+// returns an array representing the collected values from the identified field
+$all_ids = $results->lists('ListingID');
 ```
 
 Because each $record is an object, some helper methods exist:
