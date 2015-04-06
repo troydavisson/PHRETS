@@ -207,6 +207,18 @@ class GetMetadataIntegrationTest extends BaseIntegration
     }
 
     /** @test **/
+    public function it_gets_related_lookup_values()
+    {
+        $fields = $this->session->GetTableMetadata('Property', 'A');
+        $this->assertTrue($fields instanceof \Illuminate\Support\Collection);
+
+        $quick_way = $fields->get('LIST_9')->getLookupValues();
+        $manual_way = $this->session->GetLookupValues('Property', '20000426151013376279000000');
+
+        $this->assertEquals($quick_way->first(), $manual_way->first());
+    }
+
+    /** @test **/
     public function it_recovers_from_bad_lookuptype_tag()
     {
         $config = new \PHRETS\Configuration;

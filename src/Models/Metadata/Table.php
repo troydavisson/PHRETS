@@ -38,4 +38,12 @@ class Table extends Base
         'Resource',
         'Class',
     ];
+
+    /**
+     * @return \Illuminate\Support\Collection|\PHRETS\Models\Metadata\LookupType[]
+     */
+    public function getLookupValues()
+    {
+        return $this->session->GetLookupValues($this->getResource(), $this->getLookupName());
+    }
 }
