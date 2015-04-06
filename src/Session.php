@@ -146,7 +146,7 @@ class Session
             ]
         );
 
-        if (preg_match('/multipart/', $response->getHeader('Content-Type'))) {
+        if (strpos($response->getHeader('Content-Type'), 'multipart') !== false) {
             $parser = $this->grab('parser.object.multiple');
             $collection = $parser->parse($response);
         } else {

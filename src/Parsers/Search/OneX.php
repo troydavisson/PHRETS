@@ -84,14 +84,8 @@ class OneX
         // break out and track the column names in the response
         $column_names = "{$xml->COLUMNS[0]}";
 
-        // take out the first delimiter
-        $column_names = preg_replace("/^{$delim}/", "", $column_names);
-
-        // take out the last delimiter
-        $column_names = preg_replace("/{$delim}\$/", "", $column_names);
-
         // parse and return the rest
-        return explode($delim, $column_names);
+        return array_slice(explode($delim, $column_names), 1, -1);
     }
 
     protected function parseRecords(Session $rets, &$xml, $parameters, Results $rs)
@@ -111,9 +105,7 @@ class OneX
         $field_data = (string)$line;
 
         // split up DATA row on delimiter found earlier
-        $field_data = preg_replace("/^{$delim}/", "", $field_data);
-        $field_data = preg_replace("/{$delim}\$/", "", $field_data);
-        $field_data = explode($delim, $field_data);
+        $field_data = array_slice(explode($delim, $field_data), 1, -1);
 
         foreach ($rs->getHeaders() as $key => $name) {
             // assign each value to it's name retrieved in the COLUMNS earlier
