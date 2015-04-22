@@ -1,66 +1,312 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Phrets by troydavisson</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
+    <title>PHRETS by troydavisson</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Phrets</h1>
-        <p>RETS library in PHP</p>
+    <section class="page-header">
+      <h1 class="project-name">PHRETS</h1>
+      <h2 class="project-tagline">RETS library in PHP</h2>
+      <a href="https://github.com/troydavisson/PHRETS" class="btn">View on GitHub</a>
+      <a href="https://github.com/troydavisson/PHRETS/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/troydavisson/PHRETS/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <p class="view"><a href="https://github.com/troydavisson/PHRETS">View the Project on GitHub <small>troydavisson/PHRETS</small></a></p>
+    <section class="main-content">
+      <p>Note: If you're looking for version 1, please see the "1.x" branch.  Otherwise, it's highly recommended that you use version 2+.</p>
 
+<p><a href="https://packagist.org/packages/troydavisson/PHRETS"><img src="https://poser.pugx.org/troydavisson/PHRETS/v/stable.png" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/troydavisson/PHRETS"><img src="https://poser.pugx.org/troydavisson/PHRETS/downloads.png" alt="Total Downloads"></a>
+<a href="https://travis-ci.org/troydavisson/PHRETS"><img src="https://travis-ci.org/troydavisson/PHRETS.svg?branch=2" alt="Build Status"></a></p>
 
-        <ul>
-          <li><a href="https://github.com/troydavisson/PHRETS/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/troydavisson/PHRETS/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/troydavisson/PHRETS">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>Welcome to GitHub Pages.</h3>
+<p><a href="http://youtu.be/115mx-9jYVM"><img src="http://troda.com/newfeatures.png" alt="ScreenShot"></a></p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h1>
+<a id="phrets" class="anchor" href="#phrets" aria-hidden="true"><span class="octicon octicon-link"></span></a>PHRETS</h1>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>PHP client library for interacting with a RETS server to pull real estate listings, photos and other data made available from an MLS system</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">date_default_timezone_set</span>(<span class="pl-s"><span class="pl-pds">'</span>America/New_York<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">require_once</span>(<span class="pl-s"><span class="pl-pds">"</span>vendor/autoload.php<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$log</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\Monolog\</span><span class="pl-c1">Logger</span>(<span class="pl-s"><span class="pl-pds">'</span>PHRETS<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$log</span><span class="pl-k">-&gt;</span>pushHandler(<span class="pl-k">new</span> <span class="pl-c1">\Monolog\Handler\</span><span class="pl-c1">StreamHandler</span>(<span class="pl-s"><span class="pl-pds">'</span>php://stdout<span class="pl-pds">'</span></span>, <span class="pl-c1">\Monolog\</span><span class="pl-c1">Logger</span><span class="pl-k">::</span><span class="pl-c1">DEBUG</span>));</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\PHRETS\</span><span class="pl-c1">Configuration</span>;</span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>setLoginUrl(<span class="pl-s"><span class="pl-pds">'</span>rets login url here<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">        <span class="pl-k">-&gt;</span>setUsername(<span class="pl-s"><span class="pl-pds">'</span>rets username here<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">        <span class="pl-k">-&gt;</span>setPassword(<span class="pl-s"><span class="pl-pds">'</span>rets password here<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">        <span class="pl-k">-&gt;</span>setRetsVersion(<span class="pl-s"><span class="pl-pds">'</span>1.7.2<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$rets</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\PHRETS\</span><span class="pl-c1">Session</span>(<span class="pl-smi">$config</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>setLogger(<span class="pl-smi">$log</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$connect</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>Login();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$system</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>GetSystemMetadata();</span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$system</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$resources</span> <span class="pl-k">=</span> <span class="pl-smi">$system</span><span class="pl-k">-&gt;</span>getResources();</span>
+<span class="pl-s1"><span class="pl-smi">$classes</span> <span class="pl-k">=</span> <span class="pl-smi">$resources</span><span class="pl-k">-&gt;</span>first()<span class="pl-k">-&gt;</span>getClasses();</span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$classes</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$classes</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>GetClassesMetadata(<span class="pl-s"><span class="pl-pds">'</span>Property<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$classes</span><span class="pl-k">-&gt;</span>first());</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$objects</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>GetObject(<span class="pl-s"><span class="pl-pds">'</span>Property<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Photo<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>00-1669<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>, <span class="pl-c1">1</span>);</span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$objects</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$fields</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>GetTableMetadata(<span class="pl-s"><span class="pl-pds">'</span>Property<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>A<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$fields</span>[<span class="pl-c1">0</span>]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$results</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>Search(<span class="pl-s"><span class="pl-pds">'</span>Property<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>A<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>Limit<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">3</span>, <span class="pl-s"><span class="pl-pds">'</span>Select<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>LIST_1,LIST_105,LIST_15,LIST_22,LIST_87,LIST_133,LIST_134<span class="pl-pds">'</span></span>]);</span>
+<span class="pl-s1"><span class="pl-k">foreach</span> (<span class="pl-smi">$results</span> <span class="pl-k">as</span> <span class="pl-smi">$r</span>) {</span>
+<span class="pl-s1">    <span class="pl-c1">var_dump</span>(<span class="pl-smi">$r</span>);</span>
+<span class="pl-s1">}</span></pre></div>
 
-<h3>Designer Templates</h3>
+<h3>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>PHRETS provides PHP developers a way to integrate RETS functionality directly within new or existing code by handling the following aspects for you:</p>
 
-<h3>Rather Drive Stick?</h3>
+<ul>
+<li>Response parsing (XML, HTTP multipart, etc.)</li>
+<li>Simple variables, arrays and objects returned to the developer</li>
+<li>RETS communication (over HTTP)</li>
+<li>HTTP Header management</li>
+<li>Authentication</li>
+<li>Session/Cookie management</li>
+</ul>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
 
-<h3>Authors and Contributors</h3>
+<p>The easiest way to get started is using <a href="http://getcomposer.org">Composer</a> to install <a href="https://packagist.org/packages/troydavisson/phrets">troydavisson/phrets</a>:</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<div class="highlight highlight-js"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+        <span class="pl-s"><span class="pl-pds">"</span>troydavisson/phrets<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>2.*<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
 
-<h3>Support or Contact</h3>
+<h3>
+<a id="get-help" class="anchor" href="#get-help" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get Help</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/troydavisson">troydavisson</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+<p>The best place to ask for help is in our <a href="http://groups.google.com/group/phrets">Google Group</a>.  Please leave GitHub's issue tracker for bugs with the library.</p>
+
+<h3>
+<a id="disclaimer" class="anchor" href="#disclaimer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Disclaimer</h3>
+
+<p>In many cases, the capabilities provided by this library are dependent on these features being properly implemented by the RETS server you're accessing.  The RETS specification defines how clients and servers communicate, and if a server is doing something unexpected, this library may not work without tweaking some options.</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<h4>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p>The first step with getting connected to a RETS server is to configure the connection.</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\PHRETS\</span><span class="pl-c1">Configuration</span>;</span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>setLoginUrl(<span class="pl-smi">$rets_login_url</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>setUsername(<span class="pl-smi">$rets_username</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>setPassword(<span class="pl-smi">$rets_password</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// optional.  value shown below are the defaults used when not overridden</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>setRetsVersion(<span class="pl-s"><span class="pl-pds">'</span>1.7.2<span class="pl-pds">'</span></span>); <span class="pl-c">// see constants from \PHRETS\Versions\RETSVersion</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>setUserAgent(<span class="pl-s"><span class="pl-pds">'</span>PHRETS/2.0<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>setUserAgentPassword(<span class="pl-smi">$rets_user_agent_password</span>); <span class="pl-c">// string password, if given</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>setOption(<span class="pl-s"><span class="pl-pds">'</span>use_post_method<span class="pl-pds">'</span></span>, <span class="pl-c1">false</span>); <span class="pl-c">// boolean</span></span>
+<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">-&gt;</span>setOption(<span class="pl-s"><span class="pl-pds">'</span>disable_follow_location<span class="pl-pds">'</span></span>, <span class="pl-c1">false</span>); <span class="pl-c">// boolean</span></span></pre></div>
+
+<p>Available options are:</p>
+
+<ul>
+<li>
+<code>use_post_method</code> - Always use HTTP POST instead of HTTP GET.  Default is <code>false</code> (uses GET)</li>
+<li>
+<code>disable_follow_location</code> - Disable the ability to automatically handle redirects sent by the server.  Default is <code>false</code> (follow redirects)</li>
+</ul>
+
+<p>As an alternative, you can also load configuration options from an array:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-c1">Configuration</span><span class="pl-k">::</span>load([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>login_url<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>http://loginurlhere<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>rets_username<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>rets_password<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>user_agent<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>UserAgent/1.0<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>user_agent_password<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>user_agent_password_here<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>rets_version<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>1.8<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">]);</span></pre></div>
+
+<h4>
+<a id="connecting" class="anchor" href="#connecting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Connecting</h4>
+
+<p>Once the configuration has been setup, a RETS session can be started:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> <span class="pl-c1">Configuration</span><span class="pl-k">::</span>load([</span>
+<span class="pl-s1">    <span class="pl-c1">see</span> <span class="pl-c1">above</span> <span class="pl-k">for</span> <span class="pl-c1">what</span> <span class="pl-c1">to</span> <span class="pl-c1">give</span> <span class="pl-c1">here</span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$rets</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\PHRETS\</span><span class="pl-c1">Session</span>(<span class="pl-smi">$config</span>);</span></pre></div>
+
+<h4>
+<a id="login" class="anchor" href="#login" aria-hidden="true"><span class="octicon octicon-link"></span></a>Login</h4>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$bulletin</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>Login();</span></pre></div>
+
+<p>This will make the first request to the RETS server.  In addition to general authentication, this step is required to finalize the session's configuration.  Within the Login response, RETS servers provide back information needed for all other requests, so this has to be done first.</p>
+
+<h4>
+<a id="grabbing-records" class="anchor" href="#grabbing-records" aria-hidden="true"><span class="octicon octicon-link"></span></a>Grabbing Records</h4>
+
+<blockquote>
+<p>Note: In order to grab records from a RETS server, you need to first know the types of information you're allowed to get and see.  This information is provided through the metadata calls supported by a RETS server, but using a RETS metadata viewer service such as <a href="http://retsmd.com/">RETSMD.com</a> can make this process much faster unless you have a specific need for having parseable metadata.</p>
+</blockquote>
+
+<p>With a known RETS Resource, Class and DMQL query, you can issue requests for records:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$results</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>Search(<span class="pl-smi">$resource</span>, <span class="pl-smi">$class</span>, <span class="pl-smi">$query</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// or with the additional options (with defaults shown)</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$results</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>Search(</span>
+<span class="pl-s1">    <span class="pl-smi">$resource</span>,</span>
+<span class="pl-s1">    <span class="pl-smi">$class</span>,</span>
+<span class="pl-s1">    <span class="pl-smi">$query</span>,</span>
+<span class="pl-s1">    [</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>QueryType<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>DMQL2<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>Count<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">1</span>, <span class="pl-c">// count and records</span></span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>Format<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>COMPACT-DECODED<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>Limit<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">99999999</span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>StandardNames<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">0</span>, <span class="pl-c">// give system names</span></span>
+<span class="pl-s1">    ]</span>
+<span class="pl-s1">);</span></pre></div>
+
+<h4>
+<a id="processing-results" class="anchor" href="#processing-results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Processing Results</h4>
+
+<p>The result of a <code>$rets-&gt;Search()</code> request will return a <code>\PHRETS\Models\Search\Results</code> object which can be used, in many ways, like a regular array.  Each item in that array is a <code>\PHRETS\Models\Search\Record</code> object representing a single record returned.</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$results</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>Search( <span class="pl-c1">see</span> <span class="pl-c1">above</span> <span class="pl-k">for</span> <span class="pl-c1">what</span> <span class="pl-c1">to</span> <span class="pl-c1">give</span> <span class="pl-c1">here</span> );</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">foreach</span> (<span class="pl-smi">$results</span> <span class="pl-k">as</span> <span class="pl-smi">$record</span>) {</span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-smi">$record</span>[<span class="pl-s"><span class="pl-pds">'</span>Address<span class="pl-pds">'</span></span>] <span class="pl-k">.</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>;</span>
+<span class="pl-s1">    <span class="pl-c">// is the same as:</span></span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-smi">$record</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>Address<span class="pl-pds">'</span></span>) <span class="pl-k">.</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>;</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>$results can be used in a foreach loop like above, but some additional helper methods exist:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c">// return an array of the field names to expect with each record</span></span>
+<span class="pl-s1"><span class="pl-smi">$results</span><span class="pl-k">-&gt;</span>getHeaders();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// return the total number of results found (reported by the RETS server)</span></span>
+<span class="pl-s1"><span class="pl-smi">$results</span><span class="pl-k">-&gt;</span>getTotalResultsCount();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// return the count of results actually retrieved by PHRETS</span></span>
+<span class="pl-s1"><span class="pl-smi">$results</span><span class="pl-k">-&gt;</span>getReturnedResultsCount(); <span class="pl-c">// same as: count($results)</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// make a RETS GetMetadata call for the metadata for this RETS Resource and Class</span></span>
+<span class="pl-s1"><span class="pl-smi">$results</span><span class="pl-k">-&gt;</span>getMetadata();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// return whether or not the RETS server has more results to give</span></span>
+<span class="pl-s1"><span class="pl-smi">$results</span><span class="pl-k">-&gt;</span>isMaxRowsReached();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// return the string of characters to expect as the value of a field the RETS server blocked</span></span>
+<span class="pl-s1"><span class="pl-smi">$results</span><span class="pl-k">-&gt;</span>getRestrictedIndicator();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// return the first record in the set</span></span>
+<span class="pl-s1"><span class="pl-smi">$results</span><span class="pl-k">-&gt;</span>first();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// return the last record in the set</span></span>
+<span class="pl-s1"><span class="pl-smi">$results</span><span class="pl-k">-&gt;</span>last();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// returns an array representing the collected values from the identified field</span></span>
+<span class="pl-s1"><span class="pl-smi">$all_ids</span> <span class="pl-k">=</span> <span class="pl-smi">$results</span><span class="pl-k">-&gt;</span>lists(<span class="pl-s"><span class="pl-pds">'</span>ListingID<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<p>Because each $record is an object, some helper methods exist:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$record</span><span class="pl-k">-&gt;</span>isRestricted(<span class="pl-s"><span class="pl-pds">'</span>Address<span class="pl-pds">'</span></span>); <span class="pl-c">// determine if the RETS server blocked this value</span></span>
+<span class="pl-s1"><span class="pl-smi">$record</span><span class="pl-k">-&gt;</span>getFields(); <span class="pl-c">// return an array of the field names associated with this record</span></span>
+<span class="pl-s1"><span class="pl-smi">$record</span><span class="pl-k">-&gt;</span>toArray(); <span class="pl-c">// returns a true PHP array of the given record</span></span>
+<span class="pl-s1"><span class="pl-smi">$record</span><span class="pl-k">-&gt;</span>toJson(); <span class="pl-c">// returns a JSON encoded string representing the record</span></span>
+<span class="pl-s1"><span class="pl-smi">$record</span><span class="pl-k">-&gt;</span>getResource(); <span class="pl-c">// returns the RETS Resource responsible for this record</span></span>
+<span class="pl-s1"><span class="pl-smi">$record</span><span class="pl-k">-&gt;</span>getClass(); <span class="pl-c">// returns the RETS Class responsible for this record</span></span></pre></div>
+
+<h4>
+<a id="downloading-media-photos-images-documents-etc" class="anchor" href="#downloading-media-photos-images-documents-etc" aria-hidden="true"><span class="octicon octicon-link"></span></a>Downloading Media (Photos, Images, Documents, etc.)</h4>
+
+<p>The returned value from a <code>$rets-&gt;GetObject()</code> call is a <code>\Illuminate\Support\Collection</code> object which allows many common array-like features as well as some helper methods.</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$objects</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>GetObject(<span class="pl-smi">$rets_resource</span>, <span class="pl-smi">$object_type</span>, <span class="pl-smi">$object_keys</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// grab the first object of the set</span></span>
+<span class="pl-s1"><span class="pl-smi">$objects</span><span class="pl-k">-&gt;</span>first();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// grab the last object of the set</span></span>
+<span class="pl-s1"><span class="pl-smi">$objects</span><span class="pl-k">-&gt;</span>last();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// throw out everything but the first 10 objects</span></span>
+<span class="pl-s1"><span class="pl-smi">$objects</span> <span class="pl-k">=</span> <span class="pl-smi">$objects</span><span class="pl-k">-&gt;</span>slice(<span class="pl-c1">0</span>, <span class="pl-c1">10</span>);</span></pre></div>
+
+<p>Each object within that collection is a <code>\PHRETS\Models\Object</code> object with it's own set of helper methods:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$objects</span> <span class="pl-k">=</span> <span class="pl-smi">$rets</span><span class="pl-k">-&gt;</span>GetObject( <span class="pl-c1">see</span> <span class="pl-c1">above</span> <span class="pl-c1">documentation</span> );</span>
+<span class="pl-s1"><span class="pl-k">foreach</span> (<span class="pl-smi">$objects</span> <span class="pl-k">as</span> <span class="pl-smi">$object</span>) {</span>
+<span class="pl-s1">    <span class="pl-c">// does this represent some kind of error</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>isError();</span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getError(); <span class="pl-c">// returns a \PHRETS\Models\RETSError</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// get the record ID associated with this object</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getContentId();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// get the sequence number of this object relative to the others with the same ContentId</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getObjectId();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// get the object's Content-Type value</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getContentType();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// get the description of the object</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getContentDescription();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// get the sub-description of the object</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getContentSubDescription();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// get the object's binary data</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getContent();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// get the size of the object's data</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getSize();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// does this object represent the primary object in the set</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>isPreferred();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// when requesting URLs, access the URL given back</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getLocation();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">// use the given URL and make it look like the RETS server gave the object directly</span></span>
+<span class="pl-s1">    <span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>setContent(<span class="pl-c1">file_get_contents</span>(<span class="pl-smi">$object</span><span class="pl-k">-&gt;</span>getLocation()));</span>
+<span class="pl-s1">}</span></pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/troydavisson/PHRETS">PHRETS</a> is maintained by <a href="https://github.com/troydavisson">troydavisson</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+    </section>
+
+  
   </body>
 </html>
+
