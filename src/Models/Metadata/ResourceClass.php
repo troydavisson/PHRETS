@@ -41,6 +41,9 @@ class ResourceClass extends Base
         'Resource',
     ];
 
+    /**
+     * @return \Illuminate\Support\Collection|\PHRETS\Models\Metadata\Table[]
+     */
     public function getTable()
     {
         return $this->getSession()->GetTableMetadata($this->getResource(), $this->getClassName());

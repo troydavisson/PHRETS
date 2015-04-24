@@ -19,6 +19,10 @@ class System extends Base
         'Version',
     ];
 
+    /**
+     * @return \Illuminate\Support\Collection|\PHRETS\Models\Metadata\Resource[]
+     * @throws \PHRETS\Exceptions\MetadataNotFound
+     */
     public function getResources()
     {
         return $this->getSession()->GetResourcesMetadata();

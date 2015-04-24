@@ -63,11 +63,17 @@ class Resource extends Base
         'Date',
     ];
 
+    /**
+     * @return \Illuminate\Support\Collection|\PHRETS\Models\Metadata\ResourceClass[]
+     */
     public function getClasses()
     {
         return $this->getSession()->GetClassesMetadata($this->getResourceID());
     }
 
+    /**
+     * @return \Illuminate\Support\Collection|\PHRETS\Models\Metadata\Object[]
+     */
     public function getObject()
     {
         return $this->getSession()->GetObjectMetadata($this->getResourceID());
