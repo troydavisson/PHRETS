@@ -5,6 +5,8 @@ use Illuminate\Support\Collection;
 use Countable;
 use ArrayAccess;
 use IteratorAggregate;
+use League\Csv\Writer;
+use SplTempFileObject;
 
 class Results implements Countable, ArrayAccess, IteratorAggregate
 {
@@ -16,7 +18,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
     protected $total_results_count = 0;
     protected $returned_results_count = 0;
     protected $error = null;
-    /** @var \Illuminate\Support\Collection */
+    /** @var \Illuminate\Support\Collection|\PHRETS\Models\Search\Record[] */
     protected $results;
     protected $headers = [];
     protected $restricted_indicator = '****';
@@ -341,5 +343,57 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
             }
         }
         return $l;
+    }
+
+    /**
+     * Return results as a large prepared CSV string
+     *
+     * @return string
+     */
+    public function toCSV()
+    {
+        // create a temporary file so we can write the CSV out
+        $writer = Writer::createFromFileObject(new SplTempFileObject);
+
+        // add the header line
+        $writer->insertOne($this->getHeaders());
+
+        // go through each record
+        foreach ($this->results as $r) {
+            $record = [];
+
+            // go through each field and ensure that each record is prepared in an order consistent with the headers
+            foreach ($this->getHeaders() as $h) {
+                $record[] = $r->get($h);
+            }
+            $writer->insertOne($record);
+        }
+
+        // return as a string
+        return (string) $writer;
+    }
+
+    /**
+     * Return results as a JSON string
+     *
+     * @return string
+     */
+    public function toJSON()
+    {
+        return json_encode($this->toArray());
+    }
+
+    /**
+     * Return results as a simple array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $result = [];
+        foreach ($this->results as $r) {
+            $result[] = $r->toArray();
+        }
+        return $result;
     }
 }

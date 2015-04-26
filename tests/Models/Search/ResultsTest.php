@@ -12,6 +12,8 @@ class ResultsTest extends PHPUnit_Framework_TestCase
     {
         $this->rs = new Results;
 
+        $this->rs->setHeaders(['id', 'name', 'value']);
+
         $rc = new Record;
         $rc->set('id', 1);
         $rc->set('name', 'left');
@@ -193,5 +195,29 @@ class ResultsTest extends PHPUnit_Framework_TestCase
         $rs->addRecord($r);
 
         $this->assertSame(['extra', 'bonus'], $rs->lists('id'));
+    }
+    
+    /** @test **/
+    public function it_converts_object_to_CSV()
+    {
+        $expected = "id,name,value\n1,left,up\n2,right,down\n";
+        $this->assertSame($expected, $this->rs->toCSV());
+    }
+
+    /** @test **/
+    public function it_converts_object_to_JSON()
+    {
+        $expected = '[{"id":1,"name":"left","value":"up"},{"id":2,"name":"right","value":"down"}]';
+        $this->assertSame($expected, $this->rs->toJSON());
+    }
+
+    /** @test **/
+    public function it_converts_object_to_array()
+    {
+        $expected = [
+            ['id' => 1, 'name' => 'left', 'value' => 'up'],
+            ['id' => 2, 'name' => 'right', 'value' => 'down'],
+        ];
+        $this->assertSame($expected, $this->rs->toArray());
     }
 }
