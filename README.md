@@ -210,6 +210,15 @@ $results->last();
 
 // returns an array representing the collected values from the identified field
 $all_ids = $results->lists('ListingID');
+
+// export the results in CSV format
+$results->toCSV();
+
+// export the results in JSON format
+$results->toJSON();
+
+// export the results in a simple array format
+$results->toArray();
 ```
 
 Because each $record is an object, some helper methods exist:
