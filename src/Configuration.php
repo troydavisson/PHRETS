@@ -7,6 +7,9 @@ use PHRETS\Versions\RETSVersion;
 
 class Configuration
 {
+    const AUTH_BASIC = 'basic';
+    const AUTH_DIGEST = 'digest';
+
     protected $username;
     protected $password;
     protected $login_url;
@@ -14,6 +17,7 @@ class Configuration
     protected $user_agent_password;
     /** @var RETSVersion */
     protected $rets_version;
+    protected $http_authentication = 'digest';
     /** @var \PHRETS\Strategies\Strategy */
     protected $strategy;
     protected $options = [];
@@ -227,5 +231,26 @@ class Configuration
             trim($ua_a1) .'::'. trim($session->getRetsSessionId()) .
             ':'. trim($this->getRetsVersion()->asHeader())
         );
+    }
+
+    /**
+     * @param $auth_method
+     * @return $this
+     */
+    public function setHttpAuthenticationMethod($auth_method)
+    {
+        if (!in_array($auth_method, [self::AUTH_BASIC, self::AUTH_DIGEST])) {
+            throw new \InvalidArgumentException("Given authentication method is invalid.  Must be 'basic' or 'digest'");
+        }
+        $this->http_authentication = $auth_method;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHttpAuthenticationMethod()
+    {
+        return $this->http_authentication;
     }
 }

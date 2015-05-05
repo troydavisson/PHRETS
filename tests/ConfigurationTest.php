@@ -112,4 +112,30 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
         $s = new \PHRETS\Session($c);
         $this->assertSame('123c96e02e514da469db6bc61ab998dc', $c->userAgentDigestHash($s));
     }
+
+    /** @test **/
+    public function it_keeps_digest_as_the_default()
+    {
+        $c = new Configuration;
+        $this->assertSame(Configuration::AUTH_DIGEST, $c->getHttpAuthenticationMethod());
+    }
+
+    /** @test **/
+    public function it_doesnt_allow_bogus_auth_methods()
+    {
+        $c = new Configuration;
+        $this->setExpectedException(
+            '\\InvalidArgumentException',
+            "Given authentication method is invalid.  Must be 'basic' or 'digest'"
+        );
+        $c->setHttpAuthenticationMethod('bogus');
+    }
+
+    /** @test **/
+    public function it_accepts_basic_auth()
+    {
+        $c = new Configuration;
+        $c->setHttpAuthenticationMethod(Configuration::AUTH_BASIC);
+        $this->assertSame(Configuration::AUTH_BASIC, $c->getHttpAuthenticationMethod());
+    }
 }

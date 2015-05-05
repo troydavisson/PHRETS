@@ -29,7 +29,7 @@ class Session
     /** @var \GuzzleHttp\Message\ResponseInterface */
     protected $last_response;
 
-    function __construct(Configuration $configuration)
+    public function __construct(Configuration $configuration)
     {
         // save the configuration along with this session
         $this->configuration = $configuration;
@@ -45,7 +45,7 @@ class Session
                 [
                         $configuration->getUsername(),
                         $configuration->getPassword(),
-                        'digest'
+                        $configuration->getHttpAuthenticationMethod()
                 ]
         );
         $this->client->setDefaultOption(
