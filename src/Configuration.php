@@ -163,12 +163,13 @@ class Configuration
     public static function load($configuration = [])
     {
         $variables = [
-                'username' => 'Username',
-                'password' => 'Password',
-                'login_url' => 'LoginUrl',
-                'user_agent' => 'UserAgent',
-                'user_agent_password' => 'UserAgentPassword',
-                'rets_version' => 'RetsVersion',
+            'username' => 'Username',
+            'password' => 'Password',
+            'login_url' => 'LoginUrl',
+            'user_agent' => 'UserAgent',
+            'user_agent_password' => 'UserAgentPassword',
+            'rets_version' => 'RetsVersion',
+            'http_authentication' => 'HttpAuthenticationMethod',
         ];
 
         $me = new static;

@@ -100,6 +100,7 @@ $config->setPassword($rets_password);
 $config->setRetsVersion('1.7.2'); // see constants from \PHRETS\Versions\RETSVersion
 $config->setUserAgent('PHRETS/2.0');
 $config->setUserAgentPassword($rets_user_agent_password); // string password, if given
+$config->setHttpAuthenticationMethod('digest'); // or 'basic' if required 
 $config->setOption('use_post_method', false); // boolean
 $config->setOption('disable_follow_location', false); // boolean
 ```
@@ -119,6 +120,7 @@ $config = Configuration::load([
     'user_agent' => 'UserAgent/1.0',
     'user_agent_password' => 'user_agent_password_here',
     'rets_version' => '1.8',
+    'http_authentication' => 'basic',
 ]);
 ```
 
