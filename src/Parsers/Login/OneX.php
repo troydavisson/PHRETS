@@ -2,8 +2,8 @@
 
 abstract class OneX
 {
-    protected $capabilities;
-    protected $details;
+    protected $capabilities = [];
+    protected $details = [];
     protected $valid_transactions = [
         'Action', 'ChangePassword', 'GetObject', 'Login', 'LoginComplete', 'Logout', 'Search', 'GetMetadata',
         'ServerInformation', 'Update', 'PostObject', 'GetPayloadList'
@@ -33,11 +33,17 @@ abstract class OneX
         }
     }
 
+    /**
+     * @return array
+     */
     public function getCapabilities()
     {
         return $this->capabilities;
     }
 
+    /**
+     * @return array
+     */
     public function getDetails()
     {
         return $this->details;
