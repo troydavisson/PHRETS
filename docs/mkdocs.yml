@@ -1,0 +1,10 @@
+site_name: PHRETS
+pages:
+    - [index.md, Home]
+    - [intro.md, Introduction]
+    - [start.md, Getting Started]
+    - [functions.md, Function Reference]
+    - [examples.md, Examples and Common Use Cases]
+    - [tutorials.md, Tutorials and Guides]
+    - [contribute.md, Contributing]
+theme: readthedocs
