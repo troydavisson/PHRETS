@@ -23,13 +23,13 @@ class System extends Base
                 $metadata->setSystemDescription((string)$base->System->SystemDescription);
             }
         } else {
-            if (isset($base->SYSTEM->attributes()->SystemID)) {
+            if (array_key_exists('SystemID', $base->SYSTEM)) {
                 $metadata->setSystemId((string)$base->SYSTEM->attributes()->SystemID);
             }
-            if (isset($base->SYSTEM->attributes()->SystemDescription)) {
+            if (array_key_exists('SystemDescription', $base->SYSTEM)) {
                 $metadata->setSystemDescription((string)$base->SYSTEM->attributes()->SystemDescription);
             }
-            if (isset($base->SYSTEM->attributes()->TimeZoneOffset)) {
+            if (array_key_exists('TimeZoneOffset', $base->SYSTEM)) {
                 $metadata->setTimezoneOffset((string)$base->SYSTEM->attributes()->TimeZoneOffset);
             }
         }
