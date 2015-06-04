@@ -26,7 +26,7 @@ class System extends Base
             if (array_key_exists('SystemID', $base->SYSTEM)) {
                 $metadata->setSystemId((string)$base->SYSTEM->attributes()->SystemID);
             }
-            if (array_key_exists('SystemDescription', $base->SYSTEM->attributes()->SystemDescription)) {
+            if (array_key_exists('SystemDescription', $base->SYSTEM)) {
                 $metadata->setSystemDescription((string)$base->SYSTEM->attributes()->SystemDescription);
             }
             if (array_key_exists('TimeZoneOffset', $base->SYSTEM)) {
