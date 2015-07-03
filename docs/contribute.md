@@ -1,4 +1,4 @@
-Outside contributions to this library as welcome.
+Outside contributions to this library are welcome.
 
 # Contributing directly to the code
 

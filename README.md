@@ -3,6 +3,7 @@ Note: If you're looking for version 1, please see the "1.x" branch.  Otherwise, 
 [![Latest Stable Version](https://poser.pugx.org/troydavisson/PHRETS/v/stable.png)](https://packagist.org/packages/troydavisson/PHRETS)
 [![Total Downloads](https://poser.pugx.org/troydavisson/PHRETS/downloads.png)](https://packagist.org/packages/troydavisson/PHRETS)
 [![Build Status](https://travis-ci.org/troydavisson/PHRETS.svg?branch=2)](https://travis-ci.org/troydavisson/PHRETS)
+[![Documentation Status](https://readthedocs.org/projects/phrets/badge/?version=latest)](https://readthedocs.org/projects/phrets/?badge=latest)
 
 [![ScreenShot](http://troda.com/newfeatures.png)](http://youtu.be/115mx-9jYVM)
 

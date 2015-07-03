@@ -6,5 +6,6 @@ pages:
     - [functions.md, Function Reference]
     - [examples.md, Examples and Common Use Cases]
     - [tutorials.md, Tutorials and Guides]
+    - [changelog.md, Changelog]
     - [contribute.md, Contributing]
 theme: readthedocs
