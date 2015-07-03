@@ -34,7 +34,7 @@ class ResourceTest extends PHPUnit_Framework_TestCase {
         $metadata = new Resource;
         $metadata->setDescription('Test Description');
 
-        $this->assertTrue(array_key_exists('Description', $metadata));
+        $this->assertTrue(isset($metadata['Description']));
         $this->assertSame('Test Description', $metadata['Description']);
     }
     
