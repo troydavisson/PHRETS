@@ -54,6 +54,7 @@ class Session
                     'User-Agent' => $configuration->getUserAgent(),
                     'RETS-Version' => $configuration->getRetsVersion()->asHeader(),
                     'Accept-Encoding' => 'gzip',
+                    'Accept' => '*/*',
                 ]
         );
 
