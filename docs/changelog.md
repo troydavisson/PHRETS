@@ -2,8 +2,13 @@
 
 _Release TBD_
 
-- Access metadata attributes using array syntax
 
+## 2.2
+
+_Released August 10, 2015_
+
+- Access metadata attributes using array syntax
+- Include the HTTP 'Accept' header by default
 
 ## 2.1
 
