@@ -14,7 +14,8 @@ class BaseIntegration extends PHPUnit_Framework_TestCase
     {
         $client = new GuzzleHttp\Client;
         $watcher = new Gsaulmon\GuzzleRecorder\GuzzleRecorder(__DIR__ . '/Fixtures/Http');
-        $watcher->includeCookies(false);
+        $watcher->addIgnoredHeader('Accept');
+        $watcher->addIgnoredHeader('Cookie');
 
         $client->getEmitter()->attach($watcher);
         \PHRETS\Http\Client::set($client);
