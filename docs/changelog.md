@@ -2,6 +2,8 @@
 
 _Release TBD_
 
+- New Bulletin methods to access Login details
+
 
 ## 2.2
 

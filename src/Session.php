@@ -99,7 +99,7 @@ class Session
             $this->capabilities->add($k, $v);
         }
 
-        $bulletin = new Bulletin;
+        $bulletin = new Bulletin($parser->getDetails());
         if ($this->capabilities->get('Action')) {
             $response = $this->request('Action');
             $bulletin->setBody($response->getBody()->__toString());

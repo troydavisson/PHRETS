@@ -135,4 +135,13 @@ class SessionIntegrationTest extends BaseIntegration
         // make a request for metadata to a server that doesn't support metadata
         $session->GetSystemMetadata();
     }
+
+    public function testDetailsAreAvailableFromLogin()
+    {
+        $connect = $this->session->Login();
+        $this->assertTrue($connect instanceof \PHRETS\Models\Bulletin);
+
+        $this->assertSame('UNKNOWN', $connect->getMemberName());
+        $this->assertNotNull($connect->getMetadataVersion());
+    }
 }
