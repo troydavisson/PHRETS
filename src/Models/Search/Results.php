@@ -124,6 +124,10 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      */
     public function setReturnedResultsCount($returned_results_count)
     {
+        if (is_int($returned_results_count) == false) {
+            throw new \InvalidArgumentException('$returned_results_count should be an integer');
+        }
+
         $this->returned_results_count = $returned_results_count;
         return $this;
     }
@@ -142,6 +146,10 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      */
     public function setTotalResultsCount($total_results_count)
     {
+        if (is_int($total_results_count) == false) {
+            throw new \InvalidArgumentException('$total_results_count should be an integer');
+        }
+
         $this->total_results_count = $total_results_count;
         return $this;
     }
