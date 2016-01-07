@@ -1,14 +1,14 @@
 <?php namespace PHRETS\Parsers\GetMetadata;
 
-use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Collection;
 use PHRETS\Session;
 
 class Resource extends Base
 {
-    public function parse(Session $rets, ResponseInterface $response)
+    public function parse(Session $rets, Response $response)
     {
-        $xml = $response->xml();
+        $xml = simplexml_load_string($response->getBody());
 
         $collection = new Collection;
 
