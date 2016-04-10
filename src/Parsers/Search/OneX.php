@@ -1,13 +1,13 @@
 <?php namespace PHRETS\Parsers\Search;
 
-use GuzzleHttp\Message\ResponseInterface;
+use PHRETS\Http\Response;
 use PHRETS\Models\Search\Record;
 use PHRETS\Models\Search\Results;
 use PHRETS\Session;
 
 class OneX
 {
-    public function parse(Session $rets, ResponseInterface $response, $parameters)
+    public function parse(Session $rets, Response $response, $parameters)
     {
         $xml = $response->xml();
 
