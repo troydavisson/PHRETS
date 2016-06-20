@@ -332,7 +332,8 @@ class Session
         // user-agent authentication
         if ($this->configuration->getUserAgentPassword()) {
             $ua_digest = $this->configuration->userAgentDigestHash($this);
-            $options['headers'] = ['RETS-UA-Authorization' => 'Digest ' . $ua_digest];
+            if(!empty($options['headers'])) $options['headers'] = array_merge($options['headers'], ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]);
+            else $options['headers'] = ['RETS-UA-Authorization' => 'Digest ' . $ua_digest];
         }
 
         $options = array_merge($options, ['cookies' => $this->cookie_jar]);
@@ -366,7 +367,7 @@ class Session
                 }
             }
         }
-        
+
 
         if ($response->getHeader('Content-Type') == 'text/xml' and $capability != 'GetObject') {
             $xml = $response->xml();
