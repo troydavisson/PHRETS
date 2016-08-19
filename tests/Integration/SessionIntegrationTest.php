@@ -14,15 +14,17 @@ class SessionIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_made_the_request()
     {
-        $connect = $this->session->Login();
+        $this->session->Login();
         $this->assertSame('http://retsgw.flexmls.com:80/rets2_1/Login', $this->session->getLastRequestURL());
     }
 
-    /** @test **/
+    /**
+     * @test
+     * @expectedException \PHRETS\Exceptions\RETSException
+     * **/
     public function it_throws_an_exception_when_making_a_bad_request()
     {
         $this->session->Login();
-        $this->setExpectedException('\PHRETS\Exceptions\RETSException', null, 20203);
 
         $this->session->Search('Property', 'Z', '*'); // no such class by that name
     }
@@ -126,7 +128,10 @@ class SessionIntegrationTest extends BaseIntegration
         $this->assertArrayHasKey('Accept', $last_request['request']->getHeaders());
     }
 
-    /** @test **/
+    /**
+     * @test
+     * @expectedException \PHRETS\Exceptions\CapabilityUnavailable
+     **/
     public function it_doesnt_allow_requests_to_unsupported_capabilities()
     {
         $config = new \PHRETS\Configuration;
@@ -139,8 +144,6 @@ class SessionIntegrationTest extends BaseIntegration
 
         $session = new \PHRETS\Session($config);
         $session->Login();
-
-        $this->setExpectedException('\PHRETS\Exceptions\CapabilityUnavailable');
 
         // make a request for metadata to a server that doesn't support metadata
         $session->GetSystemMetadata();

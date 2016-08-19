@@ -85,10 +85,12 @@ class GetMetadataIntegrationTest extends BaseIntegration
         $this->assertInstanceOf('\PHRETS\Models\Metadata\Resource', $resources['Property']);
     }
 
-    /** @test **/
+    /**
+     * @test
+     * @expectedException \PHRETS\Exceptions\MetadataNotFound
+     * **/
     public function it_errors_with_bad_resource_name()
     {
-        $this->setExpectedException('PHRETS\\Exceptions\\MetadataNotFound');
         $this->session->GetResourcesMetadata('Bogus');
     }
 

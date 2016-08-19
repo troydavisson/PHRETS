@@ -1,7 +1,6 @@
 <?php
 
 use PHRETS\Configuration;
-use PHRETS\Http\Client;
 use PHRETS\Session;
 
 class SessionTest extends PHPUnit_Framework_TestCase {
@@ -16,13 +15,12 @@ class SessionTest extends PHPUnit_Framework_TestCase {
         $this->assertSame($c, $s->getConfiguration());
     }
 
-    /** @test **/
+    /**
+     * @test
+     * @expectedException \PHRETS\Exceptions\MissingConfiguration
+     */
     public function it_detects_invalid_configurations()
     {
-        $this->setExpectedException(
-            'PHRETS\\Exceptions\\MissingConfiguration',
-            "Cannot issue Login without a valid configuration loaded"
-        );
         $c = new Configuration;
         $c->setLoginUrl('http://www.reso.org/login');
 
@@ -69,7 +67,7 @@ class SessionTest extends PHPUnit_Framework_TestCase {
     /** @test **/
     public function it_uses_the_set_logger()
     {
-        $logger = $this->getMock('Logger', ['debug']);
+        $logger = $this->createMock(\Monolog\Logger::class);
 
         // expect that the string 'Context' will be changed into an array
         $logger->expects($this->atLeastOnce())->method('debug')->withConsecutive(
@@ -89,7 +87,7 @@ class SessionTest extends PHPUnit_Framework_TestCase {
     /** @test **/
     public function it_fixes_the_logger_context_automatically()
     {
-        $logger = $this->getMock('Logger', ['debug']);
+        $logger = $this->createMock(\Monolog\Logger::class);
         // just expect that a debug message is spit out
         $logger->expects($this->atLeastOnce())->method('debug')->with($this->matchesRegularExpression('/logger/'));
 

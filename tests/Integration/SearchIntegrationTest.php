@@ -119,15 +119,16 @@ class SearchIntegrationTest extends BaseIntegration
         $this->assertCount(40, $results);
     }
 
-    /** @test **/
+    /**
+     * @test
+     * @expectedException \PHRETS\Exceptions\AutomaticPaginationError
+     * **/
     public function it_detects_broken_pagination()
     {
         $this->session->Login();
 
-        $this->setExpectedException('\PHRETS\Exceptions\AutomaticPaginationError');
-
         // this is manually faked in the fixture
-        $results = $this->session->Search(
+        $this->session->Search(
             'Property',
             'BROKENPAGINATION',
             '(LIST_22=90000000+)',
