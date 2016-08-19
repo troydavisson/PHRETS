@@ -18,8 +18,14 @@ Broker=UNKNOWN
 MetadataVersion=01.03.28598
 MetadataTimestamp=2014-07-08T20:10:20Z
 MinMetadataTimestamp=2014-07-08T20:10:20Z
-Login=/rets2_1/Login
-Search=/rets2_1/Search
-Logout=/rets2_1/Logout
+Login=/action/rets2_1/Login
+Action=/action/rets2_1/Action
+Search=/action/rets2_1/Search
+GetMetadata=/action/rets2_1/GetMetadata
+X-SampleLinks=/action/rets2_1/Links
+X-SupportSite=http://flexmls.com/rets/
+X-NotificationFeed=http://retsgw.flexmls.com/atom/feed/private/atom.xml
+GetObject=/action/rets2_1/GetObject
+Logout=/action/rets2_1/Logout
 </RETS-RESPONSE>
 </RETS>

@@ -55,17 +55,6 @@ class SessionTest extends PHPUnit_Framework_TestCase {
     }
 
     /** @test **/
-    public function it_makes_the_event_emitter_available()
-    {
-        $c = new Configuration;
-        $c->setLoginUrl('http://www.reso.org/login');
-
-        $s = new Session($c);
-
-        $this->assertInstanceOf('GuzzleHttp\Event\EmitterInterface', $s->getEventEmitter());
-    }
-
-    /** @test **/
     public function it_disables_redirects_when_desired()
     {
         $c = new Configuration;
@@ -74,7 +63,7 @@ class SessionTest extends PHPUnit_Framework_TestCase {
 
         $s = new Session($c);
 
-        $this->assertFalse($s->getClient()->getDefaultOption('allow_redirects'));
+        $this->assertFalse($s->getDefaultOptions()['allow_redirects']);
     }
 
     /** @test **/

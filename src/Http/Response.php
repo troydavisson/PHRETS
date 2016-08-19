@@ -1,7 +1,15 @@
 <?php namespace PHRETS\Http;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
+/**
+ * Class Response
+ * @package PHRETS\Http
+ *
+ * @method ResponseInterface|StreamInterface getBody
+ * @method array getHeaders
+ */
 class Response
 {
 	protected $response = null;

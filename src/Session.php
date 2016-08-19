@@ -12,6 +12,7 @@ use PHRETS\Http\Client as PHRETSClient;
 use PHRETS\Interpreters\GetObject;
 use PHRETS\Interpreters\Search;
 use PHRETS\Models\Bulletin;
+use Psr\Http\Message\ResponseInterface;
 
 class Session
 {
@@ -26,7 +27,7 @@ class Session
     protected $rets_session_id;
     protected $cookie_jar;
     protected $last_request_url;
-    /** @var \GuzzleHttp\Message\ResponseInterface */
+    /** @var ResponseInterface */
     protected $last_response;
 
     public function __construct(Configuration $configuration)
@@ -160,6 +161,7 @@ class Session
 
         if ($resource_id) {
             foreach ($result as $r) {
+                /** @var \PHRETS\Models\Metadata\Resource $r */
                 if ($r->getResourceID() == $resource_id) {
                     return $r;
                 }
@@ -298,7 +300,7 @@ class Session
      * @param array $options
      * @throws Exceptions\CapabilityUnavailable
      * @throws Exceptions\RETSException
-     * @return \GuzzleHttp\Message\ResponseInterface
+     * @return ResponseInterface
      */
     protected function request($capability, $options = [])
     {
@@ -308,26 +310,7 @@ class Session
             throw new CapabilityUnavailable("'{$capability}' tried but no valid endpoint was found.  Did you forget to Login()?");
         }
 
-        $defaults = [
-            'auth' => [
-                $this->configuration->getUsername(),
-                $this->configuration->getPassword(),
-                $this->configuration->getHttpAuthenticationMethod()
-            ],
-            'headers' => [
-                'User-Agent' => $this->configuration->getUserAgent(),
-                'RETS-Version' => $this->configuration->getRetsVersion()->asHeader(),
-                'Accept-Encoding' => 'gzip',
-                'Accept' => '*/*',
-            ],
-        ];
-
-        // disable following 'Location' header (redirects) automatically
-        if ($this->configuration->readOption('disable_follow_location')) {
-            $defaults['allow_redirects'] = false;
-        }
-
-        $options = array_merge($defaults, $options);
+        $options = array_merge($this->getDefaultOptions(), $options);
 
         // user-agent authentication
         if ($this->configuration->getUserAgentPassword()) {
@@ -345,11 +328,11 @@ class Session
             $this->last_request_url = $url;
         }
 
-        /** @var \GuzzleHttp\Message\ResponseInterface $response */
+        /** @var ResponseInterface $response */
         if ($this->configuration->readOption('use_post_method')) {
             $this->debug('Using POST method per use_post_method option');
             $query = (array_key_exists('query', $options)) ? $options['query'] : null;
-            $response = $this->client->request('POST', $url, array_merge($options, ['body' => $query]));
+            $response = $this->client->request('POST', $url, array_merge($options, ['form_params' => $query]));
         } else {
             $response = $this->client->request('GET', $url, $options);
         }
@@ -440,14 +423,6 @@ class Session
     }
 
     /**
-     * @return \GuzzleHttp\Event\EmitterInterface
-     */
-    public function getEventEmitter()
-    {
-        return $this->client->getEmitter();
-    }
-
-    /**
      * @return string
      */
     public function getLastRequestURL()
@@ -486,5 +461,32 @@ class Session
     protected function grab($component)
     {
         return $this->configuration->getStrategy()->provide($component);
+    }
+
+    /**
+     * @return array
+     */
+    public function getDefaultOptions()
+    {
+        $defaults = [
+            'auth' => [
+                $this->configuration->getUsername(),
+                $this->configuration->getPassword(),
+                $this->configuration->getHttpAuthenticationMethod()
+            ],
+            'headers' => [
+                'User-Agent' => $this->configuration->getUserAgent(),
+                'RETS-Version' => $this->configuration->getRetsVersion()->asHeader(),
+                'Accept-Encoding' => 'gzip',
+                'Accept' => '*/*',
+            ],
+        ];
+
+        // disable following 'Location' header (redirects) automatically
+        if ($this->configuration->readOption('disable_follow_location')) {
+            $defaults['allow_redirects'] = false;
+        }
+
+        return $defaults;
     }
 }

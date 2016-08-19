@@ -1,5 +1,7 @@
 <?php
 
+use GuzzleHttp\Middleware;
+
 class SessionIntegrationTest extends BaseIntegration
 {
     /** @test * */
@@ -48,7 +50,7 @@ class SessionIntegrationTest extends BaseIntegration
         $config = new \PHRETS\Configuration;
 
         // this endpoint doesn't actually exist, but the response is mocked, so...
-        $config->setLoginUrl('http://retsgwaction.flexmls.com/rets2_1/Login')
+        $config->setLoginUrl('http://retsgw.flexmls.com/action/rets2_1/Login')
                 ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
                 ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
                 ->setRetsVersion('1.7.2');
@@ -107,13 +109,20 @@ class SessionIntegrationTest extends BaseIntegration
 
         $session = new \PHRETS\Session($config);
 
-        $history = new \GuzzleHttp\Subscriber\History;
-        $session->getEventEmitter()->attach($history);
+        /**
+         * Attach a history container to Guzzle so we can verify the needed header is sent
+         */
+        $container = [];
+        /** @var \GuzzleHttp\HandlerStack $stack */
+        $stack = $session->getClient()->getConfig('handler');
+        $history = Middleware::history($container);
+        $stack->push($history);
 
         $session->Login();
 
-        $request = $history->getLastRequest();
-        $this->assertRegExp('/Digest/', $request->getHeader('RETS-UA-Authorization'));
+        $this->assertCount(1, $container);
+        $last_request = $container[count($container) - 1];
+        $this->assertRegExp('/Digest/', implode(', ', $last_request['request']->getHeader('RETS-UA-Authorization')));
     }
     
     /** @test **/
@@ -122,7 +131,7 @@ class SessionIntegrationTest extends BaseIntegration
         $config = new \PHRETS\Configuration;
 
         // fake, mocked endpoint
-        $config->setLoginUrl('http://retsgwlimited.flexmls.com/rets2_1/Login')
+        $config->setLoginUrl('http://retsgw.flexmls.com/limited/rets2_1/Login')
                 ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
                 ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
                 ->setRetsVersion('1.7.2');
