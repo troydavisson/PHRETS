@@ -315,7 +315,7 @@ class Session
         // user-agent authentication
         if ($this->configuration->getUserAgentPassword()) {
             $ua_digest = $this->configuration->userAgentDigestHash($this);
-            $options['headers'] = ['RETS-UA-Authorization' => 'Digest ' . $ua_digest];
+            $options['headers'] = array_merge($options['headers'], ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]);
         }
 
         $options = array_merge($options, ['cookies' => $this->cookie_jar]);

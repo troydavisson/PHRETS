@@ -94,7 +94,7 @@ class SessionIntegrationTest extends BaseIntegration
 
         $this->assertSame('21AC8993DC98DDCE648423628ECF4AB5', $this->session->getRetsSessionId());
     }
-    
+
     /** @test **/
     public function it_detects_when_to_use_user_agent_authentication()
     {
@@ -123,8 +123,9 @@ class SessionIntegrationTest extends BaseIntegration
         $this->assertCount(1, $container);
         $last_request = $container[count($container) - 1];
         $this->assertRegExp('/Digest/', implode(', ', $last_request['request']->getHeader('RETS-UA-Authorization')));
+        $this->assertArrayHasKey('Accept', $last_request['request']->getHeaders());
     }
-    
+
     /** @test **/
     public function it_doesnt_allow_requests_to_unsupported_capabilities()
     {
