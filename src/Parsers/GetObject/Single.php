@@ -47,7 +47,11 @@ class Single
 
         $content_type = \array_get($response->getHeaders(), 'Content-Type', [null])[0];
         if ($content_type and strpos($content_type, 'xml') !== false) {
-            return true;
+            $xml = $response->xml();
+
+            if (isset($xml['ReplyCode']) and $xml['ReplyCode'] != 0) {
+                return true;
+            }
         }
 
         return false;

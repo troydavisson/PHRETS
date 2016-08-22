@@ -30,4 +30,16 @@ class GetObjectIntegrationTest extends BaseIntegration
         $object = $this->session->GetPreferredObject('Property', 'Photo', '00-1669', 1);
         $this->assertTrue($object->isPreferred());
     }
+
+    /** @test */
+    public function it_sees_locations_despite_xml_being_returned()
+    {
+        $object = $this->session->GetObject('Property', 'Photo', 'URLS-WITH-XML', '*', 1);
+
+        $this->assertCount(1, $object);
+        /** @var \PHRETS\Models\Object $first */
+        $first = $object->first();
+        $this->assertFalse($first->isError());
+        $this->assertSame('http://someurl', $first->getLocation());
+    }
 }
