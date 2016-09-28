@@ -25,6 +25,14 @@ class Record implements \ArrayAccess
     }
 
     /**
+    * @param $field
+    */
+    public function remove($field)
+    {
+      unset($this->values[(string)$field]);
+    }
+
+    /**
      * @param $field
      * @return bool
      */
