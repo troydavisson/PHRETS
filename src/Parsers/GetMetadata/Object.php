@@ -12,7 +12,7 @@ class Object extends Base
 
         $collection = new Collection;
 
-        if ($xml->METADATA) {
+        if ($xml->METADATA and $xml->METADATA->{'METADATA-OBJECT'}->Object) {
             foreach ($xml->METADATA->{'METADATA-OBJECT'}->Object as $key => $value) {
                 $metadata = new \PHRETS\Models\Metadata\Object;
                 $metadata->setSession($rets);
