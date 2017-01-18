@@ -18,7 +18,7 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "guzzlehttp/guzzle": ">=4.0,<6.0",
+    "guzzlehttp/guzzle": ">=6.0",
     "illuminate/container": ">=4.2.0",
     "illuminate/support": ">=4.2.0",
     "league/csv": ">=6.0"
@@ -27,7 +27,7 @@
     "phpunit/phpunit": "4.1.*",
     "psr/log": "1.*",
     "monolog/monolog": "1.10.*",
-    "gsaulmon/guzzlerecorder": "dev-master"
+    "gsaulmon/guzzlerecorder": "2.*"
   },
   "autoload": {
     "psr-4": {

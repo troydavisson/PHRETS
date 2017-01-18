@@ -1,12 +1,12 @@
 <?php namespace PHRETS\Parsers\GetObject;
 
-use GuzzleHttp\Message\ResponseInterface;
+use PHRETS\Http\Response;
 use PHRETS\Models\Object;
 use PHRETS\Models\RETSError;
 
 class Single
 {
-    public function parse(ResponseInterface $response)
+    public function parse(Response $response)
     {
         $headers = $response->getHeaders();
 
@@ -23,18 +23,25 @@ class Single
 
         if ($this->isError($response)) {
             $xml = $response->xml();
+            
             $error = new RETSError;
-            $error->setCode((string)\array_get($xml, 'ReplyCode'));
-            $error->setMessage((string)\array_get($xml, 'ReplyText'));
+            
+            if (isset($xml['ReplyCode'])) {
+                $error->setCode((string) $xml['ReplyCode']);
+            }
+            if (isset($xml['ReplyText'])) {
+                $error->setMessage((string) $xml['ReplyText']);
+            }
+            
             $obj->setError($error);
         }
 
         return $obj;
     }
 
-    protected function isError(ResponseInterface $response)
+    protected function isError(Response $response)
     {
-        if (\array_get($response->getHeaders(), 'RETS-Error', [null])[0] == 1) {
+        if ($response->getHeader('RETS-Error') == 1) {
             return true;
         }
 

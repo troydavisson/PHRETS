@@ -34,34 +34,12 @@ class Session
         // save the configuration along with this session
         $this->configuration = $configuration;
 
+        $defaults = [];
+
         // start up our Guzzle HTTP client
-        $this->client = PHRETSClient::make();
+        $this->client = PHRETSClient::make($defaults);
 
         $this->cookie_jar = new CookieJar;
-
-        // set the authentication as defaults to use for the entire client
-        $this->client->setDefaultOption(
-                'auth',
-                [
-                        $configuration->getUsername(),
-                        $configuration->getPassword(),
-                        $configuration->getHttpAuthenticationMethod()
-                ]
-        );
-        $this->client->setDefaultOption(
-                'headers',
-                [
-                    'User-Agent' => $configuration->getUserAgent(),
-                    'RETS-Version' => $configuration->getRetsVersion()->asHeader(),
-                    'Accept-Encoding' => 'gzip',
-                    'Accept' => '*/*',
-                ]
-        );
-
-        // disable following 'Location' header (redirects) automatically
-        if ($this->configuration->readOption('disable_follow_location')) {
-            $this->client->setDefaultOption('allow_redirects', false);
-        }
 
         // start up the Capabilities tracker and add Login as the first one
         $this->capabilities = new Capabilities;
@@ -93,7 +71,8 @@ class Session
         $response = $this->request('Login');
 
         $parser = $this->grab('parser.login');
-        $parser->parse($response->xml()->{'RETS-RESPONSE'}->__toString());
+        $xml = new \SimpleXMLElement((string)$response->getBody());
+        $parser->parse($xml->{'RETS-RESPONSE'}->__toString());
 
         foreach ($parser->getCapabilities() as $k => $v) {
             $this->capabilities->add($k, $v);
@@ -329,17 +308,32 @@ class Session
             throw new CapabilityUnavailable("'{$capability}' tried but no valid endpoint was found.  Did you forget to Login()?");
         }
 
-        if (!array_key_exists('headers', $options)) {
-            $options['headers'] = [];
+        $defaults = [
+            'auth' => [
+                $this->configuration->getUsername(),
+                $this->configuration->getPassword(),
+                $this->configuration->getHttpAuthenticationMethod()
+            ],
+            'headers' => [
+                'User-Agent' => $this->configuration->getUserAgent(),
+                'RETS-Version' => $this->configuration->getRetsVersion()->asHeader(),
+                'Accept-Encoding' => 'gzip',
+                'Accept' => '*/*',
+            ],
+        ];
+
+        // disable following 'Location' header (redirects) automatically
+        if ($this->configuration->readOption('disable_follow_location')) {
+            $defaults['allow_redirects'] = false;
         }
 
-        // Guzzle 5 changed the order that headers are added to the request, so we'll do this manually
-        $options['headers'] = array_merge($this->client->getDefaultOption('headers'), $options['headers']);
+        $options = array_merge($defaults, $options);
 
         // user-agent authentication
         if ($this->configuration->getUserAgentPassword()) {
             $ua_digest = $this->configuration->userAgentDigestHash($this);
-            $options['headers'] = array_merge($options['headers'], ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]);
+            if(!empty($options['headers'])) $options['headers'] = array_merge($options['headers'], ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]);
+            else $options['headers'] = ['RETS-UA-Authorization' => 'Digest ' . $ua_digest];
         }
 
         $options = array_merge($options, ['cookies' => $this->cookie_jar]);
@@ -356,19 +350,24 @@ class Session
         if ($this->configuration->readOption('use_post_method')) {
             $this->debug('Using POST method per use_post_method option');
             $query = (array_key_exists('query', $options)) ? $options['query'] : null;
-            $response = $this->client->post($url, array_merge($options, ['body' => $query]));
+            $response = $this->client->request('POST', $url, array_merge($options, ['body' => $query]));
         } else {
-            $response = $this->client->get($url, $options);
+            $response = $this->client->request('GET', $url, $options);
         }
+
+        $response = new \PHRETS\Http\Response($response);
 
         $this->last_response = $response;
 
-        $cookie = $response->getHeader('Set-Cookie');
-        if ($cookie) {
-            if (preg_match('/RETS-Session-ID\=(.*?)(\;|\s+|$)/', $cookie, $matches)) {
-                $this->rets_session_id = $matches[1];
+        if ($response->getHeader('Set-Cookie')) {
+            $cookie = $response->getHeader('Set-Cookie');
+            if ($cookie) {
+                if (preg_match('/RETS-Session-ID\=(.*?)(\;|\s+|$)/', $cookie, $matches)) {
+                    $this->rets_session_id = $matches[1];
+                }
             }
         }
+
 
         if ($response->getHeader('Content-Type') == 'text/xml' and $capability != 'GetObject') {
             $xml = $response->xml();

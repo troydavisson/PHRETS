@@ -1,13 +1,13 @@
 <?php namespace PHRETS\Parsers\Search;
 
-use GuzzleHttp\Message\ResponseInterface;
+use PHRETS\Http\Response;
 use PHRETS\Exceptions\AutomaticPaginationError;
 use PHRETS\Models\Search\Results;
 use PHRETS\Session;
 
 class RecursiveOneX
 {
-    public function parse(Session $rets, ResponseInterface $response, $parameters)
+    public function parse(Session $rets, Response $response, $parameters)
     {
         // we're given the first response automatically, so parse this and start the recursion
 
