@@ -2,14 +2,14 @@
 
 use GuzzleHttp\Message\MessageParser;
 use GuzzleHttp\Message\Response;
-use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Stream\Stream;
 use Illuminate\Support\Collection;
 use PHRETS\Models\Object;
 
 class Multiple
 {
-    public function parse(ResponseInterface $response)
+    public function parse(Response $response)
     {
         $collection = new Collection;
 
