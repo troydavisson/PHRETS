@@ -3,7 +3,7 @@
 _Release TBD_
 
 - New Bulletin methods to access Login details
-
+- Fixes issue with Digest authentication and strict cookie requirements on some servers
 
 ## 2.2
 
