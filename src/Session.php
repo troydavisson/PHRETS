@@ -348,8 +348,7 @@ class Session
             }
         }
         
-
-        if ($response->getHeader('Content-Type') == 'text/xml' and $capability != 'GetObject') {
+        if (preg_match('/text\/xml/', $response->getHeader('Content-Type')) and $capability != 'GetObject') {
             $xml = $response->xml();
             if ($xml and isset($xml['ReplyCode'])) {
                 $rc = (string)$xml['ReplyCode'];

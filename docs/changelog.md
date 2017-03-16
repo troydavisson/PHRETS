@@ -5,6 +5,7 @@ _Release TBD_
 - New Bulletin methods to access Login details
 - Fixes issue with Digest authentication and strict cookie requirements on some servers
 - Change to HTTP cookie handling.  Guzzle handling is turned of leaving only cURL to handle cookies.
+- Catch XML errors when other Content-Type attributes are also given
 
 ## 2.2
 
