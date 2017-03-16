@@ -318,8 +318,6 @@ class Session
             $options['headers'] = array_merge($options['headers'], ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]);
         }
 
-        $options = array_merge($options, ['cookies' => $this->cookie_jar]);
-
         $this->debug("Sending HTTP Request for {$url} ({$capability})", $options);
 
         if (array_key_exists('query', $options)) {
