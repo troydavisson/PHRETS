@@ -6,6 +6,7 @@ _Release TBD_
 - Fixes issue with Digest authentication and strict cookie requirements on some servers
 - Change to HTTP cookie handling.  Guzzle handling is turned of leaving only cURL to handle cookies.
 - Catch XML errors when other Content-Type attributes are also given
+- Improve memory usage by reducing references to other objects
 
 ## 2.2
 
