@@ -353,7 +353,8 @@ class Session
             if ($xml and isset($xml['ReplyCode'])) {
                 $rc = (string)$xml['ReplyCode'];
                 // 20201 - No records found - not exception worthy in my mind
-                if ($rc != "0" and $rc != "20201") {
+                // 20403 - No objects found - not exception worthy in my mind
+                if ($rc != "0" and $rc != "20201" and $rc != "20403") {
                     throw new RETSException($xml['ReplyText'], (int)$xml['ReplyCode']);
                 }
             }

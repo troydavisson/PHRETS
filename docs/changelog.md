@@ -7,6 +7,7 @@ _Release TBD_
 - Change to HTTP cookie handling.  Guzzle handling is turned of leaving only cURL to handle cookies.
 - Catch XML errors when other Content-Type attributes are also given
 - Improve memory usage by reducing references to other objects
+- Ignore GetObject responses with the 20403 (No objects found) response code
 
 ## 2.2
 
