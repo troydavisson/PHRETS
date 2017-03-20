@@ -7,4 +7,4 @@ php:
 before_script: composer install
 env:
   - PHRETS_TESTING_USERNAME=fake PHRETS_TESTING_PASSWORD=fake
-script: phpunit --coverage-text
+script: vendor/bin/phpunit --coverage-text
