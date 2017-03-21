@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.5
+Set-Cookie: JSESSIONID=0D4B0E358D45330594ACFC6FC5E1AED6.rets3; Path=/rets2_1
+MIME-Version: 1.0
+Content-Type: text/xml;charset=US-ASCII
+Transfer-Encoding: chunked
+Vary: Accept-Encoding
+Date: Tue, 21 Mar 2017 15:12:31 GMT
+x-encoded-content-encoding: gzip
+
+<RETS ReplyCode="0" ReplyText="Operation Successful">
+<METADATA>
+</METADATA>
+</RETS>

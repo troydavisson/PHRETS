@@ -235,4 +235,20 @@ class GetMetadataIntegrationTest extends BaseIntegration
         $values = $session->GetLookupValues('Property', '20000426151013376279000000');
         $this->assertCount(6, $values);
     }
+
+    /** @test **/
+    public function it_handles_incomplete_object_metadata_correctly()
+    {
+        $config = new \PHRETS\Configuration;
+        $config->setLoginUrl('http://retsgw.flexmls.com/rets2_1/Login')
+            ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
+            ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
+            ->setRetsVersion('1.5');
+
+        $session = new \PHRETS\Session($config);
+        $session->Login();
+
+        $values = $session->GetObjectMetadata('PropertyPowerProduction');
+        $this->assertCount(0, $values);
+    }
 }

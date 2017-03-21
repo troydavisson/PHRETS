@@ -8,6 +8,7 @@ _Release TBD_
 - Catch XML errors when other Content-Type attributes are also given
 - Improve memory usage by reducing references to other objects
 - Ignore GetObject responses with the 20403 (No objects found) response code
+ - Fix an issue with parsing Object metadata with no object types defined
 
 ## 2.2
 
