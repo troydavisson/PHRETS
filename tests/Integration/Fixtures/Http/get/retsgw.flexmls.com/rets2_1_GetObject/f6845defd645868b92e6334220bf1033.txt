@@ -1,0 +1,20 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=D0DDF373A5585B2B8B33C744988823B9.rets3; Path=/rets2_1
+MIME-Version: 1.0
+Content-Type: multipart/parallel; boundary="FLEXw24Oeh3Qj39eBCqgiRIzqjZMlKD1ezEkewKjov8SpIWwENV3ao";charset=US-ASCII
+Content-Length: 282
+Date: Mon, 22 Aug 2016 20:42:35 GMT
+
+
+--FLEXw24Oeh3Qj39eBCqgiRIzqjZMlKD1ezEkewKjov8SpIWwENV3ao
+Content-Type: text/xml
+Content-Length: 59
+Content-ID: 234567865
+Object-ID: 1
+Location: http://someurl
+
+<RETS ReplyCode="0" ReplyText="V2.6.0 761: Success"></RETS>
+--FLEXw24Oeh3Qj39eBCqgiRIzqjZMlKD1ezEkewKjov8SpIWwENV3ao--

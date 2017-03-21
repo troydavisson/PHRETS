@@ -1,7 +1,7 @@
 <?php
 
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Psr7\Response;
+use PHRETS\Http\Response as PHRETSResponse;
 use PHRETS\Parsers\GetObject\Single;
 
 class SingleTest extends PHPUnit_Framework_TestCase {
@@ -10,7 +10,7 @@ class SingleTest extends PHPUnit_Framework_TestCase {
     public function it_understands_the_basics()
     {
         $parser = new Single;
-        $single = new Response(200, ['Content-Type' => 'text/plain'], Stream::factory('Test'));
+        $single = new PHRETSResponse(new Response(200, ['Content-Type' => 'text/plain'], 'Test'));
         $obj = $parser->parse($single);
 
         $this->assertSame('Test', $obj->getContent());
@@ -24,7 +24,7 @@ class SingleTest extends PHPUnit_Framework_TestCase {
         Valid Classes are: A B C E F G H I
         </RETS>';
         $parser = new Single;
-        $single = new Response(200, ['Content-Type' => 'text/xml'], Stream::factory($error));
+        $single = new PHRETSResponse(new Response(200, ['Content-Type' => 'text/xml'], $error));
         $obj = $parser->parse($single);
 
         $this->assertTrue($obj->isError());
@@ -39,7 +39,7 @@ class SingleTest extends PHPUnit_Framework_TestCase {
         Valid Classes are: A B C E F G H I
         </RETS>';
         $parser = new Single;
-        $single = new Response(200, ['Content-Type' => 'text/plain', 'RETS-Error' => '1'], Stream::factory($error));
+        $single = new PHRETSResponse(new Response(200, ['Content-Type' => 'text/plain', 'RETS-Error' => '1'], $error));
         $obj = $parser->parse($single);
 
         $this->assertTrue($obj->isError());
