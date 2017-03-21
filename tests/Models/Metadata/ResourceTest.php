@@ -13,10 +13,12 @@ class ResourceTest extends PHPUnit_Framework_TestCase {
         $this->assertSame('Test Description', $metadata->getDescription());
     }
 
-    /** @test **/
+    /**
+     * @test
+     * @expectedException BadMethodCallException
+     **/
     public function it_doesnt_like_bad_methods()
     {
-        $this->setExpectedException('\\BadMethodCallException');
         $metadata = new Resource;
         $metadata->totallyBogus();
     }

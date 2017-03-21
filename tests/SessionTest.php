@@ -1,7 +1,6 @@
 <?php
 
 use PHRETS\Configuration;
-use PHRETS\Http\Client;
 use PHRETS\Session;
 
 class SessionTest extends PHPUnit_Framework_TestCase {
@@ -16,13 +15,12 @@ class SessionTest extends PHPUnit_Framework_TestCase {
         $this->assertSame($c, $s->getConfiguration());
     }
 
-    /** @test **/
+    /**
+     * @test
+     * @expectedException \PHRETS\Exceptions\MissingConfiguration
+     */
     public function it_detects_invalid_configurations()
     {
-        $this->setExpectedException(
-            'PHRETS\\Exceptions\\MissingConfiguration',
-            "Cannot issue Login without a valid configuration loaded"
-        );
         $c = new Configuration;
         $c->setLoginUrl('http://www.reso.org/login');
 
@@ -55,17 +53,6 @@ class SessionTest extends PHPUnit_Framework_TestCase {
     }
 
     /** @test **/
-    public function it_makes_the_event_emitter_available()
-    {
-        $c = new Configuration;
-        $c->setLoginUrl('http://www.reso.org/login');
-
-        $s = new Session($c);
-
-        $this->assertInstanceOf('GuzzleHttp\Event\EmitterInterface', $s->getEventEmitter());
-    }
-
-    /** @test **/
     public function it_disables_redirects_when_desired()
     {
         $c = new Configuration;
@@ -74,13 +61,13 @@ class SessionTest extends PHPUnit_Framework_TestCase {
 
         $s = new Session($c);
 
-        $this->assertFalse($s->getClient()->getDefaultOption('allow_redirects'));
+        $this->assertFalse($s->getDefaultOptions()['allow_redirects']);
     }
 
     /** @test **/
     public function it_uses_the_set_logger()
     {
-        $logger = $this->getMock('Logger', ['debug']);
+        $logger = $this->createMock(\Monolog\Logger::class);
 
         // expect that the string 'Context' will be changed into an array
         $logger->expects($this->atLeastOnce())->method('debug')->withConsecutive(
@@ -100,7 +87,7 @@ class SessionTest extends PHPUnit_Framework_TestCase {
     /** @test **/
     public function it_fixes_the_logger_context_automatically()
     {
-        $logger = $this->getMock('Logger', ['debug']);
+        $logger = $this->createMock(\Monolog\Logger::class);
         // just expect that a debug message is spit out
         $logger->expects($this->atLeastOnce())->method('debug')->with($this->matchesRegularExpression('/logger/'));
 

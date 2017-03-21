@@ -12,14 +12,6 @@ class BaseIntegration extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $client = new GuzzleHttp\Client;
-        $watcher = new Gsaulmon\GuzzleRecorder\GuzzleRecorder(__DIR__ . '/Fixtures/Http');
-        $watcher->addIgnoredHeader('Accept');
-        $watcher->addIgnoredHeader('Cookie');
-
-        $client->getEmitter()->attach($watcher);
-        \PHRETS\Http\Client::set($client);
-
         $config = new \PHRETS\Configuration;
         $config->setLoginUrl('http://retsgw.flexmls.com/rets2_1/Login')
                 ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
@@ -27,6 +19,19 @@ class BaseIntegration extends PHPUnit_Framework_TestCase
                 ->setRetsVersion('1.7.2');
 
         $this->session = new PHRETS\Session($config);
+        $client = $this->session->getClient();
+
+        $defaults = $client->getConfig();
+        $new_client = new GuzzleHttp\Client($defaults);
+
+        PHRETS\Http\Client::set($new_client);
+
+        $watcher = new Gsaulmon\GuzzleRecorder\GuzzleRecorder(__DIR__ . '/Fixtures/Http');
+        $watcher->addIgnoredHeader('Accept');
+        $watcher->addIgnoredHeader('Cookie');
+
+        $watcher->attach_to($new_client);
+
         $this->session->Login();
     }
 }

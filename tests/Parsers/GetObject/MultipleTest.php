@@ -1,8 +1,8 @@
 <?php
 
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Psr7\Response;
 use PHRETS\Parsers\GetObject\Multiple;
+use PHRETS\Http\Response as PHRETSResponse;
 
 class MultipleTest extends PHPUnit_Framework_TestCase
 {
@@ -36,7 +36,7 @@ class MultipleTest extends PHPUnit_Framework_TestCase
         $body = json_decode(file_get_contents('tests/Fixtures/GetObject/Multiple1.txt', true));
 
         $parser = new Multiple;
-        $collection = $parser->parse(new Response(200, $headers, Stream::factory($body)));
+        $collection = $parser->parse(new PHRETSResponse(new Response(200, $headers, $body)));
 
         $this->assertSame(5, $collection->count());
 
@@ -50,7 +50,7 @@ class MultipleTest extends PHPUnit_Framework_TestCase
     public function it_handles_empty_bodies()
     {
         $parser = new Multiple;
-        $collection = $parser->parse(new Response(200, [], null));
+        $collection = $parser->parse(new PHRETSResponse(new Response(200, [], null)));
 
         $this->assertInstanceOf('Illuminate\\Support\\Collection', $collection);
     }
@@ -84,7 +84,7 @@ class MultipleTest extends PHPUnit_Framework_TestCase
         $body = json_decode(file_get_contents('tests/Fixtures/GetObject/Multiple1.txt', true));
 
         $parser = new Multiple;
-        $collection = $parser->parse(new Response(200, $headers, Stream::factory($body)));
+        $collection = $parser->parse(new PHRETSResponse(new Response(200, $headers, $body)));
 
         $this->assertSame(5, $collection->count());
 
