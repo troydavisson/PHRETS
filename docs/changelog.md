@@ -2,13 +2,18 @@
 
 _Release TBD_
 
+## 2.3
+
+_Released March 31, 2017_
+
+- Guzzle 6+ now required
 - New Bulletin methods to access Login details
 - Fixes issue with Digest authentication and strict cookie requirements on some servers
 - Change to HTTP cookie handling.  Guzzle handling is turned of leaving only cURL to handle cookies.
 - Catch XML errors when other Content-Type attributes are also given
 - Improve memory usage by reducing references to other objects
 - Ignore GetObject responses with the 20403 (No objects found) response code
- - Fix an issue with parsing Object metadata with no object types defined
+- Fix an issue with parsing Object metadata with no object types defined
 
 ## 2.2
 
