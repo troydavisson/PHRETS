@@ -83,7 +83,7 @@ The easiest way to get started is using [Composer](http://getcomposer.org) to in
  
 
 ### Get Help
-The best place to ask for help is in our [Google Group](http://groups.google.com/group/phrets).  Please leave GitHub's issue tracker for bugs with the library.
+The best place to ask for help is either our [Slack channel](http://phrets.troda.com/) or in our [Google Group](http://groups.google.com/group/phrets).  Please leave GitHub's issue tracker for bugs with the library.
 
 ### Disclaimer  
 In many cases, the capabilities provided by this library are dependent on these features being properly implemented by the RETS server you're accessing.  The RETS specification defines how clients and servers communicate, and if a server is doing something unexpected, this library may not work without tweaking some options.
