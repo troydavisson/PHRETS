@@ -16,7 +16,8 @@ class BaseIntegration extends PHPUnit_Framework_TestCase
         $config->setLoginUrl('http://retsgw.flexmls.com/rets2_1/Login')
                 ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
                 ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
-                ->setRetsVersion('1.7.2');
+                ->setRetsVersion('1.7.2')
+                ->setUserAgent('PHRETS/2.0');
 
         $this->session = new PHRETS\Session($config);
         $client = $this->session->getClient();
