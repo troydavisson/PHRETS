@@ -1,0 +1,84 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=323545095B738228F64F727D686DB5F5.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 20:50:39 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491079839"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\r\n\n  <RETS-RESPONSE>\r\nMemberName=UNKNOWN\r\nUser=UNKNOWN,MEMBER,1,20140914184132431197000000\r\nBroker=RETSOFFIC\r\nMetadataVersion=01.03.70912\r\nMetadataTimestamp=2017-03-31T21:04:02Z\r\nMinMetadataTimestamp=2017-03-31T21:04:02Z\r\nLogin=\/rets2_1\/Login\r\nSearch=\/rets2_1\/Search\r\nGetMetadata=\/rets2_1\/GetMetadata\r\nX-SampleLinks=\/rets2_1\/Links\r\nX-SupportSite=http:\/\/flexmls.com\/rets\/\r\nX-NotificationFeed=http:\/\/retsgw.flexmls.com\/atom\/feed\/private\/atom.xml\r\nGetObject=\/rets2_1\/GetObject\r\nLogout=\/rets2_1\/Logout\r\nX-ApiAccessSettings=\/rets2_1\/API\r\n<\/RETS-RESPONSE>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=5125A3FF0CD51DD374047AC558CF4EAB.rets3; Path=\/rets2_1"
+            ],
+            "MIME-Version": [
+                "1.0"
+            ],
+            "Content-ID": [
+                "METADATA-LOOKUP_TYPE"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 20:50:39 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491079839"
+            ]
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"US-ASCII\"?>\n<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <METADATA>\n    <METADATA-LOOKUP_TYPE Resource=\"Property\" Version=\"01.03.70912\" Date=\"2017-03-31T21:04:02Z\" Lookup=\"20000426151013376279000000\" System=\"demomls\">\n      <LookupType>\n        <MetadataEntryID>ae88d9957ce1cbe667815653eba7bb18<\/MetadataEntryID>\n        <LongValue>Fractional Ownership<\/LongValue>\n        <ShortValue>Fractional Ownership<\/ShortValue>\n        <Value>RNKXIIVU9UW<\/Value>\n      <\/LookupType>\n      <LookupType>\n        <MetadataEntryID>46a4caa24b09714ad6ed0b2e460c10a2<\/MetadataEntryID>\n        <LongValue>Townhouse and Condos<\/LongValue>\n        <ShortValue>Townhouse and Condos<\/ShortValue>\n        <Value>5PSUX4AVW7L<\/Value>\n      <\/LookupType>\n      <LookupType>\n        <MetadataEntryID>5c81b0edc4a56204ef91c5e515cdae4d<\/MetadataEntryID>\n        <LongValue>Residential In City<\/LongValue>\n        <ShortValue>Residential In City<\/ShortValue>\n        <Value>5PSUX4ARGCS<\/Value>\n      <\/LookupType>\n      <LookupType>\n        <MetadataEntryID>85df184dc55d5a1b140a5a979adbdced<\/MetadataEntryID>\n        <LongValue>Multi Family<\/LongValue>\n        <ShortValue>Multi Family<\/ShortValue>\n        <Value>5PSUX49WBEO<\/Value>\n      <\/LookupType>\n      <LookupType>\n        <MetadataEntryID>ac4ea1b3269ccea07da848d2557bd4d1<\/MetadataEntryID>\n        <LongValue>Lake\/Other<\/LongValue>\n        <ShortValue>Lake\/Other<\/ShortValue>\n        <Value>5PSUX49PM1Q<\/Value>\n      <\/LookupType>\n      <LookupType>\n        <MetadataEntryID>8ff222ca0e24807b63b63ef247cd506d<\/MetadataEntryID>\n        <LongValue>Green House<\/LongValue>\n        <ShortValue>Green House<\/ShortValue>\n        <Value>OS578T9FARZ<\/Value>\n      <\/LookupType>\n    <\/METADATA-LOOKUP_TYPE>\n  <\/METADATA>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]

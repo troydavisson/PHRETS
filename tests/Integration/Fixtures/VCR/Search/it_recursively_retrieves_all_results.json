@@ -1,0 +1,531 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=30D78975556A99ED5FED236BA34B5E93.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:27 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085587"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\r\n\n  <RETS-RESPONSE>\r\nMemberName=UNKNOWN\r\nUser=UNKNOWN,MEMBER,1,20140914184132431197000000\r\nBroker=RETSOFFIC\r\nMetadataVersion=01.03.70912\r\nMetadataTimestamp=2017-03-31T21:04:02Z\r\nMinMetadataTimestamp=2017-03-31T21:04:02Z\r\nLogin=\/rets2_1\/Login\r\nSearch=\/rets2_1\/Search\r\nGetMetadata=\/rets2_1\/GetMetadata\r\nX-SampleLinks=\/rets2_1\/Links\r\nX-SupportSite=http:\/\/flexmls.com\/rets\/\r\nX-NotificationFeed=http:\/\/retsgw.flexmls.com\/atom\/feed\/private\/atom.xml\r\nGetObject=\/rets2_1\/GetObject\r\nLogout=\/rets2_1\/Logout\r\nX-ApiAccessSettings=\/rets2_1\/API\r\n<\/RETS-RESPONSE>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=220831B14DF05B417D0B7F989DA9C261.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:27 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085587"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20000927050023451039000000\t<\/DATA>\n  <DATA>\t20040421185252664934000000\t<\/DATA>\n  <DATA>\t20040517145427449253000000\t<\/DATA>\n  <DATA>\t20040525212350477609000000\t<\/DATA>\n  <DATA>\t20060610131712009195000000\t<\/DATA>\n  <DATA>\t20060616213124472103000000\t<\/DATA>\n  <DATA>\t20070605194321608596000000\t<\/DATA>\n  <DATA>\t20070720140149071202000000\t<\/DATA>\n  <DATA>\t20170223195535467134000000\t<\/DATA>\n  <DATA>\t20000613000144818327000000\t<\/DATA>\n  <DATA>\t20000613013641455369000000\t<\/DATA>\n  <DATA>\t20150928223257538614000000\t<\/DATA>\n  <DATA>\t20071031000629271074000000\t<\/DATA>\n  <DATA>\t20080430203752427828000000\t<\/DATA>\n  <DATA>\t20040722165217204505000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=377F1F4A739C2C2854C7B4943BD36380.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:27 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085587"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20101013172037267580000000\t<\/DATA>\n  <DATA>\t20001005150321004839000000\t<\/DATA>\n  <DATA>\t20060123193256173302000000\t<\/DATA>\n  <DATA>\t20000612235004089682000000\t<\/DATA>\n  <DATA>\t20000613000953269612000000\t<\/DATA>\n  <DATA>\t20160914173031790194000000\t<\/DATA>\n  <DATA>\t20150513190527343606000000\t<\/DATA>\n  <DATA>\t20160127054559741242000000\t<\/DATA>\n  <DATA>\t20060801210743828659000000\t<\/DATA>\n  <DATA>\t20000612235049726864000000\t<\/DATA>\n  <DATA>\t20011010151616632972000000\t<\/DATA>\n  <DATA>\t20000613015900380219000000\t<\/DATA>\n  <DATA>\t20000612234841842201000000\t<\/DATA>\n  <DATA>\t20000612234943542337000000\t<\/DATA>\n  <DATA>\t20000612234955812242000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=90CEFBF3114F63724011685F6324C668.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:27 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085588"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20000612235013344963000000\t<\/DATA>\n  <DATA>\t20000612235523293134000000\t<\/DATA>\n  <DATA>\t20000612235110271729000000\t<\/DATA>\n  <DATA>\t20000612235113423818000000\t<\/DATA>\n  <DATA>\t20000612235245065245000000\t<\/DATA>\n  <DATA>\t20000612235331438760000000\t<\/DATA>\n  <DATA>\t20000612235340794815000000\t<\/DATA>\n  <DATA>\t20000612235357239654000000\t<\/DATA>\n  <DATA>\t20000612235404534318000000\t<\/DATA>\n  <DATA>\t20000612235459474385000000\t<\/DATA>\n  <DATA>\t20000612235514000043000000\t<\/DATA>\n  <DATA>\t20000612235910793263000000\t<\/DATA>\n  <DATA>\t20000612235529463537000000\t<\/DATA>\n  <DATA>\t20000612235537599719000000\t<\/DATA>\n  <DATA>\t20000612235620829695000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:27 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085588"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20000612235627179318000000\t<\/DATA>\n  <DATA>\t20000612235628190515000000\t<\/DATA>\n  <DATA>\t20000612235643870280000000\t<\/DATA>\n  <DATA>\t20000612235710835099000000\t<\/DATA>\n  <DATA>\t20000612235802351966000000\t<\/DATA>\n  <DATA>\t20000612235824205300000000\t<\/DATA>\n  <DATA>\t20000612235850066309000000\t<\/DATA>\n  <DATA>\t20000612235900393540000000\t<\/DATA>\n  <DATA>\t20000612235911811548000000\t<\/DATA>\n  <DATA>\t20000612235934491985000000\t<\/DATA>\n  <DATA>\t20000613000014007753000000\t<\/DATA>\n  <DATA>\t20000613000033266719000000\t<\/DATA>\n  <DATA>\t20000613000111758031000000\t<\/DATA>\n  <DATA>\t20000613014244940806000000\t<\/DATA>\n  <DATA>\t20000613014528488075000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=8F090AFB624DCD42243624608B644EC3.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:27 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085588"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20000613014716168549000000\t<\/DATA>\n  <DATA>\t20000613014802632739000000\t<\/DATA>\n  <DATA>\t20000613015016860502000000\t<\/DATA>\n  <DATA>\t20000613015040618923000000\t<\/DATA>\n  <DATA>\t20000613015251968916000000\t<\/DATA>\n  <DATA>\t20000613015532249438000000\t<\/DATA>\n  <DATA>\t20000613015603053666000000\t<\/DATA>\n  <DATA>\t20000613015813989061000000\t<\/DATA>\n  <DATA>\t20000613015552701160000000\t<\/DATA>\n  <DATA>\t20040924154205214251000000\t<\/DATA>\n  <DATA>\t20071008204836145627000000\t<\/DATA>\n  <DATA>\t20160915190712421154000000\t<\/DATA>\n  <DATA>\t20000612235204890624000000\t<\/DATA>\n  <DATA>\t20000612235221371596000000\t<\/DATA>\n  <DATA>\t20160916170420865452000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=FA588E1A2F547741EBDEFB04FF49FD6C.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:28 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085588"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20110214232133402935000000\t<\/DATA>\n  <DATA>\t20141107164935326270000000\t<\/DATA>\n  <DATA>\t20090812153618138097000000\t<\/DATA>\n  <DATA>\t20111128155802056770000000\t<\/DATA>\n  <DATA>\t20130214185927248603000000\t<\/DATA>\n  <DATA>\t20120820205500881272000000\t<\/DATA>\n  <DATA>\t20131029214839396210000000\t<\/DATA>\n  <DATA>\t20131219180116872319000000\t<\/DATA>\n  <DATA>\t20140131162746407410000000\t<\/DATA>\n  <DATA>\t20140310153851860758000000\t<\/DATA>\n  <DATA>\t20140313204014632565000000\t<\/DATA>\n  <DATA>\t20140411135915191213000000\t<\/DATA>\n  <DATA>\t20140411142319907014000000\t<\/DATA>\n  <DATA>\t20140506205021438145000000\t<\/DATA>\n  <DATA>\t20140620142822384149000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=A4C43B68CC98DB1EDC1505AADDFDB5FB.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:28 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085589"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20140723202553389605000000\t<\/DATA>\n  <DATA>\t20140819145706618746000000\t<\/DATA>\n  <DATA>\t20140829185238535912000000\t<\/DATA>\n  <DATA>\t20140904205142286320000000\t<\/DATA>\n  <DATA>\t20140904205205126675000000\t<\/DATA>\n  <DATA>\t20140912231241250698000000\t<\/DATA>\n  <DATA>\t20140915181522876113000000\t<\/DATA>\n  <DATA>\t20141104160404257998000000\t<\/DATA>\n  <DATA>\t20141107035247265595000000\t<\/DATA>\n  <DATA>\t20141119220308067470000000\t<\/DATA>\n  <DATA>\t20141203175842234795000000\t<\/DATA>\n  <DATA>\t20141208220212413199000000\t<\/DATA>\n  <DATA>\t20150109001939027115000000\t<\/DATA>\n  <DATA>\t20150123162517728231000000\t<\/DATA>\n  <DATA>\t20150212215540534814000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=8FF2457270A70722FABA44038480C371.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:28 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085589"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20150213180859411233000000\t<\/DATA>\n  <DATA>\t20090522181625057223000000\t<\/DATA>\n  <DATA>\t20150316155453618548000000\t<\/DATA>\n  <DATA>\t20150316155847618058000000\t<\/DATA>\n  <DATA>\t20150316185338744154000000\t<\/DATA>\n  <DATA>\t20140930184228205253000000\t<\/DATA>\n  <DATA>\t20150408231649144314000000\t<\/DATA>\n  <DATA>\t20150414154242260302000000\t<\/DATA>\n  <DATA>\t20150508183922291910000000\t<\/DATA>\n  <DATA>\t20140311154533499657000000\t<\/DATA>\n  <DATA>\t20150610210413276529000000\t<\/DATA>\n  <DATA>\t20150611134234249290000000\t<\/DATA>\n  <DATA>\t20150701154302825992000000\t<\/DATA>\n  <DATA>\t20150810185039343078000000\t<\/DATA>\n  <DATA>\t20150818144541243189000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=4676E594B2426B2613ED04E938ACDC8B.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:29 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085589"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20150821152220285511000000\t<\/DATA>\n  <DATA>\t20150824160928418250000000\t<\/DATA>\n  <DATA>\t20150827214848061313000000\t<\/DATA>\n  <DATA>\t20150828144214207438000000\t<\/DATA>\n  <DATA>\t20140905195646775999000000\t<\/DATA>\n  <DATA>\t20161012141622152776000000\t<\/DATA>\n  <DATA>\t20150930124059670204000000\t<\/DATA>\n  <DATA>\t20150930124256625062000000\t<\/DATA>\n  <DATA>\t20151120204415373986000000\t<\/DATA>\n  <DATA>\t20151203205932603542000000\t<\/DATA>\n  <DATA>\t20141005012826374601000000\t<\/DATA>\n  <DATA>\t20160104135935862192000000\t<\/DATA>\n  <DATA>\t20140905212226851368000000\t<\/DATA>\n  <DATA>\t20160427152052333587000000\t<\/DATA>\n  <DATA>\t20060611141649752575000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=9A087748D83835159344E8D44C7B907D.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:29 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085590"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20160329201644490325000000\t<\/DATA>\n  <DATA>\t20160411174755919111000000\t<\/DATA>\n  <DATA>\t20150617162011617460000000\t<\/DATA>\n  <DATA>\t20000613003448393096000000\t<\/DATA>\n  <DATA>\t20000613000146853627000000\t<\/DATA>\n  <DATA>\t20140121171220233950000000\t<\/DATA>\n  <DATA>\t20141023012521836315000000\t<\/DATA>\n  <DATA>\t20150519210029921284000000\t<\/DATA>\n  <DATA>\t20141014211517032292000000\t<\/DATA>\n  <DATA>\t20150401193354397726000000\t<\/DATA>\n  <DATA>\t20150626200439783924000000\t<\/DATA>\n  <DATA>\t20160504215845979499000000\t<\/DATA>\n  <DATA>\t20160802222848918022000000\t<\/DATA>\n  <DATA>\t20170208174814321148000000\t<\/DATA>\n  <DATA>\t20160913191731449662000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=5F28DE2101DCB36C8BAE9F36110ABAF2.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:29 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085590"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20160929143102382831000000\t<\/DATA>\n  <DATA>\t20160929143108655719000000\t<\/DATA>\n  <DATA>\t20160929143146295043000000\t<\/DATA>\n  <DATA>\t20170208175103699909000000\t<\/DATA>\n  <DATA>\t20161017170304984363000000\t<\/DATA>\n  <DATA>\t20161026135944520584000000\t<\/DATA>\n  <DATA>\t20161026140157665436000000\t<\/DATA>\n  <DATA>\t20161102193525554631000000\t<\/DATA>\n  <DATA>\t20161102201746944808000000\t<\/DATA>\n  <DATA>\t20161103192351240063000000\t<\/DATA>\n  <DATA>\t20161107163654752971000000\t<\/DATA>\n  <DATA>\t20161107163943602715000000\t<\/DATA>\n  <DATA>\t20161107164110365959000000\t<\/DATA>\n  <DATA>\t20161123212555369503000000\t<\/DATA>\n  <DATA>\t20161123212804527964000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=24FC19C95109069C161396DE705F5B82.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:29 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085590"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20170110044556012725000000\t<\/DATA>\n  <DATA>\t20170113160102104630000000\t<\/DATA>\n  <DATA>\t20170113161612156918000000\t<\/DATA>\n  <DATA>\t20170119203842554091000000\t<\/DATA>\n  <DATA>\t20170123162832156632000000\t<\/DATA>\n  <DATA>\t20170131175753823896000000\t<\/DATA>\n  <DATA>\t20170202224146383723000000\t<\/DATA>\n  <DATA>\t20170202230140739517000000\t<\/DATA>\n  <DATA>\t20170202234432563761000000\t<\/DATA>\n  <DATA>\t20170203203041293095000000\t<\/DATA>\n  <DATA>\t20170207154752752567000000\t<\/DATA>\n  <DATA>\t20170210184953204972000000\t<\/DATA>\n  <DATA>\t20170222204534277965000000\t<\/DATA>\n  <DATA>\t20170315193435967130000000\t<\/DATA>\n  <DATA>\t20170316193754856023000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=1672E9B9B7313B221C2B0F97345B09A6.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:30 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085591"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20170321132523190171000000\t<\/DATA>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]

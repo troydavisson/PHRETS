@@ -1,0 +1,90 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=4E5F6677B40A6099B18C0A992352C184.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 21:06:49 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491080810"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\r\n\n  <RETS-RESPONSE>\r\nMemberName=UNKNOWN\r\nUser=UNKNOWN,MEMBER,1,20140914184132431197000000\r\nBroker=RETSOFFIC\r\nMetadataVersion=01.03.70912\r\nMetadataTimestamp=2017-03-31T21:04:02Z\r\nMinMetadataTimestamp=2017-03-31T21:04:02Z\r\nLogin=\/rets2_1\/Login\r\nSearch=\/rets2_1\/Search\r\nGetMetadata=\/rets2_1\/GetMetadata\r\nX-SampleLinks=\/rets2_1\/Links\r\nX-SupportSite=http:\/\/flexmls.com\/rets\/\r\nX-NotificationFeed=http:\/\/retsgw.flexmls.com\/atom\/feed\/private\/atom.xml\r\nGetObject=\/rets2_1\/GetObject\r\nLogout=\/rets2_1\/Logout\r\nX-ApiAccessSettings=\/rets2_1\/API\r\n<\/RETS-RESPONSE>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=017D4FC9E5D9C8E1EE0D17A87AE4ADAF.rets3; Path=\/rets2_1"
+            ],
+            "MIME-Version": [
+                "1.0"
+            ],
+            "Content-ID": [
+                "00-1669"
+            ],
+            "Object-ID": [
+                "1"
+            ],
+            "Location": [
+                "http:\/\/cdn.photos.sparkplatform.com\/demomls\/20140430153341745985000000.jpg"
+            ],
+            "Content-Description": [
+                "Hydrangeas"
+            ],
+            "Preferred": [
+                "1"
+            ],
+            "Content-Type": [
+                "image\/jpeg;charset=US-ASCII"
+            ],
+            "Content-Length": [
+                "0"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 21:06:50 GMT"
+            ],
+            "X-VCR-Recording": [
+                "1491080810"
+            ]
+        },
+        "body": "",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]

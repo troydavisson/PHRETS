@@ -1,0 +1,84 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=142229E5538F374D2415652203056EEE.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 20:50:38 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491079839"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\r\n\n  <RETS-RESPONSE>\r\nMemberName=UNKNOWN\r\nUser=UNKNOWN,MEMBER,1,20140914184132431197000000\r\nBroker=RETSOFFIC\r\nMetadataVersion=01.03.70912\r\nMetadataTimestamp=2017-03-31T21:04:02Z\r\nMinMetadataTimestamp=2017-03-31T21:04:02Z\r\nLogin=\/rets2_1\/Login\r\nSearch=\/rets2_1\/Search\r\nGetMetadata=\/rets2_1\/GetMetadata\r\nX-SampleLinks=\/rets2_1\/Links\r\nX-SupportSite=http:\/\/flexmls.com\/rets\/\r\nX-NotificationFeed=http:\/\/retsgw.flexmls.com\/atom\/feed\/private\/atom.xml\r\nGetObject=\/rets2_1\/GetObject\r\nLogout=\/rets2_1\/Logout\r\nX-ApiAccessSettings=\/rets2_1\/API\r\n<\/RETS-RESPONSE>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=1E54C3909A4DAA5D9EA4ECF8C717EF72.rets3; Path=\/rets2_1"
+            ],
+            "MIME-Version": [
+                "1.0"
+            ],
+            "Content-ID": [
+                "METADATA-OBJECT"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 20:50:38 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491079839"
+            ]
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"US-ASCII\"?>\n<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <METADATA>\n    <METADATA-OBJECT Resource=\"Property\" Version=\"01.03.70912\" Date=\"2017-03-31T21:04:02Z\" System=\"demomls\">\n      <Object>\n        <MetadataEntryID>6ab9bf659ca6600b33ff3321fde5bb96<\/MetadataEntryID>\n        <ObjectType>Photo<\/ObjectType>\n        <MimeType>image\/jpeg<\/MimeType>\n        <VisibleName>image<\/VisibleName>\n        <Description>Standard Photo (300x192)<\/Description>\n        <ObjectTimeStamp>LIST_134<\/ObjectTimeStamp>\n        <ObjectCount>LIST_133<\/ObjectCount>\n      <\/Object>\n      <Object>\n        <MetadataEntryID>14f6becc6b7c8d35ed8f8e189a072b3f<\/MetadataEntryID>\n        <ObjectType>Thumbnail<\/ObjectType>\n        <MimeType>image\/jpeg<\/MimeType>\n        <VisibleName>image<\/VisibleName>\n        <Description>Thumbnail Photo (65x42)<\/Description>\n        <ObjectTimeStamp>LIST_134<\/ObjectTimeStamp>\n        <ObjectCount>LIST_133<\/ObjectCount>\n      <\/Object>\n      <Object>\n        <MetadataEntryID>207460b6ebc96b6edc2f7f2309ebc175<\/MetadataEntryID>\n        <ObjectType>640x480<\/ObjectType>\n        <MimeType>image\/jpeg<\/MimeType>\n        <VisibleName>image<\/VisibleName>\n        <Description>640x480 Photo<\/Description>\n        <ObjectTimeStamp>LIST_134<\/ObjectTimeStamp>\n        <ObjectCount>LIST_133<\/ObjectCount>\n      <\/Object>\n      <Object>\n        <MetadataEntryID>8a60dea0b51da84256fc91e6ed1733d6<\/MetadataEntryID>\n        <ObjectType>HiRes<\/ObjectType>\n        <MimeType>image\/jpeg<\/MimeType>\n        <VisibleName>image<\/VisibleName>\n        <Description>Higher Resolution Photo<\/Description>\n        <ObjectTimeStamp>LIST_134<\/ObjectTimeStamp>\n        <ObjectCount>LIST_133<\/ObjectCount>\n      <\/Object>\n      <Object>\n        <MetadataEntryID>ff3683f9be44f986d7e14c4f6dc6d4c2<\/MetadataEntryID>\n        <ObjectType>Supplement<\/ObjectType>\n        <MimeType>text\/plain<\/MimeType>\n        <VisibleName\/>\n        <Description>Supplemental Listing Data<\/Description>\n      <\/Object>\n      <Object>\n        <MetadataEntryID>72d3e5fe363b6ba2dc94f156baa51ed3<\/MetadataEntryID>\n        <ObjectType>OfficeRemarks<\/ObjectType>\n        <MimeType>text\/plain<\/MimeType>\n        <VisibleName\/>\n        <Description>Internal Office Remarks<\/Description>\n      <\/Object>\n      <Object>\n        <MetadataEntryID>0b3a67b986de133a8ee92c58d4bf62c1<\/MetadataEntryID>\n        <ObjectType>PDF<\/ObjectType>\n        <MimeType>application\/pdf<\/MimeType>\n        <VisibleName\/>\n        <Description>PDF Listing Document<\/Description>\n      <\/Object>\n      <Object>\n        <MetadataEntryID>412aae0015d702ababbc944d452704db<\/MetadataEntryID>\n        <ObjectType>PNG<\/ObjectType>\n        <MimeType>image\/png<\/MimeType>\n        <VisibleName\/>\n        <Description>PNG Listing Document<\/Description>\n      <\/Object>\n      <Object>\n        <MetadataEntryID>5ed5c725e60469d2bdbd013113410cd5<\/MetadataEntryID>\n        <ObjectType>UnbrandedVideo<\/ObjectType>\n        <MimeType>text\/html<\/MimeType>\n        <VisibleName\/>\n        <Description>HTML for Video Embedding<\/Description>\n      <\/Object>\n      <Object>\n        <MetadataEntryID>f252620b6c80f91ae5f8d0186a743f67<\/MetadataEntryID>\n        <ObjectType>BrandedVideo<\/ObjectType>\n        <MimeType>text\/html<\/MimeType>\n        <VisibleName\/>\n        <Description>HTML for branded Video Embedding<\/Description>\n      <\/Object>\n    <\/METADATA-OBJECT>\n  <\/METADATA>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]

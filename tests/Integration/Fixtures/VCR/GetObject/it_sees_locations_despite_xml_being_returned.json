@@ -1,0 +1,75 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=303FE8569EF5DA551FF4E746BE99C5A7.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 21:07:44 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491080864"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\r\n\n  <RETS-RESPONSE>\r\nMemberName=UNKNOWN\r\nUser=UNKNOWN,MEMBER,1,20140914184132431197000000\r\nBroker=RETSOFFIC\r\nMetadataVersion=01.03.70912\r\nMetadataTimestamp=2017-03-31T21:04:02Z\r\nMinMetadataTimestamp=2017-03-31T21:04:02Z\r\nLogin=\/rets2_1\/Login\r\nSearch=\/rets2_1\/Search\r\nGetMetadata=\/rets2_1\/GetMetadata\r\nX-SampleLinks=\/rets2_1\/Links\r\nX-SupportSite=http:\/\/flexmls.com\/rets\/\r\nX-NotificationFeed=http:\/\/retsgw.flexmls.com\/atom\/feed\/private\/atom.xml\r\nGetObject=\/rets2_1\/GetObject\r\nLogout=\/rets2_1\/Logout\r\nX-ApiAccessSettings=\/rets2_1\/API\r\n<\/RETS-RESPONSE>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=978A6F6D8365A28816A46A17C6DBC237.rets3; Path=\/rets2_1"
+            ],
+            "MIME-Version": [
+                "1.0"
+            ],
+            "Content-Type": [
+                "multipart\/parallel; boundary=\"FLEXw24Oeh3Qj39eBCqgiRIzqjZMlKD1ezEkewKjov8SpIWwENV3ao\";charset=US-ASCII"
+            ],
+            "Content-Length": [
+                "282"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 21:07:44 GMT"
+            ],
+            "X-VCR-Recording": [
+                "1491080864"
+            ]
+        },
+        "body": "\r\n\r\n--FLEXw24Oeh3Qj39eBCqgiRIzqjZMlKD1ezEkewKjov8SpIWwENV3ao\r\nContent-Type: text/xml\r\nContent-Length: 59\r\nContent-ID: 234567865\r\nObject-ID: 1\r\nLocation: http://someurl\r\n\r\n<RETS ReplyCode=\"0\" ReplyText=\"V2.6.0 761: Success\"></RETS>\r\n\r\n--FLEXw24Oeh3Qj39eBCqgiRIzqjZMlKD1ezEkewKjov8SpIWwENV3ao--\r\n",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]

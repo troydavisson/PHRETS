@@ -1,0 +1,84 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.5"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=55DF0DBCE040E0DBD0148AA8C3AC7106.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 20:18:52 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491077933"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\r\n\n  <RETS-RESPONSE>\r\nMemberName=UNKNOWN\r\nUser=UNKNOWN,MEMBER,1,20140914184132431197000000\r\nBroker=RETSOFFIC\r\nMetadataVersion=01.03.70912\r\nMinMetadataVersion=01.03.70912\r\nLogin=\/rets2_1\/Login\r\nSearch=\/rets2_1\/Search\r\nGetMetadata=\/rets2_1\/GetMetadata\r\nX-SampleLinks=\/rets2_1\/Links\r\nX-SupportSite=http:\/\/flexmls.com\/rets\/\r\nX-NotificationFeed=http:\/\/retsgw.flexmls.com\/atom\/feed\/private\/atom.xml\r\nGetObject=\/rets2_1\/GetObject\r\nLogout=\/rets2_1\/Logout\r\nX-ApiAccessSettings=\/rets2_1\/API\r\n<\/RETS-RESPONSE>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.5"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=3939F05301B5B97D5E0B17B757DCD72D.rets3; Path=\/rets2_1"
+            ],
+            "MIME-Version": [
+                "1.0"
+            ],
+            "Content-ID": [
+                "METADATA-SYSTEM"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 20:18:53 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491077933"
+            ]
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"US-ASCII\"?>\n<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <METADATA>\n    <METADATA-SYSTEM Version=\"01.03.70912\" Date=\"Fri, 31 Mar 2017 21:04:02 GMT\">\n      <System>\n        <SystemID>demomls<\/SystemID>\n        <SystemDescription>flexmls Web Demo Database<\/SystemDescription>\n        <Comments\/>\n      <\/System>\n    <\/METADATA-SYSTEM>\n  <\/METADATA>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]

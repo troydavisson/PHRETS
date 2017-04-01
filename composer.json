@@ -27,7 +27,8 @@
     "phpunit/phpunit": "5.*",
     "psr/log": "1.*",
     "monolog/monolog": "1.10.*",
-    "gsaulmon/guzzlerecorder": "2.*"
+    "gsaulmon/guzzlerecorder": "2.*",
+    "dshafik/guzzlehttp-vcr": "dev-master"
   },
   "autoload": {
     "psr-4": {

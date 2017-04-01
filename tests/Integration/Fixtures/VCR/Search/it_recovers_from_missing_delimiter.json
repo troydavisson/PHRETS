@@ -1,0 +1,78 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=F8DF077A0B09AF6219E4FAB47CF681C5.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:30 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085591"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\r\n\n  <RETS-RESPONSE>\r\nMemberName=UNKNOWN\r\nUser=UNKNOWN,MEMBER,1,20140914184132431197000000\r\nBroker=RETSOFFIC\r\nMetadataVersion=01.03.70912\r\nMetadataTimestamp=2017-03-31T21:04:02Z\r\nMinMetadataTimestamp=2017-03-31T21:04:02Z\r\nLogin=\/rets2_1\/Login\r\nSearch=\/rets2_1\/Search\r\nGetMetadata=\/rets2_1\/GetMetadata\r\nX-SampleLinks=\/rets2_1\/Links\r\nX-SupportSite=http:\/\/flexmls.com\/rets\/\r\nX-NotificationFeed=http:\/\/retsgw.flexmls.com\/atom\/feed\/private\/atom.xml\r\nGetObject=\/rets2_1\/GetObject\r\nLogout=\/rets2_1\/Logout\r\nX-ApiAccessSettings=\/rets2_1\/API\r\n<\/RETS-RESPONSE>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=D787ED66E4C4B8DDFCB36CE1BD7C7611.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 22:26:31 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491085591"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <COUNT Records=\"181\"\/>\n  <DELIMITER value=\"09\"\/>\n  <COLUMNS>\tLIST_1\t<\/COLUMNS>\n  <DATA>\t20000927050023451039000000\t<\/DATA>\n  <DATA>\t20040421185252664934000000\t<\/DATA>\n  <DATA>\t20040517145427449253000000\t<\/DATA>\n  <DATA>\t20040525212350477609000000\t<\/DATA>\n  <DATA>\t20060610131712009195000000\t<\/DATA>\n  <DATA>\t20060616213124472103000000\t<\/DATA>\n  <DATA>\t20070605194321608596000000\t<\/DATA>\n  <DATA>\t20070720140149071202000000\t<\/DATA>\n  <DATA>\t20170223195535467134000000\t<\/DATA>\n  <DATA>\t20000613000144818327000000\t<\/DATA>\n  <DATA>\t20000613013641455369000000\t<\/DATA>\n  <DATA>\t20150928223257538614000000\t<\/DATA>\n  <DATA>\t20071031000629271074000000\t<\/DATA>\n  <DATA>\t20080430203752427828000000\t<\/DATA>\n  <DATA>\t20040722165217204505000000\t<\/DATA>\n  <MAXROWS\/>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]

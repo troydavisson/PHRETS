@@ -9,6 +9,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_system_data()
     {
+        $this->play('GetMetadata/system_1.7.2');
+        $this->session->Login();
+
         $system = $this->session->GetSystemMetadata();
         $this->assertTrue($system instanceof \PHRETS\Models\Metadata\System);
     }
@@ -16,16 +19,12 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_system_data_for_1_5()
     {
-        $config = new \PHRETS\Configuration;
-        $config->setLoginUrl('http://retsgw.flexmls.com/rets2_1/Login')
-                ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
-                ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
-                ->setRetsVersion('1.5');
+        $this->play('GetMetadata/system_1.5');
+        $this->session->getConfiguration()->setRetsVersion('1.5');
 
-        $session = new \PHRETS\Session($config);
-        $session->Login();
+        $this->session->Login();
 
-        $system = $session->GetSystemMetadata();
+        $system = $this->session->GetSystemMetadata();
         $this->assertTrue($system instanceof \PHRETS\Models\Metadata\System);
         $this->assertSame('demomls', $system->getSystemId());
     }
@@ -33,6 +32,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_makes_a_good_url()
     {
+        $this->play('GetMetadata/system_1.7.2');
+        $this->session->Login();
+
         $this->session->GetSystemMetadata();
         $this->assertSame(
             'http://retsgw.flexmls.com:80/rets2_1/GetMetadata?Type=METADATA-SYSTEM&ID=0&Format=STANDARD-XML',
@@ -43,6 +45,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_sees_some_attributes()
     {
+        $this->play('GetMetadata/system_1.7.2');
+        $this->session->Login();
+
         $system = $this->session->GetSystemMetadata();
         $this->assertSame('demomls', $system->getSystemId());
         $this->assertSame('-05:00', $system->getTimeZoneOffset());
@@ -51,6 +56,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_related_resources()
     {
+        $this->play('GetMetadata/system_with_resources_compare_1.7.2');
+        $this->session->Login();
+
         $system = $this->session->GetSystemMetadata()->getResources();
         $resources = $this->session->GetResourcesMetadata();
         $this->assertEquals($system, $resources);
@@ -63,6 +71,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_resource_data()
     {
+        $this->play('GetMetadata/property_resource_1.7.2');
+        $this->session->Login();
+
         $resource = $this->session->GetResourcesMetadata('Property');
         $this->assertTrue($resource instanceof \PHRETS\Models\Metadata\Resource);
         $this->assertSame('Property', $resource->getStandardName());
@@ -72,15 +83,21 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_all_resource_data()
     {
+        $this->play('GetMetadata/resources_1.7.2');
+        $this->session->Login();
+
         $resources = $this->session->GetResourcesMetadata();
-        $this->assertSame(9, $resources->count());
+        $this->assertSame(6, $resources->count());
         $this->assertSame('ActiveAgent', $resources->first()->getResourceId());
-        $this->assertSame('VirtualTour', $resources->last()->getResourceId());
+        $this->assertSame('Room', $resources->last()->getResourceId());
     }
 
     /** @test **/
     public function it_gets_keyed_resource_data()
     {
+        $this->play('GetMetadata/resources_1.7.2');
+        $this->session->Login();
+
         $resources = $this->session->GetResourcesMetadata();
         $this->assertInstanceOf('\PHRETS\Models\Metadata\Resource', $resources['Property']);
     }
@@ -91,12 +108,18 @@ class GetMetadataIntegrationTest extends BaseIntegration
      * **/
     public function it_errors_with_bad_resource_name()
     {
+        $this->play('GetMetadata/bad_resource_1.7.2');
+        $this->session->Login();
+
         $this->session->GetResourcesMetadata('Bogus');
     }
 
     /** @test **/
     public function it_gets_related_classes()
     {
+        $this->play('GetMetadata/resources_followed_by_classes_1.7.2');
+        $this->session->Login();
+
         $resource_classes = $this->session->GetResourcesMetadata('Property')->getClasses();
         $classes = $this->session->GetClassesMetadata('Property');
         $this->assertEquals($resource_classes, $classes);
@@ -105,6 +128,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_related_object_metadata()
     {
+        $this->play('GetMetadata/resources_followed_by_objects_1.7.2');
+        $this->session->Login();
+
         $object_types = $this->session->GetResourcesMetadata('Property')->getObject();
         $this->assertSame('Photo', $object_types->first()->getObjectType());
     }
@@ -116,6 +142,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_class_data()
     {
+        $this->play('GetMetadata/property_classes_1.7.2');
+        $this->session->Login();
+
         $classes = $this->session->GetClassesMetadata('Property');
         $this->assertTrue($classes instanceof \Illuminate\Support\Collection);
         $this->assertSame(7, $classes->count());
@@ -125,6 +154,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_related_table_data()
     {
+        $this->play('GetMetadata/property_classes_followed_by_table_1.7.2');
+        $this->session->Login();
+
         $classes = $this->session->GetClassesMetadata('Property');
         $this->assertTrue($classes instanceof \Illuminate\Support\Collection);
         $this->assertSame('LIST_0', $classes->first()->getTable()->first()->getSystemName());
@@ -133,6 +165,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_keyed_class_metadata()
     {
+        $this->play('GetMetadata/property_classes_1.7.2');
+        $this->session->Login();
+
         $classes = $this->session->GetClassesMetadata('Property');
         $this->assertInstanceOf('\PHRETS\Models\Metadata\ResourceClass', $classes['A']);
     }
@@ -144,6 +179,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_table_data()
     {
+        $this->play('GetMetadata/table_a_1.7.2');
+        $this->session->Login();
+
         $fields = $this->session->GetTableMetadata('Property', 'A');
         $this->assertTrue($fields instanceof \Illuminate\Support\Collection);
         $this->assertTrue($fields->count() > 100, "Verify that a lot of fields came back");
@@ -153,6 +191,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_sees_table_attributes()
     {
+        $this->play('GetMetadata/table_a_1.7.2');
+        $this->session->Login();
+
         $fields = $this->session->GetTableMetadata('Property', 'A');
         $this->assertSame('Property', $fields->first()->getResource());
         $this->assertSame('A', $fields->last()->getClass());
@@ -161,6 +202,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_sees_fields_by_key()
     {
+        $this->play('GetMetadata/table_a_1.7.2');
+        $this->session->Login();
+
         $fields = $this->session->GetTableMetadata('Property', 'A');
         $this->assertTrue($fields instanceof \Illuminate\Support\Collection);
         $this->assertSame('Listing ID', $fields->get('LIST_105')->getLongName());
@@ -169,6 +213,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_sees_fields_by_standard_key()
     {
+        $this->play('GetMetadata/table_a_1.7.2');
+        $this->session->Login();
+
         $fields = $this->session->GetTableMetadata('Property', 'A', 'StandardName');
         $this->assertTrue($fields instanceof \Illuminate\Support\Collection);
         $this->assertSame('Listing ID', $fields->get('ListingID')->getLongName());
@@ -181,6 +228,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_object_metadata()
     {
+        $this->play('GetMetadata/object_metadata_1.7.2');
+        $this->session->Login();
+
         $object_types = $this->session->GetObjectMetadata('Property');
         $this->assertTrue($object_types instanceof \Illuminate\Support\Collection);
         $this->assertTrue($object_types->count() > 4, "Verify that a few came back");
@@ -191,6 +241,9 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_keyed_object_metadata()
     {
+        $this->play('GetMetadata/object_metadata_1.7.2');
+        $this->session->Login();
+
         $object_types = $this->session->GetObjectMetadata('Property');
         $this->assertInstanceOf('\PHRETS\Models\Metadata\Object', $object_types['Photo']);
     }
@@ -202,15 +255,21 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_gets_lookup_values()
     {
+        $this->play('GetMetadata/lookup_metadata_1.7.2');
+        $this->session->Login();
+
         $values = $this->session->GetLookupValues('Property', '20000426151013376279000000');
         $this->assertTrue($values instanceof \Illuminate\Support\Collection);
-        $this->assertSame('Lake/Other', $values->first()->getLongValue());
-        $this->assertSame('5PSUX49PM1Q', $values->first()->getValue());
+        $this->assertSame('Fractional Ownership', $values->first()->getLongValue());
+        $this->assertSame('RNKXIIVU9UW', $values->first()->getValue());
     }
 
     /** @test **/
     public function it_gets_related_lookup_values()
     {
+        $this->play('GetMetadata/table_followed_by_lookup_1.7.2');
+        $this->session->Login();
+
         $fields = $this->session->GetTableMetadata('Property', 'A');
         $this->assertTrue($fields instanceof \Illuminate\Support\Collection);
 
@@ -223,32 +282,20 @@ class GetMetadataIntegrationTest extends BaseIntegration
     /** @test **/
     public function it_recovers_from_bad_lookuptype_tag()
     {
-        $config = new \PHRETS\Configuration;
-        $config->setLoginUrl('http://retsgw.flexmls.com/lookup/rets2_1/Login')
-                ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
-                ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
-                ->setRetsVersion('1.5');
+        $this->play('GetMetadata/it_recovers_from_bad_lookuptype_tag');
+        $this->session->Login();
 
-        $session = new \PHRETS\Session($config);
-        $session->Login();
-
-        $values = $session->GetLookupValues('Property', '20000426151013376279000000');
+        $values = $this->session->GetLookupValues('Property', '20000426151013376279000000');
         $this->assertCount(6, $values);
     }
 
     /** @test **/
     public function it_handles_incomplete_object_metadata_correctly()
     {
-        $config = new \PHRETS\Configuration;
-        $config->setLoginUrl('http://retsgw.flexmls.com/rets2_1/Login')
-            ->setUsername(getenv('PHRETS_TESTING_USERNAME'))
-            ->setPassword(getenv('PHRETS_TESTING_PASSWORD'))
-            ->setRetsVersion('1.5');
+        $this->play('GetMetadata/it_handles_incomplete_object_metadata_correctly');
+        $this->session->Login();
 
-        $session = new \PHRETS\Session($config);
-        $session->Login();
-
-        $values = $session->GetObjectMetadata('PropertyPowerProduction');
+        $values = $this->session->GetObjectMetadata('PropertyPowerProduction');
         $this->assertCount(0, $values);
     }
 }

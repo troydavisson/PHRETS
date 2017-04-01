@@ -1,0 +1,75 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=CF769E23810EE15348E251A4C2A37579.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 21:05:31 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491080731"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\r\n\n  <RETS-RESPONSE>\r\nMemberName=UNKNOWN\r\nUser=UNKNOWN,MEMBER,1,20140914184132431197000000\r\nBroker=RETSOFFIC\r\nMetadataVersion=01.03.70912\r\nMetadataTimestamp=2017-03-31T21:04:02Z\r\nMinMetadataTimestamp=2017-03-31T21:04:02Z\r\nLogin=\/rets2_1\/Login\r\nSearch=\/rets2_1\/Search\r\nGetMetadata=\/rets2_1\/GetMetadata\r\nX-SampleLinks=\/rets2_1\/Links\r\nX-SupportSite=http:\/\/flexmls.com\/rets\/\r\nX-NotificationFeed=http:\/\/retsgw.flexmls.com\/atom\/feed\/private\/atom.xml\r\nGetObject=\/rets2_1\/GetObject\r\nLogout=\/rets2_1\/Logout\r\nX-ApiAccessSettings=\/rets2_1\/API\r\n<\/RETS-RESPONSE>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=7B43D9D1563C19AA779FA81E238F834D.rets3; Path=\/rets2_1"
+            ],
+            "MIME-Version": [
+                "1.0"
+            ],
+            "Content-Type": [
+                "multipart\/parallel; boundary=\"FLEX0oZVgCZSSDJgGh6RPBfuePNAuHTekg40w4AaQtok4P1xYOqK2v\";charset=US-ASCII"
+            ],
+            "Content-Length": [
+                "1351"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 21:05:31 GMT"
+            ],
+            "X-VCR-Recording": [
+                "1491080731"
+            ]
+        },
+        "body": "\r\n--FLEX0oZVgCZSSDJgGh6RPBfuePNAuHTekg40w4AaQtok4P1xYOqK2v\r\nContent-Type: image\/jpeg\r\nContent-ID: 14-52\r\nObject-ID: 1\r\nLocation: http:\/\/cdn.photos.sparkplatform.com\/demomls\/20140701215533450688000000.jpg\r\nContent-Description: Walls\r\nPreferred: 1\r\n\r\n\r\n--FLEX0oZVgCZSSDJgGh6RPBfuePNAuHTekg40w4AaQtok4P1xYOqK2v\r\nContent-Type: image\/jpeg\r\nContent-ID: 14-52\r\nObject-ID: 2\r\nLocation: http:\/\/cdn.photos.sparkplatform.com\/demomls\/20140701220645546119000000.jpg\r\nContent-Description: 0_010210 - Copy - Copy (2).jpg\r\n\r\n\r\n--FLEX0oZVgCZSSDJgGh6RPBfuePNAuHTekg40w4AaQtok4P1xYOqK2v\r\nContent-Type: image\/jpeg\r\nContent-ID: 14-52\r\nObject-ID: 3\r\nLocation: http:\/\/cdn.photos.sparkplatform.com\/demomls\/20140701220647195214000000.jpg\r\nContent-Description: 0_010210 - Copy - Copy (3).jpg\r\n\r\n\r\n--FLEX0oZVgCZSSDJgGh6RPBfuePNAuHTekg40w4AaQtok4P1xYOqK2v\r\nContent-Type: image\/jpeg\r\nContent-ID: 14-52\r\nObject-ID: 4\r\nLocation: http:\/\/cdn.photos.sparkplatform.com\/demomls\/20140701220648843937000000.jpg\r\nContent-Description: 0_010210 - Copy - Copy (4).jpg\r\n\r\n\r\n--FLEX0oZVgCZSSDJgGh6RPBfuePNAuHTekg40w4AaQtok4P1xYOqK2v\r\nContent-Type: image\/jpeg\r\nContent-ID: 14-52\r\nObject-ID: 5\r\nLocation: http:\/\/cdn.photos.sparkplatform.com\/demomls\/20140701220649870289000000.jpg\r\nContent-Description: 0_010210 - Copy - Copy (5).jpg\r\n\r\n\r\n--FLEX0oZVgCZSSDJgGh6RPBfuePNAuHTekg40w4AaQtok4P1xYOqK2v--\r\n",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]

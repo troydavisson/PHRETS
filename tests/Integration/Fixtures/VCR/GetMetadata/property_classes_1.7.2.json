@@ -1,0 +1,84 @@
+[
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=E5C7475C197900EF9C7905F322F74C65.rets3; Path=\/rets2_1"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 20:47:05 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491079626"
+            ]
+        },
+        "body": "<RETS ReplyCode=\"0\" ReplyText=\"Success\">\r\n\n  <RETS-RESPONSE>\r\nMemberName=UNKNOWN\r\nUser=UNKNOWN,MEMBER,1,20140914184132431197000000\r\nBroker=RETSOFFIC\r\nMetadataVersion=01.03.70912\r\nMetadataTimestamp=2017-03-31T21:04:02Z\r\nMinMetadataTimestamp=2017-03-31T21:04:02Z\r\nLogin=\/rets2_1\/Login\r\nSearch=\/rets2_1\/Search\r\nGetMetadata=\/rets2_1\/GetMetadata\r\nX-SampleLinks=\/rets2_1\/Links\r\nX-SupportSite=http:\/\/flexmls.com\/rets\/\r\nX-NotificationFeed=http:\/\/retsgw.flexmls.com\/atom\/feed\/private\/atom.xml\r\nGetObject=\/rets2_1\/GetObject\r\nLogout=\/rets2_1\/Logout\r\nX-ApiAccessSettings=\/rets2_1\/API\r\n<\/RETS-RESPONSE>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    },
+    {
+        "status": 200,
+        "headers": {
+            "Server": [
+                "Apache-Coyote\/1.1"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "RETS-Version": [
+                "RETS\/1.7.2"
+            ],
+            "Set-Cookie": [
+                "JSESSIONID=DAACC23A30AE174AAD03BDDA3D4E8BC2.rets3; Path=\/rets2_1"
+            ],
+            "MIME-Version": [
+                "1.0"
+            ],
+            "Content-ID": [
+                "METADATA-CLASS"
+            ],
+            "Content-Type": [
+                "text\/xml;charset=US-ASCII"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Vary": [
+                "Accept-Encoding"
+            ],
+            "Date": [
+                "Sat, 01 Apr 2017 20:47:05 GMT"
+            ],
+            "x-encoded-content-encoding": [
+                "gzip"
+            ],
+            "X-VCR-Recording": [
+                "1491079626"
+            ]
+        },
+        "body": "<?xml version=\"1.0\" encoding=\"US-ASCII\"?>\n<RETS ReplyCode=\"0\" ReplyText=\"Success\">\n  <METADATA>\n    <METADATA-CLASS Resource=\"Property\" Version=\"01.03.70912\" Date=\"2017-03-31T21:04:02Z\">\n      <Class>\n        <ClassName>A<\/ClassName>\n        <StandardName>ResidentialProperty<\/StandardName>\n        <VisibleName>Residential<\/VisibleName>\n        <Description>Residential<\/Description>\n        <TableVersion>01.03.70912<\/TableVersion>\n        <TableDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\">2017-03-31T21:04:02Z<\/TableDate>\n        <UpdateVersion\/>\n        <UpdateDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\"\/>\n        <HasKeyIndex>1<\/HasKeyIndex>\n      <\/Class>\n      <Class>\n        <ClassName>B<\/ClassName>\n        <StandardName>LotsAndLand<\/StandardName>\n        <VisibleName>Lots\/Acreage<\/VisibleName>\n        <Description>Lots\/Acreage<\/Description>\n        <TableVersion>01.03.70912<\/TableVersion>\n        <TableDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\">2017-03-31T21:04:02Z<\/TableDate>\n        <UpdateVersion\/>\n        <UpdateDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\"\/>\n        <HasKeyIndex>1<\/HasKeyIndex>\n      <\/Class>\n      <Class>\n        <ClassName>C<\/ClassName>\n        <StandardName\/>\n        <VisibleName>Commercial<\/VisibleName>\n        <Description>Commercial<\/Description>\n        <TableVersion>01.03.70912<\/TableVersion>\n        <TableDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\">2017-03-31T21:04:02Z<\/TableDate>\n        <UpdateVersion\/>\n        <UpdateDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\"\/>\n        <HasKeyIndex>1<\/HasKeyIndex>\n      <\/Class>\n      <Class>\n        <ClassName>D<\/ClassName>\n        <StandardName\/>\n        <VisibleName>Farm\/Ranch\/Orchard<\/VisibleName>\n        <Description>Farm\/Ranch\/Orchard<\/Description>\n        <TableVersion>01.03.70912<\/TableVersion>\n        <TableDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\">2017-03-31T21:04:02Z<\/TableDate>\n        <UpdateVersion\/>\n        <UpdateDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\"\/>\n        <HasKeyIndex>1<\/HasKeyIndex>\n      <\/Class>\n      <Class>\n        <ClassName>E<\/ClassName>\n        <StandardName>MultiFamily<\/StandardName>\n        <VisibleName>Residential Income<\/VisibleName>\n        <Description>Residential Income<\/Description>\n        <TableVersion>01.03.70912<\/TableVersion>\n        <TableDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\">2017-03-31T21:04:02Z<\/TableDate>\n        <UpdateVersion\/>\n        <UpdateDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\"\/>\n        <HasKeyIndex>1<\/HasKeyIndex>\n      <\/Class>\n      <Class>\n        <ClassName>F<\/ClassName>\n        <StandardName>CommonInterest<\/StandardName>\n        <VisibleName>Business Op<\/VisibleName>\n        <Description>Business Op<\/Description>\n        <TableVersion>01.03.70912<\/TableVersion>\n        <TableDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\">2017-03-31T21:04:02Z<\/TableDate>\n        <UpdateVersion\/>\n        <UpdateDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\"\/>\n        <HasKeyIndex>1<\/HasKeyIndex>\n      <\/Class>\n      <Class>\n        <ClassName>G<\/ClassName>\n        <StandardName\/>\n        <VisibleName>Rental<\/VisibleName>\n        <Description>Rental<\/Description>\n        <TableVersion>01.03.70912<\/TableVersion>\n        <TableDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\">2017-03-31T21:04:02Z<\/TableDate>\n        <UpdateVersion\/>\n        <UpdateDate Type=\"DATE-TIME\" Format=\"YYYY-MM-DDThh:mm:ss[.sss][Z|&#177;hh:mm]\"\/>\n        <HasKeyIndex>1<\/HasKeyIndex>\n      <\/Class>\n    <\/METADATA-CLASS>\n  <\/METADATA>\n<\/RETS>\n",
+        "version": "1.1",
+        "reason": "OK"
+    }
+]
