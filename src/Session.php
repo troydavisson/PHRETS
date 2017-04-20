@@ -3,6 +3,7 @@
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\CookieJarInterface;
+use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
 use PHRETS\Exceptions\CapabilityUnavailable;
 use PHRETS\Exceptions\MetadataNotFound;
@@ -12,6 +13,7 @@ use PHRETS\Http\Client as PHRETSClient;
 use PHRETS\Interpreters\GetObject;
 use PHRETS\Interpreters\Search;
 use PHRETS\Models\Bulletin;
+use PHRETS\Strategies\Strategy;
 use Psr\Http\Message\ResponseInterface;
 
 class Session
@@ -487,5 +489,12 @@ class Session
         }
 
         return $defaults;
+    }
+
+    public function setParser($parser_name, $parser_object)
+    {
+        /** @var Container $container */
+        $container = $this->getConfiguration()->getStrategy()->getContainer();
+        $container->instance($parser_name, $parser_object);
     }
 }

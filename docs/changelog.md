@@ -2,6 +2,8 @@
 
 _Release TBD_
 
+- Added helper method to more easily work with custom parsers
+
 ## 2.3
 
 _Released March 31, 2017_
