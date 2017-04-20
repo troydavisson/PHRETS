@@ -22,6 +22,7 @@ class StandardStrategy implements Strategy
         Strategy::PARSER_METADATA_TABLE => \PHRETS\Parsers\GetMetadata\Table::class,
         Strategy::PARSER_METADATA_OBJECT => \PHRETS\Parsers\GetMetadata\Object::class,
         Strategy::PARSER_METADATA_LOOKUPTYPE => \PHRETS\Parsers\GetMetadata\LookupType::class,
+        Strategy::PARSER_XML => \PHRETS\Parsers\XML::class,
     ];
 
     /**

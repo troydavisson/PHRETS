@@ -73,7 +73,7 @@ class Session
 
         $response = $this->request('Login');
 
-        $parser = $this->grab('parser.login');
+        $parser = $this->grab(Strategy::PARSER_LOGIN);
         $xml = new \SimpleXMLElement((string)$response->getBody());
         $parser->parse($xml->{'RETS-RESPONSE'}->__toString());
 
@@ -130,11 +130,11 @@ class Session
         );
 
         if (preg_match('/multipart/', $response->getHeader('Content-Type'))) {
-            $parser = $this->grab('parser.object.multiple');
+            $parser = $this->grab(Strategy::PARSER_OBJECT_MULTIPLE);
             $collection = $parser->parse($response);
         } else {
             $collection = new Collection;
-            $parser = $this->grab('parser.object.single');
+            $parser = $this->grab(Strategy::PARSER_OBJECT_SINGLE);
             $object = $parser->parse($response);
             $collection->push($object);
         }
@@ -280,9 +280,9 @@ class Session
         );
 
         if ($recursive) {
-            $parser = $this->grab('parser.search.recursive');
+            $parser = $this->grab(Strategy::PARSER_SEARCH_RECURSIVE);
         } else {
-            $parser = $this->grab('parser.search');
+            $parser = $this->grab(Strategy::PARSER_SEARCH);
         }
         return $parser->parse($this, $response, $parameters);
     }
@@ -351,7 +351,8 @@ class Session
         }
         
         if (preg_match('/text\/xml/', $response->getHeader('Content-Type')) and $capability != 'GetObject') {
-            $xml = $response->xml();
+            $parser = $this->grab(Strategy::PARSER_XML);
+            $xml = $parser->parse($response);
             if ($xml and isset($xml['ReplyCode'])) {
                 $rc = (string)$xml['ReplyCode'];
                 // 20201 - No records found - not exception worthy in my mind

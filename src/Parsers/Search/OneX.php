@@ -4,12 +4,15 @@ use PHRETS\Http\Response;
 use PHRETS\Models\Search\Record;
 use PHRETS\Models\Search\Results;
 use PHRETS\Session;
+use PHRETS\Strategies\Strategy;
 
 class OneX
 {
     public function parse(Session $rets, Response $response, $parameters)
     {
-        $xml = $response->xml();
+        /** @var \PHRETS\Parsers\XML $parser */
+        $parser = $rets->getConfiguration()->getStrategy()->provide(Strategy::PARSER_XML);
+        $xml = $parser->parse($response);
 
         $rs = new Results;
         $rs->setSession($rets)

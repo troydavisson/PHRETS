@@ -7,7 +7,10 @@ class System extends Base
 {
     public function parse(Session $rets, Response $response)
     {
-        $xml = $response->xml();
+        /** @var \PHRETS\Parsers\XML $parser */
+        $parser = $rets->getConfiguration()->getStrategy()->provide(\PHRETS\Strategies\Strategy::PARSER_XML);
+        $xml = $parser->parse($response);
+
         $base = $xml->METADATA->{'METADATA-SYSTEM'};
 
         $metadata = new \PHRETS\Models\Metadata\System;
