@@ -11,17 +11,18 @@ class StandardStrategy implements Strategy
      * @var array
      */
     protected $default_components = [
-        'parser.login' => '\PHRETS\Parsers\Login\OneFive',
-        'parser.object.single' => '\PHRETS\Parsers\GetObject\Single',
-        'parser.object.multiple' => '\PHRETS\Parsers\GetObject\Multiple',
-        'parser.search' => '\PHRETS\Parsers\Search\OneX',
-        'parser.search.recursive' => '\PHRETS\Parsers\Search\RecursiveOneX',
-        'parser.metadata.system' => '\PHRETS\Parsers\GetMetadata\System',
-        'parser.metadata.resource' => '\PHRETS\Parsers\GetMetadata\Resource',
-        'parser.metadata.class' => '\PHRETS\Parsers\GetMetadata\ResourceClass',
-        'parser.metadata.table' => '\PHRETS\Parsers\GetMetadata\Table',
-        'parser.metadata.object' => '\PHRETS\Parsers\GetMetadata\Object',
-        'parser.metadata.lookuptype' => '\PHRETS\Parsers\GetMetadata\LookupType',
+        Strategy::PARSER_LOGIN => \PHRETS\Parsers\Login\OneFive::class,
+        Strategy::PARSER_OBJECT_SINGLE => \PHRETS\Parsers\GetObject\Single::class,
+        Strategy::PARSER_OBJECT_MULTIPLE => \PHRETS\Parsers\GetObject\Multiple::class,
+        Strategy::PARSER_SEARCH => \PHRETS\Parsers\Search\OneX::class,
+        Strategy::PARSER_SEARCH_RECURSIVE => \PHRETS\Parsers\Search\RecursiveOneX::class,
+        Strategy::PARSER_METADATA_SYSTEM => \PHRETS\Parsers\GetMetadata\System::class,
+        Strategy::PARSER_METADATA_RESOURCE => \PHRETS\Parsers\GetMetadata\Resource::class,
+        Strategy::PARSER_METADATA_CLASS => \PHRETS\Parsers\GetMetadata\ResourceClass::class,
+        Strategy::PARSER_METADATA_TABLE => \PHRETS\Parsers\GetMetadata\Table::class,
+        Strategy::PARSER_METADATA_OBJECT => \PHRETS\Parsers\GetMetadata\Object::class,
+        Strategy::PARSER_METADATA_LOOKUPTYPE => \PHRETS\Parsers\GetMetadata\LookupType::class,
+        Strategy::PARSER_XML => \PHRETS\Parsers\XML::class,
     ];
 
     /**
@@ -49,7 +50,7 @@ class StandardStrategy implements Strategy
 
         foreach ($this->default_components as $k => $v) {
             if ($k == 'parser.login' and $configuration->getRetsVersion()->isAtLeast1_8()) {
-                $v ='\PHRETS\Parsers\Login\OneEight';
+                $v = \PHRETS\Parsers\Login\OneEight::class;
             }
 
             $this->container->singleton($k, function () use ($v) { return new $v; });

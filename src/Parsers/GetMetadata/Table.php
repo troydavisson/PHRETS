@@ -8,7 +8,9 @@ class Table extends Base
 {
     public function parse(Session $rets, Response $response, $keyed_by)
     {
-        $xml = $response->xml();
+        /** @var \PHRETS\Parsers\XML $parser */
+        $parser = $rets->getConfiguration()->getStrategy()->provide(\PHRETS\Strategies\Strategy::PARSER_XML);
+        $xml = $parser->parse($response);
 
         $collection = new Collection;
 
