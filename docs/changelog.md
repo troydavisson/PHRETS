@@ -2,7 +2,11 @@
 
 _Release TBD_
 
-- Added helper method to more easily work with custom parsers
+## 2.4
+
+_Released June 28, 2017_
+
+- Added helper method to more easily work with custom parsers, including custom XML parsers for cleaning data prior to XML parsing
 
 ## 2.3
 
