@@ -26,19 +26,19 @@ class System extends Base
                 $metadata->setSystemDescription((string)$base->System->SystemDescription);
             }
         } else {
-            if (isset($base->SYSTEM->attributes()->SystemID)) {
+            if (isset($base->System->attributes()->SystemID)) {
                 $metadata->setSystemId((string)$base->SYSTEM->attributes()->SystemID);
             }
-            if (isset($base->SYSTEM->attributes()->SystemDescription)) {
-                $metadata->setSystemDescription((string)$base->SYSTEM->attributes()->SystemDescription);
+            if (isset($base->System->attributes()->SystemDescription)) {
+                $metadata->setSystemDescription((string)$base->System->attributes()->SystemDescription);
             }
-            if (isset($base->SYSTEM->attributes()->TimeZoneOffset)) {
-                $metadata->setTimezoneOffset((string)$base->SYSTEM->attributes()->TimeZoneOffset);
+            if (isset($base->System->attributes()->TimeZoneOffset)) {
+                $metadata->setTimezoneOffset((string)$base->System->attributes()->TimeZoneOffset);
             }
         }
 
-        if (isset($base->SYSTEM->Comments)) {
-            $metadata->setComments((string)$base->SYSTEM->Comments);
+        if (isset($base->System->Comments)) {
+            $metadata->setComments((string)$base->System->Comments);
         }
         if (isset($base->attributes()->Version)) {
             $metadata->setVersion((string)$xml->METADATA->{'METADATA-SYSTEM'}->attributes()->Version);
