@@ -339,6 +339,8 @@ class Session
 
         $response = new \PHRETS\Http\Response($response);
 
+        $this->removeSessionCookieFile($options);
+
         $this->last_response = $response;
 
         if ($response->getHeader('Set-Cookie')) {
@@ -349,7 +351,7 @@ class Session
                 }
             }
         }
-        
+
         if (preg_match('/text\/xml/', $response->getHeader('Content-Type')) and $capability != 'GetObject') {
             $parser = $this->grab(Strategy::PARSER_XML);
             $xml = $parser->parse($response);
@@ -481,7 +483,7 @@ class Session
                 'Accept-Encoding' => 'gzip',
                 'Accept' => '*/*',
             ],
-            'curl' => [ CURLOPT_COOKIEFILE => tempnam('/tmp', 'phrets') ]
+            'curl' => [ CURLOPT_COOKIEFILE => tempnam($this->configuration->getSessionTempDir(), 'phrets') ]
         ];
 
         // disable following 'Location' header (redirects) automatically
@@ -490,6 +492,21 @@ class Session
         }
 
         return $defaults;
+    }
+
+    /**
+     * If the session cookie file have beend created, we will remove it.
+     *
+     * @param array $options Assoc array that came from the method getDefaultOptions.
+     *
+     * @return void
+     */
+    private function removeSessionCookieFile(array $options)
+    {
+        $tmpFile = $options['curl'][CURLOPT_COOKIEFILE];
+        if (file_exists($tmpFile)) {
+            unlink($tmpFile);
+        }
     }
 
     public function setParser($parser_name, $parser_object)

@@ -20,6 +20,7 @@ class Configuration
     protected $http_authentication = 'digest';
     /** @var \PHRETS\Strategies\Strategy */
     protected $strategy;
+    protected $sessionTempDir = null;
     protected $options = [];
 
     public function __construct()
@@ -133,6 +134,24 @@ class Configuration
     {
         $this->username = $username;
         return $this;
+    }
+
+    /**
+     * @param string $username
+     * @return $this
+     */
+    public function setSessionTempDir($sessionTempDir)
+    {
+        $this->sessionTempdDir = $sessionTempDir;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSessionTempDir()
+    {
+        return $this->sessionTempDir;
     }
 
     /**
