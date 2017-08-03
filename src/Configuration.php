@@ -259,7 +259,7 @@ class Configuration
      */
     public function setHttpAuthenticationMethod($auth_method)
     {
-        if ($auth_method && !in_array($auth_method, [self::AUTH_BASIC, self::AUTH_DIGEST])) {
+        if (!in_array($auth_method, [self::AUTH_BASIC, self::AUTH_DIGEST])) {
             throw new \InvalidArgumentException("Given authentication method is invalid.  Must be 'basic' or 'digest'");
         }
         $this->http_authentication = $auth_method;
