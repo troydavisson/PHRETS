@@ -2,6 +2,8 @@
 
 _Release TBD_
 
+- Fix RETS 1.8 login response parsing for optional info-token-type
+
 ## 2.4
 
 _Released June 28, 2017_
