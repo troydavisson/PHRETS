@@ -20,6 +20,7 @@ class Configuration
     protected $http_authentication = 'digest';
     /** @var \PHRETS\Strategies\Strategy */
     protected $strategy;
+    protected $sessionTempDir = null;
     protected $options = [];
 
     public function __construct()
@@ -136,6 +137,24 @@ class Configuration
     }
 
     /**
+     * @param string $username
+     * @return $this
+     */
+    public function setSessionTempDir($sessionTempDir)
+    {
+        $this->sessionTempdDir = $sessionTempDir;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSessionTempDir()
+    {
+        return $this->sessionTempDir;
+    }
+
+    /**
      * @param $name
      * @param $value
      * @return $this
@@ -240,7 +259,7 @@ class Configuration
      */
     public function setHttpAuthenticationMethod($auth_method)
     {
-        if (!in_array($auth_method, [self::AUTH_BASIC, self::AUTH_DIGEST])) {
+        if ($auth_method && !in_array($auth_method, [self::AUTH_BASIC, self::AUTH_DIGEST])) {
             throw new \InvalidArgumentException("Given authentication method is invalid.  Must be 'basic' or 'digest'");
         }
         $this->http_authentication = $auth_method;
