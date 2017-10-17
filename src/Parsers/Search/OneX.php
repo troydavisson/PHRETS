@@ -17,7 +17,10 @@ class OneX
         $rs = new Results;
         $rs->setSession($rets)
             ->setResource($parameters['SearchType'])
-            ->setClass($parameters['Class']);
+            ->setClass($parameters['Class'])
+            ->setDmqlQuery($parameters['Query'])
+            ->setOptionalParameters($parameters)
+        ;
 
         if ($this->getRestrictedIndicator($rets, $xml, $parameters)) {
             $rs->setRestrictedIndicator($this->getRestrictedIndicator($rets, $xml, $parameters));

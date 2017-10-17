@@ -12,6 +12,8 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
 {
     protected $resource;
     protected $class;
+    protected $dmql_query;
+    protected $optional_parameters;
     /** @var \PHRETS\Session */
     protected $session;
     protected $metadata = null;
@@ -403,5 +405,41 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
             $result[] = $r->toArray();
         }
         return $result;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDmqlQuery()
+    {
+        return $this->dmql_query;
+    }
+
+    /**
+     * @param mixed $dmql_query
+     * @return $this
+     */
+    public function setDmqlQuery($dmql_query)
+    {
+        $this->dmql_query = $dmql_query;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOptionalParameters()
+    {
+        return $this->optional_parameters;
+    }
+
+    /**
+     * @param mixed $optional_parameters
+     * @return $this
+     */
+    public function setOptionalParameters($optional_parameters)
+    {
+        $this->optional_parameters = $optional_parameters;
+        return $this;
     }
 }
