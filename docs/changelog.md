@@ -2,6 +2,10 @@
 
 _Release TBD_
 
+## 2.5
+
+_Released October 23, 2017_
+
 - Fix RETS 1.8 login response parsing for optional info-token-type
 - Support automatic re-login if session issue occurs mid-process
 - New option `disable_auto_retry` (bool) added to optionally disable automatic re-login behavior
