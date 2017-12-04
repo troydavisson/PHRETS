@@ -97,7 +97,7 @@ class Session
      * @param $type
      * @param $content_id
      * @param int $location
-     * @return \PHRETS\Models\Object
+     * @return \PHRETS\Models\BaseObject
      */
     public function GetPreferredObject($resource, $type, $content_id, $location = 0)
     {

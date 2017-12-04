@@ -15,7 +15,7 @@
  * @method string getDate
  * @method string getResource
  */
-class Object extends Base
+class BaseObject extends Base
 {
     protected $elements = [
         'MetadataEntryID',

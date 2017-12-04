@@ -192,7 +192,7 @@ class GetMetadataIntegrationTest extends BaseIntegration
     public function it_gets_keyed_object_metadata()
     {
         $object_types = $this->session->GetObjectMetadata('Property');
-        $this->assertInstanceOf('\PHRETS\Models\Metadata\Object', $object_types['Photo']);
+        $this->assertInstanceOf('\PHRETS\Models\Metadata\BaseObject', $object_types['Photo']);
     }
 
     /**

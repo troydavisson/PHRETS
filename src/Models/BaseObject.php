@@ -1,6 +1,6 @@
 <?php namespace PHRETS\Models;
 
-class Object
+class BaseObject
 {
     protected $content_type;
     protected $content_id;
