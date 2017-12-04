@@ -21,7 +21,12 @@ class Response
 
 	public function xml()
 	{
-		return new \SimpleXMLElement((string) $this->response->getBody());
+		$body = (string) $this->response->getBody();
+
+		// Remove any carriage return / newline in XML response.
+		$body = trim($body);
+
+		return new \SimpleXMLElement($body);
 	}
 
 	public function __call($method, $args = [])
@@ -32,7 +37,7 @@ class Response
 	public function getHeader($name)
 	{
 		$headers = $this->response->getHeader($name);
-		
+
 		if ($headers) {
 			return implode('; ', $headers);
 		} else {
