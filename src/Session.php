@@ -130,7 +130,7 @@ class Session
             ]
         );
 
-        if (preg_match('/multipart/', $response->getHeader('Content-Type'))) {
+        if (stripos($response->getHeader('Content-Type'), 'multipart') !== false) {
             $parser = $this->grab(Strategy::PARSER_OBJECT_MULTIPLE);
             $collection = $parser->parse($response);
         } else {
@@ -387,7 +387,7 @@ class Session
 
         $this->debug('Response: HTTP ' . $response->getStatusCode());
 
-        if (preg_match('/text\/xml/', $response->getHeader('Content-Type')) and $capability != 'GetObject') {
+        if (stripos($response->getHeader('Content-Type'), 'text/xml') !== false and $capability != 'GetObject') {
             $parser = $this->grab(Strategy::PARSER_XML);
             $xml = $parser->parse($response);
 
