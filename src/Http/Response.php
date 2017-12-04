@@ -21,7 +21,17 @@ class Response
 
 	public function xml()
 	{
-		return new \SimpleXMLElement((string) $this->response->getBody());
+	    // remove any carriage return / newline in XML response
+        $data = (string) $this->response->getBody();
+        $data = trim(preg_replace('/[\r\n]+/','', $data));
+
+        try {
+            $r = new \SimpleXMLElement($data);
+        } catch (\Exception $e) {
+            throw new \Exception("Could not create SimpleXMLElement from {$data}");
+        }
+
+        return $r;
 	}
 
 	public function __call($method, $args = [])
