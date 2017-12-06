@@ -33,17 +33,20 @@ abstract class Base implements \ArrayAccess
      */
     public function __call($name, $args = [])
     {
-        if (preg_match('/^set/', strtolower($name))) {
+        $name = strtolower($name);
+        $action = substr($name, 0, 3);
+
+        if ($action === 'set') {
             foreach (array_merge($this->getXmlElements(), $this->getXmlAttributes()) as $attr) {
-                if (strtolower('set' . $attr) == strtolower($name)) {
+                if (strtolower('set' . $attr) == $name) {
                     $this->values[$attr] = $args[0];
                     break;
                 }
             }
             return $this;
-        } elseif (preg_match('/^get/', strtolower($name))) {
+        } elseif ($action === 'get') {
             foreach (array_merge($this->getXmlElements(), $this->getXmlAttributes()) as $attr) {
-                if (strtolower('get' . $attr) == strtolower($name)) {
+                if (strtolower('get' . $attr) == $name) {
                     return \array_get($this->values, $attr);
                 }
             }
