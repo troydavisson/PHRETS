@@ -2,6 +2,12 @@
 
 _Release TBD_
 
+## 2.6.1
+
+_Released March 22, 2018_
+
+* Fix header version to correctly reflect the new version
+
 ## 2.6
 
 _Released March 22, 2018_
