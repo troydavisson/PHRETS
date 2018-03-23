@@ -2,6 +2,15 @@
 
 _Release TBD_
 
+## 2.6
+
+_Released March 22, 2018_
+
+* Support for PHP 7.2
+* `PHRETS\Models\Object` renamed to `PHRETS\Models\BaseObject`
+* `PHRETS\Models\Metadata\Object` renamed to `PHRETS\Models\Metadata\BaseObject`
+* `PHRETS\Parsers\GetMetadata\Object` renamed to `PHRETS\Parsers\GetMetadata\BaseObject`
+
 ## 2.5
 
 _Released October 23, 2017_

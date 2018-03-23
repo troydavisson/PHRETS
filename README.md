@@ -68,6 +68,7 @@ PHRETS provides PHP developers a way to integrate RETS functionality directly wi
 * HTTP Header management
 * Authentication
 * Session/Cookie management
+* PHP 5.6, 7.0, 7.1 and 7.2 supported
 
 ### Installation
 
@@ -255,7 +256,7 @@ $objects->last();
 $objects = $objects->slice(0, 10);
 ```
 
-Each object within that collection is a `\PHRETS\Models\Object` object with it's own set of helper methods:
+Each object within that collection is a `\PHRETS\Models\BaseObject` object with it's own set of helper methods:
 
 ```php
 $objects = $rets->GetObject( see above documentation );
