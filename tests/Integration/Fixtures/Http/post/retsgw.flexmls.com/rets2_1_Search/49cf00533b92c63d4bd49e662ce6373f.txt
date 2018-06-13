@@ -1,0 +1,18 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Cache-Control: private
+RETS-Version: RETS/1.7.2
+Set-Cookie: JSESSIONID=E80A5D494F2F1F8BB62F41D3C0DAD5FE; Path=/rets2_1
+Content-Type: text/xml
+Content-Encoding: gzip
+Vary: Accept-Encoding
+Date: Mon, 08 Sep 2014 05:46:29 GMT
+Connection: close
+
+<RETS ReplyCode="0" ReplyText="Success">
+  <COUNT Records="9092"/>
+  <DELIMITER value="09"/>
+  <COLUMNS>	LIST_1	</COLUMNS>
+  <DATA>	20120120214646918405000000	</DATA>
+  <MAXROWS/>
+</RETS>
