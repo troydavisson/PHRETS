@@ -8,7 +8,7 @@ It's best to install [PHRETS](https://packagist.org/packages/troydavisson/PHRETS
 
 # Basic Requirements
 
-* PHP 5.4+
+* PHP 5.6+
 * Installed via [Composer](http://getcomposer.org)
 
 

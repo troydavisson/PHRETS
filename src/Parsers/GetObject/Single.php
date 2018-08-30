@@ -1,7 +1,7 @@
 <?php namespace PHRETS\Parsers\GetObject;
 
 use PHRETS\Http\Response;
-use PHRETS\Models\Object;
+use PHRETS\Models\BaseObject;
 use PHRETS\Models\RETSError;
 
 class Single
@@ -10,7 +10,7 @@ class Single
     {
         $headers = $response->getHeaders();
 
-        $obj = new Object;
+        $obj = new BaseObject;
         $obj->setContent(($response->getBody()) ? $response->getBody()->__toString() : null);
         $obj->setContentDescription(\array_get($headers, 'Content-Description', [null])[0]);
         $obj->setContentSubDescription(\array_get($headers, 'Content-Sub-Description', [null])[0]);

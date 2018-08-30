@@ -26,4 +26,9 @@
             </exclude>
         </whitelist>
     </filter>
+
+    <php>
+        <env name="PHRETS_TESTING_USERNAME" value="fake"/>
+        <env name="PHRETS_TESTING_PASSWORD" value="fake"/>
+    </php>
 </phpunit>

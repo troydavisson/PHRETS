@@ -40,7 +40,7 @@ class MultipleTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(5, $collection->count());
 
-        /** @var PHRETS\Models\Object $obj */
+        /** @var PHRETS\Models\BaseObject $obj */
         $obj = $collection->first();
         $this->assertSame('Exterior Main View', $obj->getContentDescription());
         $this->assertSame('http://url1.jpg', $obj->getLocation());
@@ -88,7 +88,7 @@ class MultipleTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(5, $collection->count());
 
-        /** @var PHRETS\Models\Object $obj */
+        /** @var PHRETS\Models\BaseObject $obj */
         $obj = $collection->first();
         $this->assertSame('Exterior Main View', $obj->getContentDescription());
         $this->assertSame('http://url1.jpg', $obj->getLocation());
