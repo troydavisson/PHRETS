@@ -3,6 +3,7 @@
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\CookieJarInterface;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
 use PHRETS\Exceptions\CapabilityUnavailable;
@@ -12,6 +13,7 @@ use PHRETS\Exceptions\RETSException;
 use PHRETS\Http\Client as PHRETSClient;
 use PHRETS\Interpreters\GetObject;
 use PHRETS\Interpreters\Search;
+use PHRETS\Models\BaseObject;
 use PHRETS\Models\Bulletin;
 use PHRETS\Strategies\Strategy;
 use Psr\Http\Message\ResponseInterface;
@@ -96,7 +98,7 @@ class Session
      * @param $type
      * @param $content_id
      * @param int $location
-     * @return \PHRETS\Models\Object
+     * @return \PHRETS\Models\BaseObject
      */
     public function GetPreferredObject($resource, $type, $content_id, $location = 0)
     {
@@ -110,7 +112,7 @@ class Session
      * @param $content_ids
      * @param string $object_ids
      * @param int $location
-     * @return Collection
+     * @return Collection|BaseObject[]
      * @throws Exceptions\CapabilityUnavailable
      */
     public function GetObject($resource, $type, $content_ids, $object_ids = '*', $location = 0)
@@ -129,7 +131,7 @@ class Session
             ]
         );
 
-        if (preg_match('/multipart/', $response->getHeader('Content-Type'))) {
+        if (stripos($response->getHeader('Content-Type'), 'multipart') !== false) {
             $parser = $this->grab(Strategy::PARSER_OBJECT_MULTIPLE);
             $collection = $parser->parse($response);
         } else {
@@ -300,11 +302,12 @@ class Session
     /**
      * @param $capability
      * @param array $options
-     * @throws Exceptions\CapabilityUnavailable
-     * @throws Exceptions\RETSException
+     * @param bool $is_retry
      * @return ResponseInterface
+     * @throws CapabilityUnavailable
+     * @throws RETSException
      */
-    protected function request($capability, $options = [])
+    protected function request($capability, $options = [], $is_retry = false)
     {
         $url = $this->capabilities->get($capability);
 
@@ -328,13 +331,46 @@ class Session
             $this->last_request_url = $url;
         }
 
-        /** @var ResponseInterface $response */
-        if ($this->configuration->readOption('use_post_method')) {
-            $this->debug('Using POST method per use_post_method option');
-            $query = (array_key_exists('query', $options)) ? $options['query'] : null;
-            $response = $this->client->request('POST', $url, array_merge($options, ['form_params' => $query]));
-        } else {
-            $response = $this->client->request('GET', $url, $options);
+        try {
+            /** @var ResponseInterface $response */
+            if ($this->configuration->readOption('use_post_method')) {
+                $this->debug('Using POST method per use_post_method option');
+                $query = (array_key_exists('query', $options)) ? $options['query'] : null;
+                $response = $this->client->request('POST', $url, array_merge($options, ['form_params' => $query]));
+            } else {
+                $response = $this->client->request('GET', $url, $options);
+            }
+        } catch (ClientException $e) {
+            $this->debug("ClientException: " . $e->getCode() . ": " . $e->getMessage());
+
+            if ($e->getCode() != 401) {
+                // not an Unauthorized error, so bail
+                throw $e;
+            }
+
+            if ($capability == 'Login') {
+                // unauthorized on a Login request, so bail
+                throw $e;
+            }
+
+            if ($is_retry) {
+                // this attempt was already a retry, so let's stop here
+                $this->debug("Request retry failed.  Won't retry again");
+                throw $e;
+            }
+
+            if ($this->getConfiguration()->readOption('disable_auto_retry')) {
+                // this attempt was already a retry, so let's stop here
+                $this->debug("Re-logging in disabled.  Won't retry");
+                throw $e;
+            }
+
+            $this->debug("401 Unauthorized exception returned");
+            $this->debug("Logging in again and retrying request");
+            // see if logging in again and retrying the request works
+            $this->Login();
+
+            return $this->request($capability, $options, true);
         }
 
         $response = new \PHRETS\Http\Response($response);
@@ -352,20 +388,46 @@ class Session
             }
         }
 
-        if (preg_match('/text\/xml/', $response->getHeader('Content-Type')) and $capability != 'GetObject') {
+        $this->debug('Response: HTTP ' . $response->getStatusCode());
+
+        if (stripos($response->getHeader('Content-Type'), 'text/xml') !== false and $capability != 'GetObject') {
             $parser = $this->grab(Strategy::PARSER_XML);
             $xml = $parser->parse($response);
+
             if ($xml and isset($xml['ReplyCode'])) {
                 $rc = (string)$xml['ReplyCode'];
+
+                if ($rc == "20037" and $capability != 'Login') {
+                    // must make Login request again.  let's handle this automatically
+
+                    if ($this->getConfiguration()->readOption('disable_auto_retry')) {
+                        // this attempt was already a retry, so let's stop here
+                        $this->debug("Re-logging in disabled.  Won't retry");
+                        throw new RETSException($xml['ReplyText'], (int)$xml['ReplyCode']);
+                    }
+
+                    if ($is_retry) {
+                        // this attempt was already a retry, so let's stop here
+                        $this->debug("Request retry failed.  Won't retry again");
+                        // let this error fall through to the more generic handling below
+                    } else {
+                        $this->debug("RETS 20037 re-auth requested");
+                        $this->debug("Logging in again and retrying request");
+                        // see if logging in again and retrying the request works
+                        $this->Login();
+
+                        return $this->request($capability, $options, true);
+                    }
+                }
+
                 // 20201 - No records found - not exception worthy in my mind
                 // 20403 - No objects found - not exception worthy in my mind
-                if ($rc != "0" and $rc != "20201" and $rc != "20403") {
+                if (!in_array($rc, [0, 20201, 20403])) {
                     throw new RETSException($xml['ReplyText'], (int)$xml['ReplyCode']);
                 }
             }
         }
 
-        $this->debug('Response: HTTP ' . $response->getStatusCode());
         return $response;
     }
 

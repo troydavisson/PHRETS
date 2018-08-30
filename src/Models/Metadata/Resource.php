@@ -72,7 +72,7 @@ class Resource extends Base
     }
 
     /**
-     * @return \Illuminate\Support\Collection|\PHRETS\Models\Metadata\Object[]
+     * @return \Illuminate\Support\Collection|\PHRETS\Models\Metadata\BaseObject[]
      */
     public function getObject()
     {

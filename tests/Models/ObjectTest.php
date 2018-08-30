@@ -1,13 +1,13 @@
 <?php
 
-use PHRETS\Models\Object;
+use PHRETS\Models\BaseObject;
 
 class ObjectTest extends PHPUnit_Framework_TestCase {
 
     /** @test **/
     public function it_holds()
     {
-        $o = new Object;
+        $o = new BaseObject;
         $o->setContent('Test Content');
 
         $this->assertSame('Test Content', $o->getContent());
@@ -16,7 +16,7 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
     /** @test **/
     public function it_returns_a_size()
     {
-        $o = new Object;
+        $o = new BaseObject;
         $o->setContent('Hello');
 
         $this->assertSame(5, $o->getSize());
@@ -35,7 +35,7 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
             'MIME-Version' => 'Mime Version',
         ];
 
-        $o = new Object;
+        $o = new BaseObject;
         foreach ($headers as $k => $v) {
             $o->setFromHeader($k, $v);
         }
@@ -52,7 +52,7 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
     /** @test **/
     public function it_marks_preferred_objects()
     {
-        $o = new Object;
+        $o = new BaseObject;
         $this->assertFalse($o->isPreferred());
         $o->setPreferred(1);
         $this->assertTrue($o->isPreferred());
@@ -66,7 +66,7 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
         $e->setCode(1234);
         $e->setMessage('Test Error Message');
 
-        $o = new Object;
+        $o = new BaseObject;
         $this->assertFalse($o->isError());
         $o->setError($e);
         $this->assertTrue($o->isError());

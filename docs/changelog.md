@@ -2,6 +2,29 @@
 
 _Release TBD_
 
+## 2.6.1
+
+_Released March 22, 2018_
+
+* Fix header version to correctly reflect the new version
+
+## 2.6
+
+_Released March 22, 2018_
+
+* Support for PHP 7.2
+* `PHRETS\Models\Object` renamed to `PHRETS\Models\BaseObject`
+* `PHRETS\Models\Metadata\Object` renamed to `PHRETS\Models\Metadata\BaseObject`
+* `PHRETS\Parsers\GetMetadata\Object` renamed to `PHRETS\Parsers\GetMetadata\BaseObject`
+
+## 2.5
+
+_Released October 23, 2017_
+
+- Fix RETS 1.8 login response parsing for optional info-token-type
+- Support automatic re-login if session issue occurs mid-process
+- New option `disable_auto_retry` (bool) added to optionally disable automatic re-login behavior
+
 ## 2.4
 
 _Released June 28, 2017_

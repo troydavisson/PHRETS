@@ -20,7 +20,7 @@ class GetObjectIntegrationTest extends BaseIntegration
         $primary = $objects->first();
 
         $object = $this->session->GetPreferredObject('Property', 'Photo', '00-1669', 1);
-        $this->assertTrue($object instanceof \PHRETS\Models\Object);
+        $this->assertTrue($object instanceof \PHRETS\Models\BaseObject);
         $this->assertEquals($primary, $object);
     }
 
@@ -37,7 +37,7 @@ class GetObjectIntegrationTest extends BaseIntegration
         $object = $this->session->GetObject('Property', 'Photo', 'URLS-WITH-XML', '*', 1);
 
         $this->assertCount(1, $object);
-        /** @var \PHRETS\Models\Object $first */
+        /** @var \PHRETS\Models\BaseObject $first */
         $first = $object->first();
         $this->assertFalse($first->isError());
         $this->assertSame('http://someurl', $first->getLocation());

@@ -4,7 +4,7 @@ use PHRETS\Http\Response;
 use Illuminate\Support\Collection;
 use PHRETS\Session;
 
-class Object extends Base
+class BaseObject extends Base
 {
     public function parse(Session $rets, Response $response)
     {
@@ -17,7 +17,7 @@ class Object extends Base
         if ($xml->METADATA) {
             if ($xml->METADATA->{'METADATA-OBJECT'}) {
                 foreach ($xml->METADATA->{'METADATA-OBJECT'}->Object as $key => $value) {
-                    $metadata = new \PHRETS\Models\Metadata\Object;
+                    $metadata = new \PHRETS\Models\Metadata\BaseObject;
                     $metadata->setSession($rets);
                     $obj = $this->loadFromXml($metadata, $value, $xml->METADATA->{'METADATA-OBJECT'});
                     $collection->put($obj->getObjectType(), $obj);
