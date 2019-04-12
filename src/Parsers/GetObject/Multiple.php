@@ -49,7 +49,7 @@ class Multiple
         // go through each part of the multipart message
         foreach ($multi_parts as $part) {
             // get Guzzle to parse this multipart section as if it's a whole HTTP message
-            $parts = \GuzzleHttp\Psr7\parse_response("HTTP/1.1 200 OK\r\n" . $part);
+            $parts = \GuzzleHttp\Psr7\parse_response("HTTP/1.1 200 OK\r\n" . $part . "\r\n");
 
             // now throw this single faked message through the Single GetObject response parser
             $single = new PHRETSResponse(new Response($parts->getStatusCode(), $parts->getHeaders(), (string)$parts->getBody()));
