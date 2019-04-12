@@ -78,6 +78,13 @@ class RecursiveOneX
      */
     protected function isPaginationBroken(Results $big, Results $small)
     {
-        return $big->first()->toArray() == $small->first()->toArray();
+        $big_first = $big->first();
+        $small_first = $small->first();
+
+        if ($big_first and $small_first) {
+            return $big_first->toArray() == $small_first->toArray();
+        }
+
+        return false;
     }
 }
