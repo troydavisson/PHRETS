@@ -11,6 +11,17 @@ class XML
             $string = $string->getBody()->__toString();
         }
 
-        return new \SimpleXMLElement((string) $string);
+        $string = (string)$string;
+
+        if (!preg_match('/^<\?xml[^>]+?encoding=".+"\?>/', $string)) {
+            if (
+                mb_detect_encoding($string) !== 'UTF-8' ||
+                !mb_check_encoding($string, 'UTF-8')
+            ) {
+                $string = utf8_encode($string);
+            }
+        }
+
+        return new \SimpleXMLElement($string);
     }
 }
