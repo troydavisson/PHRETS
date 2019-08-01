@@ -4,8 +4,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\CookieJarInterface;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\HandlerStack;
 use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
+use kamermans\OAuth2\GrantType\ClientCredentials;
+use kamermans\OAuth2\OAuth2Middleware;
 use PHRETS\Exceptions\CapabilityUnavailable;
 use PHRETS\Exceptions\MetadataNotFound;
 use PHRETS\Exceptions\MissingConfiguration;
@@ -42,7 +45,22 @@ class Session
         $defaults = [];
 
         // start up our Guzzle HTTP client
-        $this->client = PHRETSClient::make($defaults);
+        if ($this->configuration->getHttpAuthenticationMethod() == Configuration::AUTH_OAUTH2) {
+            $reauth_client = new Client(['base_uri' => $this->configuration->readOption('oauth2_base_uri')]);
+            $reauth_config = [
+                'client_id' => $this->configuration->getUsername(),
+                'client_secret' => $this->configuration->getPassword(),
+                'scope' => $this->configuration->readOption('oauth2_scope')
+            ];
+            $grant_type = new ClientCredentials($reauth_client, $reauth_config);
+            $oauth = new OAuth2Middleware($grant_type);
+            $stack = HandlerStack::create();
+            $stack->push($oauth);
+
+            $this->client = PHRETSClient::make(['auth' => 'oauth', 'handler' => $stack]);
+        } else {
+            $this->client = PHRETSClient::make($defaults);
+        }
 
         $this->cookie_jar = new CookieJar;
 
@@ -545,6 +563,9 @@ class Session
             ],
             'curl' => [ CURLOPT_COOKIEFILE => tempnam('/tmp', 'phrets') ]
         ];
+        if ($this->configuration->getHttpAuthenticationMethod() == Configuration::AUTH_OAUTH2) {
+            $defaults['auth'] = 'oauth';
+        }
 
         // disable following 'Location' header (redirects) automatically
         if ($this->configuration->readOption('disable_follow_location')) {
