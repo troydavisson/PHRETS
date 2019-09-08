@@ -109,7 +109,7 @@ abstract class Base implements \ArrayAccess
     {
         foreach (array_merge($this->getXmlElements(), $this->getXmlAttributes()) as $attr) {
             if (strtolower($attr) == strtolower($offset)) {
-                return \array_get($this->values, $attr);
+                return Arr::get($this->values, $attr);
             }
         }
         return null;
