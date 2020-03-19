@@ -5,6 +5,8 @@ php:
   - 7.0
   - 7.1
   - 7.2
+  - 7.3
+  - 7.4
 before_script: composer install
 env:
   - PHRETS_TESTING_USERNAME=fake PHRETS_TESTING_PASSWORD=fake
