@@ -324,20 +324,23 @@ class Session
         }
 
         $this->debug("Sending HTTP Request for {$url} ({$capability})", $options);
-
-        if (array_key_exists('query', $options)) {
-            $this->last_request_url = $url . '?' . \http_build_query($options['query']);
-        } else {
-            $this->last_request_url = $url;
-        }
+        $this->last_request_url = $url;
 
         try {
             /** @var ResponseInterface $response */
             if ($this->configuration->readOption('use_post_method')) {
                 $this->debug('Using POST method per use_post_method option');
                 $query = (array_key_exists('query', $options)) ? $options['query'] : null;
-                $response = $this->client->request('POST', $url, array_merge($options, ['form_params' => $query]));
+
+                // do not send query options in url, only in form_params
+                $local_options = $options;
+                unset($local_options['query']);
+                $response = $this->client->request('POST', $url, array_merge($local_options, ['form_params' => $query]));
             } else {
+                if (array_key_exists('query', $options)) {
+                    $this->last_request_url = $url . '?' . \http_build_query($options['query']);
+                }
+
                 $response = $this->client->request('GET', $url, $options);
             }
         } catch (ClientException $e) {
