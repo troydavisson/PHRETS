@@ -4,7 +4,7 @@ class phRETS {
 
 /**
 *  PHRETS - PHP library for RETS
-*  version 1.0.2
+*  version 1.0.3
 *  http://troda.com/projects/phrets/
 *  Copyright (C) 2007-2014 Troy Davisson
 *  please submit problem or error reports to https://github.com/troydavisson/PHRETS/issues
@@ -209,28 +209,23 @@ class phRETS {
 		}
 		list($headers, $body) = $result;
 
-		// fix case issue if exists
-		if (isset($this->last_response_headers['Content-type']) && !isset($this->last_response_headers['Content-Type'])) {
-			$this->last_response_headers['Content-Type'] = $this->last_response_headers['Content-type'];
-		}
-
-		if (!isset($this->last_response_headers['Content-Type'])) {
-			$this->last_response_headers['Content-Type'] = "";
+		if (!isset($this->last_response_headers['CONTENT-TYPE'])) {
+			$this->last_response_headers['CONTENT-TYPE'] = "";
 		}
 
 		// check what type of response came back
-		if (strpos($this->last_response_headers['Content-Type'], 'multipart') !== false) {
+		if (strpos($this->last_response_headers['CONTENT-TYPE'], 'multipart') !== false) {
 
 			// help bad responses be more multipart compliant
 			$body = "\r\n{$body}\r\n";
 
 			// multipart
-			preg_match('/boundary\=\"(.*?)\"/', $this->last_response_headers['Content-Type'], $matches);
+			preg_match('/boundary\=\"(.*?)\"/', $this->last_response_headers['CONTENT-TYPE'], $matches);
 			if (isset($matches[1])) {
 				$boundary = $matches[1];
 			}
 			else {
-				preg_match('/boundary\=(.*?)(\s|$|\;)/', $this->last_response_headers['Content-Type'], $matches);
+				preg_match('/boundary\=(.*?)(\s|$|\;)/', $this->last_response_headers['CONTENT-TYPE'], $matches);
 				$boundary = $matches[1];
 			}
 			// strip quotes off of the boundary
@@ -334,42 +329,42 @@ class phRETS {
 			$this_photo = array();
 
 			$this_photo['Success'] = true; // assuming for now
-			if (isset($this->last_response_headers['Content-ID'])) {
-				$this_photo['Content-ID'] = $this->last_response_headers['Content-ID'];
+			if (isset($this->last_response_headers['CONTENT-ID'])) {
+				$this_photo['Content-ID'] = $this->last_response_headers['CONTENT-ID'];
 			}
-			if (isset($this->last_response_headers['Object-ID'])) {
-				$this_photo['Object-ID'] = $this->last_response_headers['Object-ID'];
+			if (isset($this->last_response_headers['OBJECT-ID'])) {
+				$this_photo['Object-ID'] = $this->last_response_headers['OBJECT-ID'];
 			}
-			if (isset($this->last_response_headers['Content-Type'])) {
-				$this_photo['Content-Type'] = $this->last_response_headers['Content-Type'];
+			if (isset($this->last_response_headers['CONTENT-TYPE'])) {
+				$this_photo['Content-Type'] = $this->last_response_headers['CONTENT-TYPE'];
 			}
-			if (isset($this->last_response_headers['MIME-Version'])) {
-				$this_photo['MIME-Version'] = $this->last_response_headers['MIME-Version'];
+			if (isset($this->last_response_headers['MIME-VERSION'])) {
+				$this_photo['MIME-Version'] = $this->last_response_headers['MIME-VERSION'];
 			}
-			if (isset($this->last_response_headers['Location'])) {
-				$this_photo['Location'] = $this->last_response_headers['Location'];
+			if (isset($this->last_response_headers['LOCATION'])) {
+				$this_photo['Location'] = $this->last_response_headers['LOCATION'];
 			}
-			if (isset($this->last_response_headers['Preferred'])) {
-				$this_photo['Preferred'] = $this->last_response_headers['Preferred'];
+			if (isset($this->last_response_headers['PREFERRED'])) {
+				$this_photo['Preferred'] = $this->last_response_headers['PREFERRED'];
 			}
 
-			if (isset($this->last_response_headers['Description'])) {
-				if (!empty($this->last_response_headers['Description'])) {
+			if (isset($this->last_response_headers['DESCRIPTION'])) {
+				if (!empty($this->last_response_headers['DESCRIPTION'])) {
 					// for servers where the implementors didn't read the next word in the RETS spec.
 					// 'Description' is the BNF term. Content-Description is the correct header.
 					// fixing for sanity
-					$this_photo['Content-Description'] = $this->last_response_headers['Description'];
+					$this_photo['Content-Description'] = $this->last_response_headers['DESCRIPTION'];
 				}
 			}
-			if (isset($this->last_response_headers['Content-Description'])) {
-				$this_photo['Content-Description'] = $this->last_response_headers['Content-Description'];
+			if (isset($this->last_response_headers['CONTENT-DESCRIPTION'])) {
+				$this_photo['Content-Description'] = $this->last_response_headers['CONTENT-DESCRIPTION'];
 			}
 
 			$this_photo['Length'] = strlen($body);
 			$this_photo['Data'] = $body;
 
-			if (isset($this->last_response_headers['Content-Type'])) {
-				if (strpos($this->last_response_headers['Content-Type'], 'xml') !== false) {
+			if (isset($this->last_response_headers['CONTENT-TYPE'])) {
+				if (strpos($this->last_response_headers['CONTENT-TYPE'], 'xml') !== false) {
 					// RETS error maybe?
 					$xml = $this->ParseXMLResponse($body);
 
@@ -1600,25 +1595,25 @@ class phRETS {
 			$this->last_server_response = $this->last_response_headers_raw . $response_body;
 		}
 
-		if (isset($this->last_response_headers['WWW-Authenticate'])) {
-			if (strpos($this->last_response_headers['WWW-Authenticate'], 'Basic') !== false) {
+		if (isset($this->last_response_headers['WWW-AUTHENTICATE'])) {
+			if (strpos($this->last_response_headers['WWW-AUTHENTICATE'], 'Basic') !== false) {
 				$this->auth_support_basic = true;
 			}
-			if (strpos($this->last_response_headers['WWW-Authenticate'], 'Digest') !== false) {
+			if (strpos($this->last_response_headers['WWW-AUTHENTICATE'], 'Digest') !== false) {
 				$this->auth_support_digest = true;
 			}
 		}
 
-		if (isset($this->last_response_headers['RETS-Version'])) {
-			$this->server_version = $this->last_response_headers['RETS-Version'];
+		if (isset($this->last_response_headers['RETS-VERSION'])) {
+			$this->server_version = $this->last_response_headers['RETS-VERSION'];
 		}
 
-		if (isset($this->last_response_headers['Server'])) {
-			$this->server_software = $this->last_response_headers['Server'];
+		if (isset($this->last_response_headers['SERVER'])) {
+			$this->server_software = $this->last_response_headers['SERVER'];
 		}
 
-		if (isset($this->last_response_headers['Set-Cookie'])) {
-			if (preg_match('/RETS-Session-ID\=(.*?)(\;|\s+|$)/', $this->last_response_headers['Set-Cookie'], $matches)) {
+		if (isset($this->last_response_headers['SET-COOKIE'])) {
+			if (preg_match('/RETS-Session-ID\=(.*?)(\;|\s+|$)/', $this->last_response_headers['SET-COOKIE'], $matches)) {
 				$this->session_id = $matches[1];
 			}
 		}
@@ -1643,7 +1638,7 @@ class phRETS {
 			@list($header, $value) = explode(':', $trimmed_call_string, 2);
 		}
 
-		$header = trim($header);
+		$header = strtoupper(trim($header));
 		$value = trim($value);
 
 		if ( preg_match('/^HTTP\/1/', $trimmed_call_string) ) {
