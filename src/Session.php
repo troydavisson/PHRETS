@@ -293,10 +293,19 @@ class Session
      * @return bool
      * @throws Exceptions\CapabilityUnavailable
      */
-    public function Disconnect()
+    public function Logout()
     {
         $response = $this->request('Logout');
         return true;
+    }
+
+    /**
+     * @return bool
+     * @throws Exceptions\CapabilityUnavailable
+     */
+    public function Disconnect()
+    {
+        return $this->Logout();
     }
 
     /**
