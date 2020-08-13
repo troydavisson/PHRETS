@@ -5,6 +5,8 @@ use Psr\Http\Message\ResponseInterface;
 
 class XML
 {
+    const REGEX_ASCII_CONTROL_CHARACTERS = '/(&#[xX](0?[0-9]|[12][0-9]|3[01]);)/'; // '&#xN;' where 0 <= N < 32
+
     public function parse($string)
     {
         if ($string instanceof ResponseInterface or $string instanceof Response) {
@@ -21,6 +23,8 @@ class XML
                 $string = utf8_encode($string);
             }
         }
+
+        $string = preg_replace(self::REGEX_ASCII_CONTROL_CHARACTERS, '', $string);
 
         return new \SimpleXMLElement($string);
     }
