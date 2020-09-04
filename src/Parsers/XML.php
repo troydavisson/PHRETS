@@ -5,7 +5,17 @@ use Psr\Http\Message\ResponseInterface;
 
 class XML
 {
-    const REGEX_ASCII_CONTROL_CHARACTERS = '/(&#[xX](0?[0-9]|[12][0-9]|3[01]);)/'; // '&#xN;' where 0 <= N < 32
+    /**
+     * Matches xml-encoded character references (decimal or hex) for ASCII control characters group.
+     * Will match any string that begins with &# and ends with ; and in between is either
+     * (0?[0-9]|[12][0-9]|3[01]) - a decimal integer between 00 and 31 (leading 0 optional)
+     * ([xX](0?[0-9]|1[0-9A-Fa-f]))) - a hex integer between 00 and 1F (leading 0 optional, can be upper or lower case)
+     *
+     * @link https://regexr.com/5be0p
+     * @link https://en.wikipedia.org/wiki/ASCII#Control_characters
+     * @link https://www.liquid-technologies.com/XML/CharRefs.aspx
+     */
+    const REGEX_ASCII_CONTROL_CHARACTERS = '/(&#((0?[0-9]|[12][0-9]|3[01])|([xX](0?[0-9]|1[0-9A-Fa-f])));)/';
 
     public function parse($string)
     {
