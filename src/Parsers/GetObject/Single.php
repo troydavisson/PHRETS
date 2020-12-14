@@ -8,18 +8,16 @@ class Single
 {
     public function parse(Response $response)
     {
-        $headers = $response->getHeaders();
-
         $obj = new BaseObject;
         $obj->setContent(($response->getBody()) ? $response->getBody()->__toString() : null);
-        $obj->setContentDescription(\array_get($headers, 'Content-Description', [null])[0]);
-        $obj->setContentSubDescription(\array_get($headers, 'Content-Sub-Description', [null])[0]);
-        $obj->setContentId(\array_get($headers, 'Content-ID', [null])[0]);
-        $obj->setObjectId(\array_get($headers, 'Object-ID', [null])[0]);
-        $obj->setContentType(\array_get($headers, 'Content-Type', [null])[0]);
-        $obj->setLocation(\array_get($headers, 'Location', [null])[0]);
-        $obj->setMimeVersion(\array_get($headers, 'MIME-Version', [null])[0]);
-        $obj->setPreferred(\array_get($headers, 'Preferred', [null])[0]);
+        $obj->setContentDescription($response->getHeader('Content-Description'));
+        $obj->setContentSubDescription($response->getHeader('Content-Sub-Description'));
+        $obj->setContentId($response->getHeader('Content-ID'));
+        $obj->setObjectId($response->getHeader('Object-ID'));
+        $obj->setContentType($response->getHeader('Content-Type'));
+        $obj->setLocation($response->getHeader('Location'));
+        $obj->setMimeVersion($response->getHeader('MIME-Version'));
+        $obj->setPreferred($response->getHeader('Preferred'));
 
         if ($this->isError($response)) {
             $xml = $response->xml();
@@ -45,7 +43,7 @@ class Single
             return true;
         }
 
-        $content_type = \array_get($response->getHeaders(), 'Content-Type', [null])[0];
+        $content_type = $response->getHeader('Content-Type');
         if ($content_type and strpos($content_type, 'xml') !== false) {
             $xml = $response->xml();
 

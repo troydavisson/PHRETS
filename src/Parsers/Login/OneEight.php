@@ -13,6 +13,8 @@ class OneEight extends OneX
             @list($name, $value) = explode("=", $line, 2);
         }
 
+        $value = trim($value);
+
         if ($name == 'Info') {
             if ($value) {
                 // break it up on the 2 required parts

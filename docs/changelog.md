@@ -1,6 +1,14 @@
 ## master
 
-_Release TBD_
+## 2.6.2
+
+_Released March 18, 2020_
+
+* Reference HTTP headers in case insensitive way per the HTTP spec
+* Eliminate use of deprecated array_get helpers
+* Don't include query parameters when `use_post_method` is used
+* Better variable checking for servers with broken pagination implementations
+* Trim capability URLs in case they include leading spaces
 
 ## 2.6.1
 

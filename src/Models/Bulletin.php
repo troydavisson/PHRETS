@@ -1,5 +1,7 @@
 <?php namespace PHRETS\Models;
 
+use Illuminate\Support\Arr;
+
 class Bulletin
 {
     protected $body = null;
@@ -45,7 +47,7 @@ class Bulletin
      */
     public function getDetail($name)
     {
-        return array_get($this->details, strtoupper($name));
+        return Arr::get($this->details, strtoupper($name));
     }
 
     /**
