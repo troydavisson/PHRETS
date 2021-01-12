@@ -1,5 +1,5 @@
 {
-  "name": "neighborhoods/phrets",
+  "name": "troydavisson/phrets",
   "type": "library",
   "license": "MIT",
   "description": "RETS library in PHP",
@@ -8,6 +8,14 @@
     "mls"
   ],
   "homepage": "http://github.com/neighborhoods/PHRETS",
+  "authors": [
+    {
+      "name": "Troy Davisson",
+      "email": "troy.davisson@gmail.com",
+      "homepage": "http://troda.com",
+      "role": "Developer"
+    }
+  ],
   "require": {
     "php": ">=5.5.0",
     "guzzlehttp/guzzle": ">=6.0",
