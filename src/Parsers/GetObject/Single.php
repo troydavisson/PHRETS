@@ -10,6 +10,7 @@ class Single
     {
         $obj = new BaseObject;
         $obj->setContent(($response->getBody()) ? $response->getBody()->__toString() : null);
+        $obj->setContentLabel($response->getHeader('X-Content-Label'));
         $obj->setContentDescription($response->getHeader('Content-Description'));
         $obj->setContentSubDescription($response->getHeader('Content-Sub-Description'));
         $obj->setContentId($response->getHeader('Content-ID'));
