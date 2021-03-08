@@ -134,6 +134,34 @@ class Session
         if (stripos($response->getHeader('Content-Type'), 'multipart') !== false) {
             $parser = $this->grab(Strategy::PARSER_OBJECT_MULTIPLE);
             $collection = $parser->parse($response);
+        }
+        /**
+         *  Canada CREA, sending xml response with all photo url
+         *
+         *  #content_type: "text/xml"
+         *  #content_id: null
+         *  #object_id: null
+         *  #mime_version: null
+         *  #location: null
+         *  #content_description: null
+         *  #content_sub_description: null
+         *  #content: """
+         *    <?xml version="1.0" encoding="utf-8"?>\r\n
+         *    <RETS ReplyCode="0" ReplyText="Operation Successful">\r\n
+         *      <COUNT Records="3" />\r\n
+         *      <DELIMITER value="09" />\r\n
+         *      <COLUMNS>\tResourceRecordID\tOrder\tMediaUrl\tMediaModificationTimestamp\t</COLUMNS>\r\n
+         *      <DATA>\t20317246\t1\thttps://ddfcdn.realtor.ca/listings/TS636850668860000000/reb8/highres/3/176463_1.jpg\t2019-02-06T16:21:26Z\t</DATA>\r\n
+         *      <DATA>\t20317246\t2\thttps://ddfcdn.realtor.ca/listings/TS636852717980000000/reb8/highres/3/176463_2.jpg\t2019-02-09T01:16:38Z\t</DATA>\r\n
+         *      <DATA>\t20317246\t3\thttps://ddfcdn.realtor.ca/listings/TS636852717980000000/reb8/highres/3/176463_3.jpg\t2019-02-09T01:16:38Z\t</DATA>\r\n
+         *    </RETS>
+         *    """
+         *  #preferred: null
+         *  #error: null
+         */
+        elseif (stripos($response->getHeader('Content-Type'), 'text/xml') !== false) {
+            $parser = $this->grab(Strategy::PARSER_SEARCH);
+            $collection = $parser->parse($this, $response, ['SearchType'=>'GetObject', 'Class' => 'Property']);
         } else {
             $collection = new Collection;
             $parser = $this->grab(Strategy::PARSER_OBJECT_SINGLE);
