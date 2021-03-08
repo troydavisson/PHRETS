@@ -546,7 +546,7 @@ class Session
                 'Accept-Encoding' => 'gzip',
                 'Accept' => '*/*',
             ],
-            'curl' => [ CURLOPT_COOKIEFILE => tempnam(sys_get_temp_dir(), 'phrets') ]
+            'curl' => [ CURLOPT_COOKIEFILE => '' ] // tempnam(sys_get_temp_dir(), 'phrets') leaving it black, create & delete cookie file automatically
         ];
 
         // disable following 'Location' header (redirects) automatically
