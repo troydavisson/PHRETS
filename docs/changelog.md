@@ -1,5 +1,14 @@
 ## master
 
+## 2.6.3
+
+_Released February 16, 2022_
+
+* New Logout method (duplicates previous Disconnect method)
+* Fix deprecated parse_response method from Guzzle
+* New automatic retry option `getobject_auto_retry` (default false) for session issues reported in GetObject responses
+* Fix XML error detection in GetObject responses
+
 ## 2.6.2
 
 _Released March 18, 2020_
