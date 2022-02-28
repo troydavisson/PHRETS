@@ -20,7 +20,10 @@ class Configuration
     protected $http_authentication = 'digest';
     /** @var \PHRETS\Strategies\Strategy */
     protected $strategy;
-    protected $options = [];
+    protected $options = [
+        'suppress_tmp_warn' => true,
+        'tmp_path'          => '/tmp'
+    ];
 
     public function __construct()
     {

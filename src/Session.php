@@ -573,6 +573,12 @@ class Session
      */
     public function getDefaultOptions()
     {
+        if ($this->configuration->readOption('suppress_tmp_warn')) {
+            $curl = @tempnam($this->configuration->readOption('tmp_path'), 'phrets');
+        } else {
+            $curl = tempnam($this->configuration->readOption('tmp_path'), 'phrets');
+        }
+
         $defaults = [
             'auth' => [
                 $this->configuration->getUsername(),
@@ -585,7 +591,7 @@ class Session
                 'Accept-Encoding' => 'gzip',
                 'Accept' => '*/*',
             ],
-            'curl' => [ CURLOPT_COOKIEFILE => tempnam('/tmp', 'phrets') ]
+            'curl' => [ CURLOPT_COOKIEFILE => $curl ]
         ];
 
         // disable following 'Location' header (redirects) automatically
