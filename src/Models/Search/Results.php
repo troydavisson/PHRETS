@@ -256,6 +256,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      * @param mixed $offset
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return $this->results->offsetExists($offset);
@@ -265,6 +266,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      * @param mixed $offset
      * @return Record|null
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->results->offsetGet($offset);
