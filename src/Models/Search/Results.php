@@ -276,6 +276,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      * @param mixed $offset
      * @param mixed $value
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if ($offset) {
@@ -288,6 +289,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
     /**
      * @param mixed $offset
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         $this->results->offsetUnset($offset);
