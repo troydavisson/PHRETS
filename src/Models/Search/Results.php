@@ -247,6 +247,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
         return $this;
     }
 
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return $this->results->getIterator();
@@ -298,6 +299,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
     /**
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return $this->results->count();
