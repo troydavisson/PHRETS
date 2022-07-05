@@ -1,6 +1,8 @@
 <?php
 
-class ResponseTest extends PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class ResponseTest extends TestCase {
 
     /** @test **/
     public function it_creates_valid_xml()

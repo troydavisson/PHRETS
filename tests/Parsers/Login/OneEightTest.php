@@ -1,13 +1,14 @@
 <?php
 
 use PHRETS\Parsers\Login\OneEight;
+use PHPUnit\Framework\TestCase;
 
-class OneEightTest extends PHPUnit_Framework_TestCase {
+class OneEightTest extends TestCase {
 
     /** @var OneEight */
     protected $parser;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->parser = new OneEight;
         $this->parser->parse("
@@ -67,7 +68,7 @@ GetPayloadList=/GetPayloadList.asmx/GetPayloadList
     /** @test **/
     public function it_casts_details()
     {
-        $this->assertInternalType('bool', $this->parser->getDetails()['BROKERRECIPFLAG']);
-        $this->assertInternalType('int', $this->parser->getDetails()['SUL']);
+        $this->assertIsBool($this->parser->getDetails()['BROKERRECIPFLAG']);
+        $this->assertIsInt($this->parser->getDetails()['SUL']);
     }
 }

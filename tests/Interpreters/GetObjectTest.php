@@ -1,8 +1,9 @@
 <?php
 
 use PHRETS\Interpreters\GetObject;
+use PHPUnit\Framework\TestCase;
 
-class GetObjectTest extends PHPUnit_Framework_TestCase {
+class GetObjectTest extends TestCase {
 
     /** @test **/
     public function it_combines_singles()

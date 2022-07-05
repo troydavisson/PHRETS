@@ -1,8 +1,9 @@
 <?php
 
 use PHRETS\Versions\RETSVersion;
+use PHPUnit\Framework\TestCase;
 
-class RETSVersionTest extends PHPUnit_Framework_TestCase {
+class RETSVersionTest extends TestCase {
 
     /** @test **/
     public function it_loads()
@@ -87,10 +88,10 @@ class RETSVersionTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @test
-     * @expectedException \PHRETS\Exceptions\InvalidRETSVersion
      * **/
     public function it_fails_bad_versions()
     {
+        $this->expectException(\PHRETS\Exceptions\InvalidRETSVersion::class);
         $v = new RETSVersion;
         $v->setVersion('2.0');
     }

@@ -20,10 +20,10 @@ class SessionIntegrationTest extends BaseIntegration
 
     /**
      * @test
-     * @expectedException \PHRETS\Exceptions\RETSException
      * **/
     public function it_throws_an_exception_when_making_a_bad_request()
     {
+        $this->expectException(\PHRETS\Exceptions\RETSException::class);
         $this->session->Login();
 
         $this->session->Search('Property', 'Z', '*'); // no such class by that name
@@ -130,10 +130,10 @@ class SessionIntegrationTest extends BaseIntegration
 
     /**
      * @test
-     * @expectedException \PHRETS\Exceptions\CapabilityUnavailable
      **/
     public function it_doesnt_allow_requests_to_unsupported_capabilities()
     {
+        $this->expectException(\PHRETS\Exceptions\CapabilityUnavailable::class);
         $config = new \PHRETS\Configuration;
 
         // fake, mocked endpoint

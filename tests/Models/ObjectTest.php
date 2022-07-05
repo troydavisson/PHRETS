@@ -1,8 +1,9 @@
 <?php
 
 use PHRETS\Models\BaseObject;
+use PHPUnit\Framework\TestCase;
 
-class ObjectTest extends PHPUnit_Framework_TestCase {
+class ObjectTest extends TestCase {
 
     /** @test **/
     public function it_holds()

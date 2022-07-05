@@ -2,8 +2,9 @@
 
 use PHRETS\Configuration;
 use PHRETS\Session;
+use PHPUnit\Framework\TestCase;
 
-class SessionTest extends PHPUnit_Framework_TestCase {
+class SessionTest extends TestCase {
 
     /** @test **/
     public function it_builds()
@@ -17,10 +18,10 @@ class SessionTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @test
-     * @expectedException \PHRETS\Exceptions\MissingConfiguration
      */
     public function it_detects_invalid_configurations()
     {
+        $this->expectException(\PHRETS\Exceptions\MissingConfiguration::class);
         $c = new Configuration;
         $c->setLoginUrl('http://www.reso.org/login');
 

@@ -2,8 +2,9 @@
 
 use PHRETS\Models\Search\Record;
 use PHRETS\Models\Search\Results;
+use PHPUnit\Framework\TestCase;
 
-class RecordTest extends PHPUnit_Framework_TestCase
+class RecordTest extends TestCase
 {
 
     /** @test **/

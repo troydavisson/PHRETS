@@ -3,8 +3,9 @@
 use GuzzleHttp\Psr7\Response;
 use PHRETS\Http\Response as PHRETSResponse;
 use PHRETS\Parsers\GetObject\Single;
+use PHPUnit\Framework\TestCase;
 
-class SingleTest extends PHPUnit_Framework_TestCase {
+class SingleTest extends TestCase {
 
     /** @test **/
     public function it_understands_the_basics()

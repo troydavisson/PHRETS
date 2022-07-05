@@ -2,8 +2,9 @@
 
 use PHRETS\Configuration;
 use PHRETS\Strategies\StandardStrategy;
+use PHPUnit\Framework\TestCase;
 
-class StandardStrategyTest extends PHPUnit_Framework_TestCase
+class StandardStrategyTest extends TestCase
 {
     /** @test **/
     public function it_provides_defaults()

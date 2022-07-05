@@ -87,10 +87,10 @@ class GetMetadataIntegrationTest extends BaseIntegration
 
     /**
      * @test
-     * @expectedException \PHRETS\Exceptions\MetadataNotFound
      * **/
     public function it_errors_with_bad_resource_name()
     {
+        $this->expectException(\PHRETS\Exceptions\MetadataNotFound::class);
         $this->session->GetResourcesMetadata('Bogus');
     }
 

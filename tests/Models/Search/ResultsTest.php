@@ -2,13 +2,14 @@
 
 use PHRETS\Models\Search\Record;
 use PHRETS\Models\Search\Results;
+use PHPUnit\Framework\TestCase;
 
-class ResultsTest extends PHPUnit_Framework_TestCase
+class ResultsTest extends TestCase
 {
     /** @var Results */
     protected $rs;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->rs = new Results;
 
@@ -133,7 +134,7 @@ class ResultsTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(isset($this->rs['extra']));
         $this->assertTrue(isset($this->rs['bonus']));
     }
-    
+
     /** @test **/
     public function it_holds_errors()
     {
@@ -141,7 +142,7 @@ class ResultsTest extends PHPUnit_Framework_TestCase
         $rs->setError('test');
         $this->assertSame('test', $rs->getError());
     }
-    
+
     /** @test **/
     public function it_holds_a_session()
     {
@@ -196,7 +197,7 @@ class ResultsTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(['extra', 'bonus'], $rs->lists('id'));
     }
-    
+
     /** @test **/
     public function it_converts_object_to_CSV()
     {

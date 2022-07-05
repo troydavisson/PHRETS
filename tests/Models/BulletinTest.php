@@ -1,8 +1,9 @@
 <?php
 
 use PHRETS\Models\Bulletin;
+use PHPUnit\Framework\TestCase;
 
-class BulletinTest extends PHPUnit_Framework_TestCase {
+class BulletinTest extends TestCase {
 
     /** @test **/
     public function it_holds()

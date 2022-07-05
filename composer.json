@@ -24,7 +24,7 @@
     "league/csv": ">=6.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "5.*",
+    "phpunit/phpunit": "8.5.*",
     "psr/log": "1.*",
     "monolog/monolog": "1.10.*",
     "gsaulmon/guzzlerecorder": "2.*"

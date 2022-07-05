@@ -121,10 +121,10 @@ class SearchIntegrationTest extends BaseIntegration
 
     /**
      * @test
-     * @expectedException \PHRETS\Exceptions\AutomaticPaginationError
      * **/
     public function it_detects_broken_pagination()
     {
+        $this->expectException(\PHRETS\Exceptions\AutomaticPaginationError::class);
         $this->session->Login();
 
         // this is manually faked in the fixture

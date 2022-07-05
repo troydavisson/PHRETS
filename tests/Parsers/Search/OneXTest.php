@@ -5,13 +5,14 @@ use PHRETS\Http\Response as PHRETSResponse;
 use PHRETS\Configuration;
 use PHRETS\Parsers\Search\OneX;
 use PHRETS\Session;
+use PHPUnit\Framework\TestCase;
 
-class OneXTest extends PHPUnit_Framework_TestCase
+class OneXTest extends TestCase
 {
     /** @var PHRETS\Models\Search\Results */
     protected $results;
 
-    public function setUp()
+    public function setUp(): void
     {
         $parser = new OneX;
 

@@ -3,8 +3,9 @@
 use GuzzleHttp\Psr7\Response;
 use PHRETS\Parsers\GetObject\Multiple;
 use PHRETS\Http\Response as PHRETSResponse;
+use PHPUnit\Framework\TestCase;
 
-class MultipleTest extends PHPUnit_Framework_TestCase
+class MultipleTest extends TestCase
 {
 
     /** @test * */
