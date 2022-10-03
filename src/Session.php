@@ -321,10 +321,19 @@ class Session
      * @return bool
      * @throws Exceptions\CapabilityUnavailable
      */
+    public function Logout()
+    {
+        $this->request('Logout');
+        return true;
+    }
+
+    /**
+     * @return bool
+     * @throws Exceptions\CapabilityUnavailable
+     */
     public function Disconnect()
     {
-        $response = $this->request('Logout');
-        return true;
+        return $this->Logout();
     }
 
     /**
@@ -453,6 +462,36 @@ class Session
                 // 20403 - No objects found - not exception worthy in my mind
                 if (!in_array($rc, [0, 20201, 20403])) {
                     throw new RETSException($xml['ReplyText'], (int)$xml['ReplyCode']);
+                }
+            }
+        }
+
+        if ($this->getConfiguration()->readOption('getobject_auto_retry') and $capability == 'GetObject') {
+            if (stripos($response->getHeader('Content-Type'), 'multipart') !== false) {
+                $parser = $this->grab(Strategy::PARSER_OBJECT_MULTIPLE);
+                $collection = $parser->parse($response);
+            } else {
+                $collection = new Collection;
+                $parser = $this->grab(Strategy::PARSER_OBJECT_SINGLE);
+                $object = $parser->parse($response);
+                $collection->push($object);
+            }
+
+            /** @var BaseObject[] $collection */
+            foreach ($collection as $object) {
+                if ($object->isError() and $object->getError()->getCode() == '20037') {
+                    if ($is_retry) {
+                        // this attempt was already a retry, so let's stop here
+                        $this->debug("Request retry failed.  Won't retry again");
+                        // let this error fall through to the more generic handling below
+                    } else {
+                        $this->debug("RETS 20037 re-auth requested");
+                        $this->debug("Logging in again and retrying request");
+                        // see if logging in again and retrying the request works
+                        $this->Login();
+
+                        return $this->request($capability, $options, true);
+                    }
                 }
             }
         }
