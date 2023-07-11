@@ -1,5 +1,11 @@
 ## master
 
+## 2.6.4
+
+_Released July 11, 2023_
+
+* Support for PHP 8
+
 ## 2.6.3
 
 _Released February 16, 2022_
