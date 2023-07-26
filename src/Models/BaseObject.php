@@ -7,6 +7,7 @@ class BaseObject
     protected $object_id;
     protected $mime_version;
     protected $location;
+    protected $content_label;
     protected $content_description;
     protected $content_sub_description;
     protected $content;
@@ -28,6 +29,24 @@ class BaseObject
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
+    }
+
+    /**
+     * @param mixed $content_description
+     * @return $this
+     */
+    public function getContentLabel()
+    {
+        return $this->content_label;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setContentLabel($label)
+    {
+        $this->content_label = $label;
         return $this;
     }
 
@@ -164,6 +183,7 @@ class BaseObject
     public function setFromHeader($name, $value)
     {
         $headers = [
+            'X-Content-Label' => 'ContentLabel',
             'Content-Description' => 'ContentDescription',
             'Content-Sub-Description' => 'ContentSubDescription',
             'Content-ID' => 'ContentId',
