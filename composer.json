@@ -2,6 +2,7 @@
   "name": "troydavisson/phrets",
   "type": "library",
   "license": "MIT",
+  "version": "2.5.1",
   "description": "RETS library in PHP",
   "keywords": [
     "rets",
