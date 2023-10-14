@@ -37,6 +37,12 @@ class Multiple
         // make the last one look like the rest for easier parsing
         $body = preg_replace('/\r\n--' . $boundary . '--/', "\r\n--{$boundary}\r\n", $body);
 
+        // Create a regular expression pattern to match the description: field and its value
+        $fieldToUpdate = 'Description';
+        $pattern = "/{$fieldToUpdate}:(.*?)(\r?\n\r?\n|$)/si";
+        // remove the value until an empty line is reached because Guzzle is not able to parse if the value is in multilines
+        $body = preg_replace($pattern, "{$fieldToUpdate}:\r\n\r\n", $body);
+        
         // cut up the message
         $multi_parts = explode("\r\n--{$boundary}\r\n", $body);
         // take off anything that happens before the first boundary (the preamble)
