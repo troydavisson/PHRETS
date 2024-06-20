@@ -331,6 +331,13 @@ class Session
             $ua_digest = $this->configuration->userAgentDigestHash($this);
             $options['headers'] = array_merge($options['headers'], ['RETS-UA-Authorization' => 'Digest ' . $ua_digest]);
         }
+        
+        // proxy setup when available in configuration option
+        $proxy = $this->configuration->readOption('proxy');
+        if ($proxy) {
+            $options['proxy'] = $proxy;
+        }
+
 
         $this->debug("Sending HTTP Request for {$url} ({$capability})", $options);
         $this->last_request_url = $url;
