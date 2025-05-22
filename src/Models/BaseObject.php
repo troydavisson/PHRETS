@@ -12,6 +12,7 @@ class BaseObject
     protected $content;
     protected $preferred;
     protected $error;
+    protected $headers = [];
 
     /**
      * @return mixed
@@ -242,5 +243,38 @@ class BaseObject
     public function isError()
     {
         return ($this->error !== null);
+    }
+
+    /**
+     * @param $header
+     * @param $value
+     *
+     * @return void
+     */
+    public function setHeader($header, $value)
+    {
+        $this->headers[$header] = $value;
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * @param $header
+     *
+     * @return mixed|null
+     */
+    public function getHeader($header)
+    {
+        if (array_key_exists($header, $this->headers)) {
+            return $this->headers[$header];
+        } else {
+            return null;
+        }
     }
 }

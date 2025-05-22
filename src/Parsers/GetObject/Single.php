@@ -19,6 +19,11 @@ class Single
         $obj->setMimeVersion($response->getHeader('MIME-Version'));
         $obj->setPreferred($response->getHeader('Preferred'));
 
+        // collect all headers
+        foreach ($response->getHeaders() as $name => $value) {
+            $obj->setHeader($name, implode('; ', $value));
+        }
+
         if ($this->isError($response)) {
             $xml = $response->xml();
             

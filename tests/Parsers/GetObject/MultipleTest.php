@@ -44,6 +44,7 @@ class MultipleTest extends PHPUnit_Framework_TestCase
         $obj = $collection->first();
         $this->assertSame('Exterior Main View', $obj->getContentDescription());
         $this->assertSame('http://url1.jpg', $obj->getLocation());
+        $this->assertSame('http://url1.jpg', $obj->getHeader('Location'));
     }
 
     /** @test **/
