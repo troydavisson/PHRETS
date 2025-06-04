@@ -18,6 +18,8 @@
   ],
   "require": {
     "php": ">=5.5.0",
+    "ext-iconv": "*",
+    "ext-mbstring": "*",
     "guzzlehttp/guzzle": ">=6.0",
     "illuminate/container": ">=4.2.0",
     "illuminate/support": ">=4.2.0",
