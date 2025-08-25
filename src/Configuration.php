@@ -9,6 +9,7 @@ class Configuration
 {
     const AUTH_BASIC = 'basic';
     const AUTH_DIGEST = 'digest';
+    const AUTH_OAUTH2 = 'oauth2';
 
     protected $username;
     protected $password;
@@ -240,7 +241,7 @@ class Configuration
      */
     public function setHttpAuthenticationMethod($auth_method)
     {
-        if (!in_array($auth_method, [self::AUTH_BASIC, self::AUTH_DIGEST])) {
+        if (!in_array($auth_method, [self::AUTH_BASIC, self::AUTH_DIGEST, self::AUTH_OAUTH2])) {
             throw new \InvalidArgumentException("Given authentication method is invalid.  Must be 'basic' or 'digest'");
         }
         $this->http_authentication = $auth_method;
@@ -253,5 +254,18 @@ class Configuration
     public function getHttpAuthenticationMethod()
     {
         return $this->http_authentication;
+    }
+
+    /**
+     * @param $base_uri
+     * @param $scope
+     * @return $this
+     */
+    public function setOauth2Authentication($base_uri, $scope)
+    {
+        $this->setHttpAuthenticationMethod(self::AUTH_OAUTH2);
+        $this->setOption('oauth2_base_uri', $base_uri);
+        $this->setOption('oauth2_scope', $scope);
+        return $this;
     }
 }
