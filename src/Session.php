@@ -335,6 +335,8 @@ class Session
         $this->debug("Sending HTTP Request for {$url} ({$capability})", $options);
         $this->last_request_url = $url;
 
+        $cookies_before_request = $this->cookie_jar->toArray();
+
         try {
             /** @var ResponseInterface $response */
             if ($this->configuration->readOption('use_post_method')) {
@@ -361,6 +363,13 @@ class Session
             }
 
             if ($capability == 'Login') {
+                // some servers set a cookie on the Digest challenge and require it on the authenticated request.
+                // cURL handles that exchange internally, so retry once now that the cookie jar has what it needs
+                if (!$is_retry and $this->cookie_jar->toArray() != $cookies_before_request) {
+                    $this->debug("401 Unauthorized on Login set new cookies.  Retrying Login with them");
+                    return $this->request($capability, $options, true);
+                }
+
                 // unauthorized on a Login request, so bail
                 throw $e;
             }
@@ -585,7 +594,7 @@ class Session
                 'Accept-Encoding' => 'gzip',
                 'Accept' => '*/*',
             ],
-            'curl' => [ CURLOPT_COOKIEFILE => tempnam('/tmp', 'phrets') ]
+            'cookies' => $this->cookie_jar,
         ];
 
         // disable following 'Location' header (redirects) automatically
