@@ -1,5 +1,9 @@
 ## master
 
+* Guzzle 8 support: cookies are now handled by the session's cookie jar instead of a raw cURL option
+* `setCookieJar()` now applies to requests
+* A Login that receives a 401 which sets new cookies is retried once with those cookies
+
 ## 2.6.4
 
 _Released July 11, 2023_
